@@ -11,8 +11,6 @@ import javax.persistence.Id;
 
 public class Cliente implements Serializable{//seralizable atribustos de la tabla
 
-	
-
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//POSTGRESQL
     private Long id_cliente;
