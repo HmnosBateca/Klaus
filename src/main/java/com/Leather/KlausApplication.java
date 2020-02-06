@@ -1,4 +1,4 @@
-package com.Leather.springboot.backend.apirest;
+package com.Leather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.Leather.springboot.backend.apirest.models.entity;
+package com.Leather.models.entity;
 
 import java.io.Serializable;
 
