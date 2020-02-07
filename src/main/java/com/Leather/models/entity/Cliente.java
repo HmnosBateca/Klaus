@@ -15,13 +15,13 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//POSTGRESQL
     private Long id_cliente;
 	
-	private int documento;
+	private String documento;
 	private String nombres;
 	private String apellidos;
-	private int numero_contacto;
+	private String numero_contacto;
 	private String direccion;
 	private String correo;
-	private int codigo_postal;
+	private String codigo_postal;
 	
 	public Long getId_cliente() {
 		return id_cliente;
@@ -29,10 +29,10 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setId_cliente(Long id_cliente) {
 		this.id_cliente = id_cliente;
 	}
-	public int getDocumento() {
+	public String getDocumento() {
 		return documento;
 	}
-	public void setDocumento(int documento) {
+	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
 	public String getNombres() {
@@ -47,10 +47,10 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public int getNumero_contacto() {
+	public String getNumero_contacto() {
 		return numero_contacto;
 	}
-	public void setNumero_contacto(int numero_contacto) {
+	public void setNumero_contacto(String numero_contacto) {
 		this.numero_contacto = numero_contacto;
 	}
 	public String getDireccion() {
@@ -65,10 +65,10 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public int getCodigo_postal() {
+	public String getCodigo_postal() {
 		return codigo_postal;
 	}
-	public void setCodigo_postal(int codigo_postal) {
+	public void setCodigo_postal(String codigo_postal) {
 		this.codigo_postal = codigo_postal;
 	}
 	

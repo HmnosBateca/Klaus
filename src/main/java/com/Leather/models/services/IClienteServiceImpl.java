@@ -14,6 +14,7 @@ public class IClienteServiceImpl implements IClienteService{
     @Autowired
 	private IClienteDao clienteDao;
     
+    
     @Transactional(readOnly = true)
     public List<Cliente>findAll(){
     	return(List<Cliente>) clienteDao.findAll();
