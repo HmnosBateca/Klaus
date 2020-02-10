@@ -35,7 +35,7 @@ public class ClienteRestController {
 		return clienteService.findById(id);//metodo Get por id
 	}
 	
-	@PostMapping("/cliente/{id}")//Crear cliente(Post)
+	@PostMapping("/cliente")//Crear cliente(Post)
 	public Cliente create(@RequestBody Cliente cliente) {//objeto Cliente recues modifica los datos
 		return clienteService.save(cliente);
 	}
