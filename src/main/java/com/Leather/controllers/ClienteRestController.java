@@ -25,22 +25,22 @@ public class ClienteRestController {
 
 	@Autowired
 	private IClienteService clienteService;//listado de clientes
-	@GetMapping("/cliente")//listar peticion Get url  generamos empoing de la peticion
+	@GetMapping("/clientes")//listar peticion Get url  generamos empoing de la peticion
 	public List<Cliente>index(){
 		return clienteService.findAll();//metodo
 	}
 	
-	@GetMapping("/cliente/{id}")//Get por id
+	@GetMapping("/clientes/{id}")//Get por id
 	public Cliente show(@PathVariable Long id) {
 		return clienteService.findById(id);//metodo Get por id
 	}
 	
-	@PostMapping("/cliente")//Crear cliente(Post)
+	@PostMapping("/clientes")//Crear cliente(Post)
 	public Cliente create(@RequestBody Cliente cliente) {//objeto Cliente recues modifica los datos
 		return clienteService.save(cliente);
 	}
 	
-	@PutMapping("/cliente/{id}")//con la id obtenemos de la base de datos y actualizamos 
+	@PutMapping("/clientes/{id}")//con la id obtenemos de la base de datos y actualizamos 
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {//un cliente ya modificado
 		Cliente clienteActual=clienteService.findById(id);//obtenemos el ciente por id
@@ -55,7 +55,7 @@ public class ClienteRestController {
 		return clienteService.save(clienteActual);
 	}
 	
-	@DeleteMapping("/cliente/{id}")
+	@DeleteMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		clienteService.delete(id);
