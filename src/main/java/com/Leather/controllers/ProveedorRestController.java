@@ -58,7 +58,7 @@ public class ProveedorRestController {
 			
 		try {
 			
-			iProveedorService.obtenerProveedorPorId(id);
+			proveedor = iProveedorService.obtenerProveedorPorId(id);
 			
 		}catch(DataAccessException e) {
 
