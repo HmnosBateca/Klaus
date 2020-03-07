@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-
 public class Cliente implements Serializable{//seralizable atribustos de la tabla
 
 	@Id 
