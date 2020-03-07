@@ -13,7 +13,7 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//POSTGRESQL
-    private Long id_cliente;
+    private Long id;
 	
 	private String documento;
 	private String nombres;
@@ -23,11 +23,11 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	private String correo;
 	private String codigo_postal;
 	
-	public Long getId_cliente() {
-		return id_cliente;
+	public Long getId() {
+		return id;
 	}
-	public void setId_cliente(Long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getDocumento() {
 		return documento;
