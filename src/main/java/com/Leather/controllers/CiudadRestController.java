@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Leather.models.entity.Departamento;
-import com.Leather.models.services.IDepartamentoService;
+import com.Leather.models.entity.Ciudad;
+import com.Leather.models.services.ICiudadService;
 
 @RestController
-@RequestMapping("/api")
-public class DepartamentoRestController {
-	
+@RequestMapping("api")
+public class CiudadRestController {
 	@Autowired
-	private IDepartamentoService clienteService;
-	
-	@GetMapping("/departamentos")
-	public List<Departamento>index() {
-		return clienteService.listarDepartamentos();	
+	private ICiudadService ciudadService;
+	@GetMapping("/ciudades")
+	public List<Ciudad>index(){
+		return ciudadService.listarCiudad();		
 	}
 }
