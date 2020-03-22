@@ -1,15 +1,43 @@
 
 
-/*Populaste Tabla Ciudad*/
+INSERT INTO departamento(id, nombre)VALUES(5,'ANTIOQUIA');
+INSERT INTO departamento(id, nombre)VALUES(8,'ATLANTICO');
+INSERT INTO departamento(id, nombre)VALUES(11,'BOGOTA, D.C.');
+INSERT INTO departamento(id, nombre)VALUES(13,'BOLIVAR');
+INSERT INTO departamento(id, nombre)VALUES(15,'BOYACA');
+INSERT INTO departamento(id, nombre)VALUES(17,'CALDAS');
+INSERT INTO departamento(id, nombre)VALUES(18,'CAQUETA');
+INSERT INTO departamento(id, nombre)VALUES(19,'CAUCA');
+INSERT INTO departamento(id, nombre)VALUES(20,'CESAR');
+INSERT INTO departamento(id, nombre)VALUES(23,'CORDOBA');
+INSERT INTO departamento(id, nombre)VALUES(25,'CUNDINAMARCA');
+INSERT INTO departamento(id, nombre)VALUES(27,'CHOCO');
+INSERT INTO departamento(id, nombre)VALUES(41,'HUILA');
+INSERT INTO departamento(id, nombre)VALUES(44,'LA GUAJIRA');
+INSERT INTO departamento(id, nombre)VALUES(47,'MAGDALENA');
+INSERT INTO departamento(id, nombre)VALUES(50,'META');
+INSERT INTO departamento(id, nombre)VALUES(52,'NARINO');
+INSERT INTO departamento(id, nombre)VALUES(54,'NORTE DE SANTANDER');
+INSERT INTO departamento(id, nombre)VALUES(63,'QUINDIO');
+INSERT INTO departamento(id, nombre)VALUES(66,'RISARALDA');
+INSERT INTO departamento(id, nombre)VALUES(68,'SANTANDER');
+INSERT INTO departamento(id, nombre)VALUES(70,'SUCRE');
+INSERT INTO departamento(id, nombre)VALUES(73,'TOLIMA');
+INSERT INTO departamento(id, nombre)VALUES(76,'VALLE DEL CAUCA');
+INSERT INTO departamento(id, nombre)VALUES(81,'ARAUCA');
+INSERT INTO departamento(id, nombre)VALUES(85,'CASANARE');
+INSERT INTO departamento(id, nombre)VALUES(86,'PUTUMAYO');
+INSERT INTO departamento(id, nombre)VALUES(88,'ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA');
+INSERT INTO departamento(id, nombre)VALUES(91,'AMAZONAS');
+INSERT INTO departamento(id, nombre)VALUES(94,'GUAINIA');
+INSERT INTO departamento(id, nombre)VALUES(95,'GUAVIARE');
+INSERT INTO departamento(id, nombre)VALUES(97,'VAUPES');
+INSERT INTO departamento(id, nombre)VALUES(99,'VICHADA');
 
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Abriaqui', 5);
-
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Acacias', 50);
-
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Acandi', 27);
-
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Acevedo', 41);
-
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Achi', 13);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Agrado', 41);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Agua de Dios', 25);
@@ -1109,46 +1137,10 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
 /*Populaste Tabla Cliente*/
 
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, direccion, correo, codigo_postal)VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'san pedro', 'profesor@bolsadeideas.com', '540001');
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'profesor@bolsadeideas.com', '540001');
 
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, direccion, correo, codigo_postal)VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'san pedro', 'sergio@bolsadeideas.com', '540001');
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'sergio@bolsadeideas.com', '540001');
 
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, direccion, correo, codigo_postal)  VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'san pedro', 'profesor@bolsadeideas.com', '540001');
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'profesor@bolsadeideas.com', '540001');
 
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, direccion, correo, codigo_postal)  VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'san pedro', 'sergio@bolsadeideas.com', '540001');
-
-/*Populaste Tabla Departamento*/
-
-INSERT INTO departamento(id, nombre)VALUES(5,'ANTIOQUIA');
-	INSERT INTO departamento(id, nombre)VALUES(8,'ATLANTICO');
-	INSERT INTO departamento(id, nombre)VALUES(11,'BOGOTA, D.C.');
-	INSERT INTO departamento(id, nombre)VALUES(13,'BOLIVAR');
-	INSERT INTO departamento(id, nombre)VALUES(15,'BOYACA');
-	INSERT INTO departamento(id, nombre)VALUES(17,'CALDAS');
-	INSERT INTO departamento(id, nombre)VALUES(18,'CAQUETA');
-	INSERT INTO departamento(id, nombre)VALUES(19,'CAUCA');
-	INSERT INTO departamento(id, nombre)VALUES(20,'CESAR');
-	INSERT INTO departamento(id, nombre)VALUES(23,'CORDOBA');
-	INSERT INTO departamento(id, nombre)VALUES(25,'CUNDINAMARCA');
-	INSERT INTO departamento(id, nombre)VALUES(27,'CHOCO');
-	INSERT INTO departamento(id, nombre)VALUES(41,'HUILA');
-	INSERT INTO departamento(id, nombre)VALUES(44,'LA GUAJIRA');
-	INSERT INTO departamento(id, nombre)VALUES(47,'MAGDALENA');
-	INSERT INTO departamento(id, nombre)VALUES(50,'META');
-	INSERT INTO departamento(id, nombre)VALUES(52,'NARINO');
-	INSERT INTO departamento(id, nombre)VALUES(54,'NORTE DE SANTANDER');
-	INSERT INTO departamento(id, nombre)VALUES(63,'QUINDIO');
-	INSERT INTO departamento(id, nombre)VALUES(66,'RISARALDA');
-	INSERT INTO departamento(id, nombre)VALUES(68,'SANTANDER');
-	INSERT INTO departamento(id, nombre)VALUES(70,'SUCRE');
-	INSERT INTO departamento(id, nombre)VALUES(73,'TOLIMA');
-	INSERT INTO departamento(id, nombre)VALUES(76,'VALLE DEL CAUCA');
-	INSERT INTO departamento(id, nombre)VALUES(81,'ARAUCA');
-	INSERT INTO departamento(id, nombre)VALUES(85,'CASANARE');
-	INSERT INTO departamento(id, nombre)VALUES(86,'PUTUMAYO');
-	INSERT INTO departamento(id, nombre)VALUES(88,'ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA');
-	INSERT INTO departamento(id, nombre)VALUES(91,'AMAZONAS');
-	INSERT INTO departamento(id, nombre)VALUES(94,'GUAINIA');
-	INSERT INTO departamento(id, nombre)VALUES(95,'GUAVIARE');
-	INSERT INTO departamento(id, nombre)VALUES(97,'VAUPES');
-	INSERT INTO departamento(id, nombre)VALUES(99,'VICHADA');
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'sergio@bolsadeideas.com', '540001');

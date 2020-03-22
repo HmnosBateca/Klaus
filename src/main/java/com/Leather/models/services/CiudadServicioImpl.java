@@ -20,4 +20,16 @@ public class CiudadServicioImpl implements ICiudadService {
 	public List<Ciudad> listarCiudad() {
 		return (List<Ciudad>)ciudadDao.findAll();
 	}
+	
+	@Override//implementar el metodo findById(id)
+	@Transactional(readOnly=true)
+	public Ciudad listarCiudadId(Long id){
+		return ciudadDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Ciudad> listarCiudadesPorDpto(Long id) {
+		return ciudadDao.listarCiudadesPorDpto(id);
+	}
 }

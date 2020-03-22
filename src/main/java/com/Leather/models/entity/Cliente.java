@@ -18,9 +18,12 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	private String nombres;
 	private String apellidos;
 	private String numero_contacto;
+	private String departamento;
+	private String ciudad;
 	private String direccion;
 	private String correo;
 	private String codigo_postal;
+	
 	
 	public Long getId() {
 		return id;
@@ -51,6 +54,19 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	}
 	public void setNumero_contacto(String numero_contacto) {
 		this.numero_contacto = numero_contacto;
+	}
+	
+	public String getDepartamento() {
+		return departamento;
+	}
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 	public String getDireccion() {
 		return direccion;

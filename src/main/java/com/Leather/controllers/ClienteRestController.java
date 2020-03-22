@@ -52,6 +52,8 @@ public class ClienteRestController {
 		clienteActual.setDireccion(cliente.getDireccion());
 		clienteActual.setCorreo(cliente.getCorreo());
 		clienteActual.setCodigo_postal(cliente.getCodigo_postal());	
+		clienteActual.setDepartamento(cliente.getDepartamento());
+		clienteActual.setCiudad(cliente.getCiudad());
 		
 		return clienteService.save(clienteActual);
 	}
