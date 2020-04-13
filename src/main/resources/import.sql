@@ -1134,13 +1134,9 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Abrego', 54);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Iquira', 41);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Umbita', 15);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
-
 /*Populaste Tabla Cliente*/
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'profesor@bolsadeideas.com', '540001', 642);
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'sergio@bolsadeideas.com', '540001', 642);
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Santander', 'Florida', 'san pedro', 'profesor@bolsadeideas.com', '540001', 342);
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Santander', 'Florida', 'san pedro', 'sergio@bolsadeideas.com', '540001', 342);
 
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'profesor@bolsadeideas.com', '540001');
-
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'sergio@bolsadeideas.com', '540001');
-
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'profesor@bolsadeideas.com', '540001');
-
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal) VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'sergio@bolsadeideas.com', '540001');

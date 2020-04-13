@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.Leather.models.dao.ICiudadDao;
 import com.Leather.models.dao.IClienteDao;
 import com.Leather.models.entity.Ciudad;
+import com.Leather.models.entity.Cliente;
 
 @Service
 public class CiudadServicioImpl implements ICiudadService {
@@ -31,5 +32,11 @@ public class CiudadServicioImpl implements ICiudadService {
 	@Transactional(readOnly = true)
 	public List<Ciudad> listarCiudadesPorDpto(Long id) {
 		return ciudadDao.listarCiudadesPorDpto(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Cliente> listarClientesPorCiudades(Long id) {
+		return ciudadDao.listarClientesPorCiudades(id);
 	}
 }

@@ -23,4 +23,6 @@ public class DepartamentoRestController {
 	public List<Departamento>index() {
 		return clienteService.listarDepartamentos();	
 	}
+	
+
 }

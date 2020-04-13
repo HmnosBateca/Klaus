@@ -38,18 +38,7 @@ public class Departamento implements Serializable {
 	@OneToMany(mappedBy = "departamento",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonIgnore//Para que se haga una bucle infinito
 	private List<Ciudad>ciudades;
-	/*
-	@ManyToOne(fetch=FetchType.LAZY)
-	@NotNull	
-	Private Departamento departamento;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@NotNull	
-	Private Departamento departamento;*/
-	
-	
-	
-
 	///Getters y Setters
 	
 	public Departamento() {//creamos constructor
@@ -86,8 +75,6 @@ public class Departamento implements Serializable {
 	public void addCiudad(Ciudad ciudad) {
 		ciudades.add(ciudad);
 	}
-	
-
 
 	/**
 	 * 

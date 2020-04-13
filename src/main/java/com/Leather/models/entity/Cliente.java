@@ -3,9 +3,13 @@ package com.Leather.models.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente implements Serializable{//seralizable atribustos de la tabla
@@ -23,6 +27,11 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	private String direccion;
 	private String correo;
 	private String codigo_postal;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Ciudad ciu; // ciu_id
+	
 	
 	
 	public Long getId() {
@@ -83,10 +92,21 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public String getCodigo_postal() {
 		return codigo_postal;
 	}
+	
 	public void setCodigo_postal(String codigo_postal) {
 		this.codigo_postal = codigo_postal;
 	}
+		
+	public Ciudad getCiu() {
+		return ciu;
+	}
 	
+	public void setCiu(Ciudad ciu) {
+		this.ciu = ciu;
+	}
+
+
+
 	/**
 	 * 
 	 */
