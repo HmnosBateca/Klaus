@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,7 +44,20 @@ public class ProveedorRestController {
 	}
 	
 	
-	
+	/*
+	 * Este método lista los proveedores de forma paginada
+	 * Parámetros:
+	 * 		- El paginador
+	 * 		- En el caso de paginadores hay dos parámetros que por debajo se envían pero NO de forma explícita:
+	 * 				- Page: La página inicial (por defecto cero (0))
+	 * 				- size: El tamaño de cada página
+	 * Retorna:
+	 * 		- Un responseEntity con el listado paginado de Proveedores
+	*/
+	@GetMapping("proveedores/pagina")
+	public ResponseEntity<?>listarProveedoresPaginado(Pageable paginador){
+		return ResponseEntity.ok().body(iProveedorService.listarProveedoresPaginado(paginador));
+	}
 	
 	
 	// Este método obtiene el proveedor por su ID. Retorna un ResponseEntity de tipo genérico "?"

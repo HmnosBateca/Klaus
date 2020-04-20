@@ -3,6 +3,8 @@ package com.Leather.models.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.Leather.models.dao.IProveedorDao;
@@ -42,6 +44,13 @@ public class ProveedorServiceImpl implements IProveedorService{
 	@Override
 	public void eliminarProveedor(Long id) {
 		iProveedorDao.deleteById(id);
+	}
+
+
+
+	@Override
+	public Page<Proveedor> listarProveedoresPaginado(Pageable paginador) {
+		return iProveedorDao.findAll(paginador);
 	}
 
 	
