@@ -3,6 +3,8 @@ package com.Leather.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,6 +44,12 @@ public class ClienteRestController {
 	public List<Cliente>index(){
 		return clienteService.findAll();//metodo
 	}
+	
+	@GetMapping("/clientes/pagina")
+	public Page<Cliente> index(Pageable pageable){
+		return clienteService.findAll(pageable);
+	}
+	
 	
 	@GetMapping("/clientes/{id}")//Get por id
 	public Cliente show(@PathVariable Long id) {
