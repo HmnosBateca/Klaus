@@ -3,31 +3,42 @@ package com.Leather.models.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-
 public class Cliente implements Serializable{//seralizable atribustos de la tabla
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//POSTGRESQL
-    private Long id_cliente;
+    private Long id;
 	
 	private String documento;
 	private String nombres;
 	private String apellidos;
 	private String numero_contacto;
+	private String departamento;
+	private String ciudad;
 	private String direccion;
 	private String correo;
 	private String codigo_postal;
 	
-	public Long getId_cliente() {
-		return id_cliente;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Ciudad ciu; // ciu_id
+	
+	
+	
+	public Long getId() {
+		return id;
 	}
-	public void setId_cliente(Long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getDocumento() {
 		return documento;
@@ -53,6 +64,19 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setNumero_contacto(String numero_contacto) {
 		this.numero_contacto = numero_contacto;
 	}
+	
+	public String getDepartamento() {
+		return departamento;
+	}
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	public String getDireccion() {
 		return direccion;
 	}
@@ -68,10 +92,21 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public String getCodigo_postal() {
 		return codigo_postal;
 	}
+	
 	public void setCodigo_postal(String codigo_postal) {
 		this.codigo_postal = codigo_postal;
 	}
+		
+	public Ciudad getCiu() {
+		return ciu;
+	}
 	
+	public void setCiu(Ciudad ciu) {
+		this.ciu = ciu;
+	}
+
+
+
 	/**
 	 * 
 	 */
