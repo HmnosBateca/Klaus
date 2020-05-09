@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 /*
  	La clase Proveedor registra la información de los proveedores del sistema
@@ -53,6 +55,7 @@ public class Proveedor implements Serializable{
 	
 	@Column(name="hora_registro")
 	@Temporal(TemporalType.TIME)
+	@JsonFormat(pattern = "HH:mm:ss.SSS")
 	private Date horaRegistro;
 	
 	@Column(name="fecha_modificacion")
@@ -61,6 +64,7 @@ public class Proveedor implements Serializable{
 	
 	@Column(name="hora_modificacion")
 	@Temporal(TemporalType.TIME)
+	@JsonFormat(pattern = "HH:mm:ss.SSS")
 	private Date horaModificacion;
 	
 	
