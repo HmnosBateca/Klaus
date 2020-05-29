@@ -59,7 +59,13 @@ public class ClienteRestController {
 		return clienteService.findById(id);//metodo Get por id
 	}
 	
-
+	//Post Agregar Cliente
+	@PostMapping("/clientes")
+	@ResponseStatus(HttpStatus.CREATED)
+    public Cliente create(@RequestBody Cliente cliente) {
+    return clienteService.save(cliente);
+	}
+ 
 	@PostMapping("/clientes/ciudad/{ciudadId}")//Crear cliente(Post)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente create(@RequestBody Cliente cliente, @PathVariable Long ciudadId) {//objeto Cliente reques modifica los datos
