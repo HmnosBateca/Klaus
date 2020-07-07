@@ -13,7 +13,7 @@ public interface ICiudadDao extends CrudRepository<Ciudad, Long> {
 	@Query("SELECT c FROM Ciudad c WHERE c.departamento.id = ?1")
 	List<Ciudad> listarCiudadesPorDpto(Long id);
 	
-	@Query("SELECT c FROM Cliente c WHERE c.ciu.id = ?1")
+	@Query("SELECT c FROM Cliente c WHERE c.ciudad.id = ?1")
 	List<Cliente>listarClientesPorCiudades(Long id);
 	
 }

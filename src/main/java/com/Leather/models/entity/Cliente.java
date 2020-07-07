@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Cliente implements Serializable{//seralizable atribustos de la tabla
@@ -23,14 +24,13 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	private String apellidos;
 	private String numero_contacto;
 	private String departamento;
-	private String ciudad;
 	private String direccion;
 	private String correo;
 	private String codigo_postal;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Ciudad ciu; // ciu_id
+	@JsonIgnoreProperties(value = {"clientes","handler", "hibernateLazyInitializer"})
+	private Ciudad ciudad;
 	
 	
 	
@@ -71,12 +71,6 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
-	public String getCiudad() {
-		return ciudad;
-	}
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
 	public String getDireccion() {
 		return direccion;
 	}
@@ -98,11 +92,11 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	}
 		
 	public Ciudad getCiu() {
-		return ciu;
+		return this.ciudad;
 	}
 	
-	public void setCiu(Ciudad ciu) {
-		this.ciu = ciu;
+	public void setCiu(Ciudad ciudad) {
+		this.ciudad = ciudad;
 	}
 
 

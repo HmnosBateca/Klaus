@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,11 +18,18 @@ import com.Leather.models.services.IDepartamentoService;
 public class DepartamentoRestController {
 	
 	@Autowired
-	private IDepartamentoService clienteService;
+	private IDepartamentoService departamentoService;
+	
 	
 	@GetMapping("/departamentos")
 	public List<Departamento>index() {
-		return clienteService.listarDepartamentos();	
+		return departamentoService.listarDepartamentos();	
+	}
+	
+	
+	@GetMapping("/departamentos/{id}")
+	public Departamento obtenerDepartamentoPorID(@PathVariable Long id) {
+		return this.departamentoService.obtenerDepartamentoPorID(id);
 	}
 	
 

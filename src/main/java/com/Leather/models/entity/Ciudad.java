@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 //@Table(name="ciudades")
@@ -34,12 +35,29 @@ public class Ciudad implements Serializable{
 	@JsonIgnore//no se haga un bucle infinito 
 	private Departamento departamento;
 	
-	@OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JsonIgnore
+	
+	/*
+	 * Cuando se establecen relaciones bidireccionales entre clases se debe usar el "mappedBy"
+	 * y allí se indicará el nombre del campo de la otra clase que será mapeado en la relación.
+	 * Importante: 
+	 * 				- En relaciones ManyToOne o OneToMany el mappedBy se agrega en el One de la relación
+	 * 				- En relaciones OneToOne el mappedBy se agrega en la clase fuerte (o que manda)
+	*/
+	
+	
+	@OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY )
+	@JsonIgnoreProperties(value = {"ciudad","handler", "hibernateLazyInitializer"})
 	private List<Cliente> clientes;
+	
+	
+	@OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"ciudad", "handler", "hibernateLazyInitializer"})
+	private List<Proveedor> proveedores;
+	
 	
 	public Ciudad() {
 		clientes= new ArrayList<Cliente>();
+		proveedores = new ArrayList<Proveedor>();
 	}
 	
 	public Long getId() {
@@ -81,6 +99,21 @@ public class Ciudad implements Serializable{
 	}
 
 
+	
+	public List<Proveedor> getProveedores(){
+		return this.proveedores;
+	}
+	
+	
+	public void setProveedores(List<Proveedor> proveedores) {
+		this.proveedores = proveedores;
+	}
+	
+	public void addProveedor(Proveedor proveedor) {
+		this.proveedores.add(proveedor);
+	}
+	
+	
 	/**
 	 * 
 	 */

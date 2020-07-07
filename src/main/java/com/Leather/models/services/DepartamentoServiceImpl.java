@@ -19,4 +19,9 @@ public class DepartamentoServiceImpl implements IDepartamentoService {
 	public List<Departamento> listarDepartamentos() {
 		return (List<Departamento>)iDepartamentoDao.findAll();
 	}
+
+	@Override
+	public Departamento obtenerDepartamentoPorID(Long id) {
+		return iDepartamentoDao.findById(id).orElse(null);
+	}
 }

@@ -3,11 +3,14 @@ package com.Leather.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -15,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /*
@@ -66,6 +71,11 @@ public class Proveedor implements Serializable{
 	@Temporal(TemporalType.TIME)
 	@JsonFormat(pattern = "HH:mm:ss.SSS")
 	private Date horaModificacion;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"proveedores", "clientes", "handler", "hibernateLazyInitializer"})
+	private Ciudad ciudad;
 	
 	
 	////////////////////////////// Getters y Setters
@@ -167,6 +177,14 @@ public class Proveedor implements Serializable{
 		this.horaModificacion = horaModificacion;
 	}
 	
+	
+	public Ciudad getCiudad() {
+		return this.ciudad;
+	}
+	
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
 	
 
 	public static long getSerialversionuid() {

@@ -1143,9 +1143,3 @@ INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, co
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Pérez',1255489,1234657,311245369,'juliop@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Carlos','Barriga',24855,12346789,312456789,'calos@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
-
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'profesor@bolsadeideas.com', '540001', 642);
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Norte de Santander', 'Pamplona', 'san pedro', 'sergio@bolsadeideas.com', '540001', 642);
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248825, 'Andres', 'Guzman', '3102496515', 'Santander', 'Florida', 'san pedro', 'profesor@bolsadeideas.com', '540001', 342);
-INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, departamento, ciudad, direccion, correo, codigo_postal, ciu_id)VALUES(1094248823, 'sergio', 'bateca', '3102496515', 'Santander', 'Florida', 'san pedro', 'sergio@bolsadeideas.com', '540001', 342);
-
