@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 //@Table(name="departamentos")
@@ -35,9 +36,21 @@ public class Departamento implements Serializable {
 	//Un departamento muchas ciudades
 	//CascadeType.ALL:Todas las operaciones delete y persistencia se realizan en cascada
 	//mappedBy = "departamento":el nombre de atributo ciudad, hacemos que sea bidireccional, crea la llave foranea ciudad id
-	@OneToMany(mappedBy = "departamento",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JsonIgnore//Para que se haga una bucle infinito
+	@OneToMany(mappedBy = "departamento",fetch=FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"departamento","handler", "hibernateLazyInitializer"})
 	private List<Ciudad>ciudades;
+	
+	
+	@OneToMany(mappedBy = "departamento",fetch=FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"departamento","handler", "hibernateLazyInitializer"})	
+	private List<Cliente> clientes;
+	
+	
+	
+	
+	
+	
+	
 	
 	///Getters y Setters
 	
@@ -74,6 +87,19 @@ public class Departamento implements Serializable {
 	//Agregar ciudad por ciudad en la clase departamento
 	public void addCiudad(Ciudad ciudad) {
 		ciudades.add(ciudad);
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	
+	public void addCliente(Cliente cliente) {
+		this.clientes.add(cliente);
 	}
 
 	/**

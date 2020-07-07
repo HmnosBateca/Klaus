@@ -23,7 +23,6 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	private String nombres;
 	private String apellidos;
 	private String numero_contacto;
-	private String departamento;
 	private String direccion;
 	private String correo;
 	private String codigo_postal;
@@ -32,6 +31,9 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	@JsonIgnoreProperties(value = {"clientes","handler", "hibernateLazyInitializer"})
 	private Ciudad ciudad;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"clientes","handler", "hibernateLazyInitializer"})
+	private Departamento departamento;
 	
 	
 	public Long getId() {
@@ -65,10 +67,10 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 		this.numero_contacto = numero_contacto;
 	}
 	
-	public String getDepartamento() {
+	public Departamento getDepartamento() {
 		return departamento;
 	}
-	public void setDepartamento(String departamento) {
+	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
 	public String getDireccion() {
