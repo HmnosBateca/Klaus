@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 
 /*
@@ -56,20 +57,22 @@ public class Proveedor implements Serializable{
 	
 	@Column(name="fecha_registro")
 	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaRegistro;
 	
 	@Column(name="hora_registro")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss.SSS")
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="HH:mm:ss")
 	private Date horaRegistro;
 	
 	@Column(name="fecha_modificacion")
 	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaModificacion;
 	
 	@Column(name="hora_modificacion")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss.SSS")
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern = "HH:mm:ss")
 	private Date horaModificacion;
 	
 	
