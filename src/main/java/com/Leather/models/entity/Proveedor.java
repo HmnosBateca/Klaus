@@ -41,7 +41,9 @@ public class Proveedor implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nombres;
+	@Column(nullable = false)
 	private String apellidos;
 	private String nit;
 	private Long documento;
