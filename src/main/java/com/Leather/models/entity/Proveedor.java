@@ -45,7 +45,11 @@ public class Proveedor implements Serializable{
 	private String nombres;
 	@Column(nullable = false)
 	private String apellidos;
+	
+	@Column(unique = true)
 	private String nit;
+	
+	@Column(unique = true)
 	private Long documento;
 	
 	@Column(name="numero_contacto")

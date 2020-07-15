@@ -1139,7 +1139,15 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Ramón','Valencia',21345,60300300,301456721,'ramon@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Ortiz',232324,1094246587,310123456,'julio@proveedor.com','calle 25 No. 25-25');
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Andrea','Benanidez',13354678,60300300,315458712,'andrea@proveedor.com','calle 25 No. 25-25');
+INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Andrea','Benanidez',13354678,6030300,315458712,'andrea@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Pérez',1255489,1234657,311245369,'juliop@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Carlos','Barriga',24855,12346789,312456789,'calos@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
+
+
+/*inserts tabla tallas*/
+INSERT INTO tallas(talla,descripcion) VALUES (35,'Talla 35 americana');
+INSERT INTO tallas(talla,descripcion) VALUES (36,'Talla 36 americana');
+INSERT INTO tallas(talla,descripcion) VALUES (37,'Talla 37 americana');
+INSERT INTO tallas(talla,descripcion) VALUES (38,'Talla 38 americana');
+INSERT INTO tallas(talla,descripcion) VALUES (39,'Talla 39 americana');
