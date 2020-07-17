@@ -32,7 +32,7 @@ public class Ciudad implements Serializable{
 	//fetch optener los datos de la operacion lazy perezosa, realiza la consulta cuando se le llama,
 	//muchas ciudades un departamento
 	@ManyToOne(fetch=FetchType.LAZY) 
-	@JsonIgnoreProperties(value = {"ciudades","handler", "hibernateLazyInitializer"}) 
+	@JsonIgnoreProperties(value = {"ciudades", "handler", "hibernateLazyInitializer"}) 
 	private Departamento departamento;
 	
 	

@@ -37,11 +37,6 @@ public class ClienteRestController {
 	@Autowired
 	private IClienteService clienteService;//listado de clientes
 
-	
-	@Autowired
-	private ICiudadService ciudadService;
-	
-
 	@GetMapping("/clientes")//listar peticion Get url  generamos empoing de la peticion
 	public List<Cliente>index(){
 		return clienteService.findAll();//metodo
@@ -66,14 +61,6 @@ public class ClienteRestController {
     return clienteService.save(cliente);
 	}
  
-	@PostMapping("/clientes/ciudad/{ciudadId}")//Crear cliente(Post)
-	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente create(@RequestBody Cliente cliente, @PathVariable Long ciudadId) {//objeto Cliente reques modifica los datos
-		Ciudad ciudad = ciudadService.listarCiudadId(ciudadId); // obtenemos la ciudad por su ID
-		cliente.setCiu(ciudad); // asigno la ciudad en el objeto Ciente
-		return clienteService.save(cliente); // se guarda el cliente en Base de Datos
-	}
-	
 	@PutMapping("/clientes/{id}")//con la id obtenemos de la base de datos y actualizamos 
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {//un cliente ya modificado
@@ -85,8 +72,7 @@ public class ClienteRestController {
 		clienteActual.setDireccion(cliente.getDireccion());
 		clienteActual.setCorreo(cliente.getCorreo());
 		clienteActual.setCodigo_postal(cliente.getCodigo_postal());	
-		clienteActual.setDepartamento(cliente.getDepartamento());
-		clienteActual.setCiu(cliente.getCiu());
+		clienteActual.setCiudad(cliente.getCiudad());
 		
 		return clienteService.save(clienteActual);
 	}
