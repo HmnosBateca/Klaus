@@ -19,24 +19,27 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
-@Table(name = "tallas")
-public class Talla implements Serializable{
+@Table(name = "colores")
+public class Color implements Serializable{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	// ---------------------- variables ----------------------- //
+	// ----------------- variables ---------------------- //
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String nombre;
+	
 	@Column(unique = true)
-	private Long talla;
+	private String codigoColor;
 	
-	private String descripcion;
 	
-
-	// ----------------------------- variables de auditoría --------------------//
+	// -------------- variables de auditoría ---------------------------- //
 	
 	@Column(name = "fecha_registro")
 	@Temporal(TemporalType.DATE)
@@ -59,7 +62,8 @@ public class Talla implements Serializable{
 	private Date horaModificacion;
 
 	
-	// ------------------ GETTERS Y SETTERS -------------------------- //
+	
+	// ----------------- getters y setters ---------------------------------- //	
 	
 	public Long getId() {
 		return id;
@@ -69,20 +73,20 @@ public class Talla implements Serializable{
 		this.id = id;
 	}
 
-	public Long getTalla() {
-		return talla;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setTalla(Long talla) {
-		this.talla = talla;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getCodigoColor() {
+		return codigoColor;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setCodigoColor(String color) {
+		this.codigoColor = color;
 	}
 
 	public Date getFechaRegistro() {
@@ -121,7 +125,8 @@ public class Talla implements Serializable{
 		return serialVersionUID;
 	}
 	
-	// ------------------- acciones automáticas ---------------------------- //
+	
+	// ----------------- acciones automáticas --------------- //
 	
 	@PrePersist
 	public void asignaFechaRegistro(){
@@ -134,4 +139,7 @@ public class Talla implements Serializable{
 		this.fechaModificacion = new Date();
 		this.horaModificacion = new Date();
 	}
+	
+	
+	
 }

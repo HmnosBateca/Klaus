@@ -91,7 +91,7 @@ public class TallaRestController {
 	 *	- Retorna: un ResponseEntity con la lista paginada 
 	*/
 	
-	@GetMapping("/tallas/paginado")
+	@GetMapping("/tallas/pagina")
 	public ResponseEntity<?> listarTallasPaginado(Pageable paginador){
 		
 		Pageable pag = PageRequest.of(paginador.getPageNumber(), paginador.getPageSize(),Sort.by("talla").ascending());
@@ -119,6 +119,7 @@ public class TallaRestController {
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ha ocurrido un error al guardar la talla");
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());
+			return new ResponseEntity< Map<String, Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		
@@ -142,7 +143,7 @@ public class TallaRestController {
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (la talla modificada o el mensaje de error)
 	*/
 	
-	@PutMapping("/talla/{id}")
+	@PutMapping("/tallas/{id}")
 	public ResponseEntity<?> actualizarTalla(@PathVariable Long id, @RequestBody Talla talla){
 		
 		Talla tallaExistente = iTallaService.obtenerTallaPorID(id);
@@ -163,6 +164,7 @@ public class TallaRestController {
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrió un error al modificar la talla");
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());
+			return new ResponseEntity< Map<String, Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		
@@ -187,7 +189,7 @@ public class TallaRestController {
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (el mensaje de étixo o error)
 	*/
 	
-	@DeleteMapping("/talla/{id}")
+	@DeleteMapping("/tallas/{id}")
 	public ResponseEntity<?> eliminarTalla(@PathVariable Long id) {
 		
 		Talla tallaExistente = null;
@@ -204,6 +206,7 @@ public class TallaRestController {
 			iTallaService.eliminarTalla(id);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrió un error al eliminar la talla "+ tallaExistente.getTalla());
+			mapa.put("error", e.getMessage()+" : "+e.getMostSpecificCause());
 			return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
