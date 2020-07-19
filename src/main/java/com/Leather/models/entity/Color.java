@@ -35,7 +35,7 @@ public class Color implements Serializable{
 	
 	private String nombre;
 	
-	@Column(unique = true)
+	@Column(unique = true, name = "codigo_color")
 	private String codigoColor;
 	
 	

@@ -58,7 +58,7 @@ public class ColorRestController {
 	*/
 	@GetMapping("/colores/pagina")
 	public ResponseEntity<?> listarColoresPaginado(Pageable paginador){
-		Pageable pag = PageRequest.of(paginador.getPageNumber(), paginador.getPageSize(), Sort.by("color").ascending());
+		Pageable pag = PageRequest.of(paginador.getPageNumber(), paginador.getPageSize(), Sort.by("nombre").ascending());
 		return ResponseEntity.ok(iColorService.listarColoresPaginado(pag));
 	}
 	

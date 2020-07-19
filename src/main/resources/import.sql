@@ -1151,3 +1151,9 @@ INSERT INTO tallas(talla,descripcion) VALUES (36,'Talla 36 americana');
 INSERT INTO tallas(talla,descripcion) VALUES (37,'Talla 37 americana');
 INSERT INTO tallas(talla,descripcion) VALUES (38,'Talla 38 americana');
 INSERT INTO tallas(talla,descripcion) VALUES (39,'Talla 39 americana');
+
+/* inserts tabla colores */
+INSERT INTO colores(nombre, codigo_color) VALUES ('Negro', 'RGB(0,0,0)');
+INSERT INTO colores(nombre, codigo_color) VALUES ('Blanco', 'RGB(255,255,255)');
+INSERT INTO colores(nombre, codigo_color) VALUES ('Azul', 'RGB(13,63,121)');
+INSERT INTO colores(nombre, codigo_color) VALUES ('Vino tinto', 'RGB(111,4,4)');
