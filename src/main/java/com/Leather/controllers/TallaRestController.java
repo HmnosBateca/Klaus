@@ -123,9 +123,9 @@ public class TallaRestController {
 		}
 		
 		
-		mapa.put("mensaje", "La talla ha sido registrada exitosamente");
+		mapa.put("mensaje", "La talla " + talla.getTalla() +" ha sido registrada exitosamente");
 		mapa.put("talla", tallaNueva);
-		return new ResponseEntity<Talla>(tallaNueva, HttpStatus.CREATED);
+		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.CREATED);
 		
 	}
 	
@@ -159,6 +159,7 @@ public class TallaRestController {
 		try {
 			tallaExistente.setTalla(talla.getTalla());
 			tallaExistente.setDescripcion(talla.getDescripcion());
+			tallaExistente.setTipoTalla(talla.getTipoTalla());
 			tallaNueva = iTallaService.guardarTalla(tallaExistente);
 			
 		}catch(DataAccessException e) {

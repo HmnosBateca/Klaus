@@ -2,6 +2,7 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -21,30 +23,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
-@Entity
-@Table(name = "tallas")
-public class Talla implements Serializable{
 
+
+@Entity
+@Table(name = "tipo_tallas")
+public class TipoTalla implements Serializable{
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	// ---------------------- variables ----------------------- //
+	
+	// ----------------- variables ------------------------ //
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
-	private String talla;
+	@Column(unique = true, nullable = false, name="tipo_talla")
+	private String tipoTalla;
 	
 	private String descripcion;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"tallas","handler", "hibernateLazyInitializer"})
-	private TipoTalla tipoTalla;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy ="tipoTalla")
+	@JsonIgnoreProperties(value = {"tipoTalla" ,"handler", "hibernateLazyInitializer"})
+	private List<Talla> tallas; 
+	
+	
+	
+	// ----------------- variables de auditoria ------------------------ //
 	
 
-	// ----------------------------- variables de auditoría --------------------//
-	
 	@Column(name = "fecha_registro")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.ANY)
@@ -66,7 +77,10 @@ public class Talla implements Serializable{
 	private Date horaModificacion;
 
 	
-	// ------------------ GETTERS Y SETTERS -------------------------- //
+
+	// --------------------------- getters y setters ----------------------------- //
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -76,12 +90,12 @@ public class Talla implements Serializable{
 		this.id = id;
 	}
 
-	public String getTalla() {
-		return talla;
+	public String getTipoTalla() {
+		return tipoTalla;
 	}
 
-	public void setTalla(String talla) {
-		this.talla = talla;
+	public void setTipoTalla(String tipoTalla) {
+		this.tipoTalla = tipoTalla;
 	}
 
 	public String getDescripcion() {
@@ -123,20 +137,24 @@ public class Talla implements Serializable{
 	public void setHoraModificacion(Date horaModificacion) {
 		this.horaModificacion = horaModificacion;
 	}
-	
-	
-	public TipoTalla getTipoTalla() {
-		return tipoTalla;
+
+	public List<Talla> getTallas() {
+		return tallas;
 	}
 
-	public void setTipoTalla(TipoTalla tipoTalla) {
-		this.tipoTalla = tipoTalla;
-	}	
+	public void setTallas(List<Talla> tallas) {
+		this.tallas = tallas;
+	}
 	
+	public void addTalla(Talla talla) {
+		this.tallas.add(talla);
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
 	
 	// ------------------- acciones automáticas ---------------------------- //
 	
@@ -152,5 +170,6 @@ public class Talla implements Serializable{
 		this.horaModificacion = new Date();
 	}
 
+	
 
 }

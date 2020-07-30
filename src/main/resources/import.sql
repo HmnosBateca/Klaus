@@ -1145,12 +1145,20 @@ INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, co
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
 
 
+
+/* inserts table tipo talla*/
+INSERT INTO tipo_tallas(tipo_talla, descripcion) VALUES ('Talla americana', 'Tipo de numeración americana');
+INSERT INTO tipo_tallas(tipo_talla, descripcion) VALUES ('Talla Colombiana', 'Tipo de numeración Colombiana');
+
+
 /*inserts tabla tallas*/
-INSERT INTO tallas(talla,descripcion) VALUES (35,'Talla 35 americana');
-INSERT INTO tallas(talla,descripcion) VALUES (36,'Talla 36 americana');
-INSERT INTO tallas(talla,descripcion) VALUES (37,'Talla 37 americana');
-INSERT INTO tallas(talla,descripcion) VALUES (38,'Talla 38 americana');
-INSERT INTO tallas(talla,descripcion) VALUES (39,'Talla 39 americana');
+INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (35,'Talla 35 americana',1);
+INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (36,'Talla 36 americana',1);
+INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (37,'Talla 37 americana',1);
+INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (38,'Talla 38 americana',1);
+INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (39,'Talla 39 americana',1);
+
+
 
 /* inserts tabla colores */
 INSERT INTO colores(nombre, codigo_color) VALUES ('Negro', 'RGB(0,0,0)');

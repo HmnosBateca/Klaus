@@ -125,6 +125,7 @@ public class ProveedorRestController {
 		}catch(DataAccessException e) {
 			mapa.put("mensaje","Ocurrió un error al registrar al proveedor " + proveedor.getNombres());
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());
+			return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		mapa.put("mensaje", "El proveedor " + proveedor.getNombres() + " ha sido registrado exitosamente");
