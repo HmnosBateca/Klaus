@@ -2,12 +2,15 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -15,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -37,7 +41,8 @@ public class Material implements Serializable{
 	private String nombre;
 	private String descripcion;
 	
-	
+	@OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+	List<Pieza> piezas;
 	
 	// ----------------------------- variables de auditoría --------------------//
 	
@@ -124,11 +129,25 @@ public class Material implements Serializable{
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
+		
+		public List<Pieza> getPiezas() {
+			return piezas;
+		}
+
+		public void setPiezas(List<Pieza> piezas) {
+			this.piezas = piezas;
+		}
+		
+		public void addPieza(Pieza pieza) {
+			this.piezas.add(pieza);
+		}
 	
 		
 		
 		// ------------------- acciones automáticas ---------------------------- //
 		
+
+
 		@PrePersist
 		public void asignaFechaRegistro(){
 			this.fechaRegistro = new Date();

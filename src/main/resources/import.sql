@@ -1168,6 +1168,11 @@ INSERT INTO colores(nombre, codigo_color) VALUES ('Vino tinto', 'RGB(111,4,4)');
 
 /* inserts tabla materiales*/
 INSERT INTO materiales(nombre, descripcion) VALUES ('Cuero graso', 'Cuero graso Colombiano');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Cuero liso', 'Cuero liso Colombiano');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Cuero nobuck', 'Cuero nobuck Colombiano');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Cuero de cocodrilo', 'Cuero Cocodrilo selva Colombiana');
+INSERT INTO materiales(nombre, descripcion) VALUES ('acero', 'acero para punteras');
+INSERT INTO materiales(nombre, descripcion) VALUES ('poliéster', 'material para recubrimiento de calzado');
+INSERT INTO materiales(nombre, descripcion) VALUES ('suela', 'caucho para suelas');
+
+/*inserts tabla piezas*/
+INSERT INTO piezas(nombre,observacion,color_id,material_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1);
+INSERT INTO piezas(nombre,observacion,color_id,material_id) VALUES ('suela', 'suela para tenis',2,4);
+INSERT INTO piezas(nombre,observacion,color_id,material_id) VALUES ('recubrimiento', 'recubrimiento en poliester',1,3);

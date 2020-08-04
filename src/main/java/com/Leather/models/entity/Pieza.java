@@ -2,7 +2,6 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,66 +9,71 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GeneratorType;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
+@Table(name = "piezas")
 @Entity
-@Table(name = "colores")
-public class Color implements Serializable{
+public class Pieza implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	// ----------------- variables ---------------------- //
 	
-	@Id
+	// --------------- campos de la tabla -------------------- //
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private Long id;
-	
 	private String nombre;
-	
-	@Column(unique = true, name = "codigo_color")
-	private String codigoColor;
-	
-	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
-	List<Pieza> piezas;
+	private String observacion;
 	
 	
-	// -------------- variables de auditoría ---------------------------- //
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
+	private Color color;
 	
-	@Column(name = "fecha_registro")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
+	private Material material;
+
+
+	@Column(name="fecha_registro")
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaRegistro;
 	
 	@Column(name="hora_registro")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="HH:mm:ss")
 	private Date horaRegistro;
 	
 	@Column(name="fecha_modificacion")
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaModificacion;
 	
 	@Column(name="hora_modificacion")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern = "HH:mm:ss")
 	private Date horaModificacion;
-
 	
 	
-	// ----------------- getters y setters ---------------------------------- //	
+	
+	// ------------------------ GETTERS Y SETTERS ---------------------- //
 	
 	public Long getId() {
 		return id;
@@ -87,14 +91,34 @@ public class Color implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getCodigoColor() {
-		return codigoColor;
+	public String getObservacion() {
+		return observacion;
 	}
 
-	public void setCodigoColor(String color) {
-		this.codigoColor = color;
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
 	}
 
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -127,41 +151,26 @@ public class Color implements Serializable{
 		this.horaModificacion = horaModificacion;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-	public List<Pieza> getPiezas() {
-		return piezas;
-	}
-
-	public void setPiezas(List<Pieza> piezas) {
-		this.piezas = piezas;
-	}
-	
-	public void addPieza(Pieza pieza) {
-		this.piezas.add(pieza);
-	}
 	
 	
 	
-	// ----------------- acciones automáticas --------------- //
 	
-
-
+	// Al registrar se instancia automáticamente la fecha de registro del proveedor
 	@PrePersist
-	public void asignaFechaRegistro(){
+	void asignaFechaRegistro() {
 		this.fechaRegistro = new Date();
 		this.horaRegistro = new Date();
 	}
 	
+	// Al realizar una operación de actualización se ejecuta automáticamente este método
 	@PreUpdate
-	public void asignaFechaModificacion(){
+	void registrarFechaActualizacion() {
 		this.fechaModificacion = new Date();
 		this.horaModificacion = new Date();
 	}
 	
 	
 	
+	
+
 }
