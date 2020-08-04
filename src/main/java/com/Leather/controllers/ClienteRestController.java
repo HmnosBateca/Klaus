@@ -36,7 +36,7 @@ public class ClienteRestController {
 
 	@Autowired
 	private IClienteService clienteService;// listado de clientes
-	private Map<String, Object> mapa;
+	private Map<String, Object>mapa;
 
 	@GetMapping("/clientes") // listar peticion Get url generamos empoing de la peticion
 	public List<Cliente> index() {
@@ -68,15 +68,14 @@ public class ClienteRestController {
 
 	// Post Agregar Cliente
 	@PostMapping("/clientes")
-	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@RequestBody Cliente cliente) {
 		Cliente clienteNew = null;
 		Map<String, Object> mapa = new HashMap<>();
 		try {
 			clienteNew = clienteService.save(cliente);
 		} catch (DataAccessException e) {
-			mapa.put("mensaje", "error al realiar insert en la base de datos");
-			mapa.put(" error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));// por que
+			mapa.put("mensaje", "Error al realizar insert en la base de datos");
+			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));// por que
 																											// ocurrio
 																											// el error
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);

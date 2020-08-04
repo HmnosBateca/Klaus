@@ -1143,3 +1143,6 @@ INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, co
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Pérez',1255489,1234657,311245369,'juliop@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Carlos','Barriga',24855,12346789,312456789,'calos@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
+
+//INSERT INTO tipo_envios (nombre, descripcion) VALUES('Andres', 'Guzman');
+//INSERT INTO tipo_envios (nombre, descripcion) VALUES('Leonardo', 'Bateca');

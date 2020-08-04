@@ -2,6 +2,7 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//POSTGRESQL
     private Long id;
 	
+	@Column(unique = true)
 	private Long documento;
 	private String nombres;
 	private String apellidos;
