@@ -1,9 +1,16 @@
 package com.Leather.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.Leather.models.entity.TipoEnvio;
 import com.Leather.models.services.ITipoEnvioService;
@@ -26,37 +34,91 @@ public class TipoEnvioRestController {
 	
 	@Autowired//inyectamos
 	ITipoEnvioService iTipoEnvioService;// vamos a la interface y obtenemos el listado de tipos de envio
-	// private Map<String, Object> mapa;
+	private Map<String, Object>mapa;
 	
 	@GetMapping("/TipoEnvios")
     public List<TipoEnvio>ListarTipoEnvio(){
     	return iTipoEnvioService.findAll();
     }
 	
+	@SuppressWarnings("unused")
 	@GetMapping("/TipoEnvios/{id}")
-	public TipoEnvio ListarTipoEnviosPorId(@PathVariable Long id){
-		return iTipoEnvioService.findById(id);
+	public ResponseEntity<?> ListarTipoEnviosPorId(@PathVariable Long id){
+		TipoEnvio tipoenvio = null;
+		Map<String, Object>mapa = new HashMap<>();
+		try {
+			iTipoEnvioService.findById(id);
+		}catch(DataAccessException e) {
+			mapa.put("mensaje", "Error al realizar la consulta en la Base de Datos");
+			mapa.put("error", e.getMessage().concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);// status 500
+		}
+		if(tipoenvio == null) {
+			mapa.put("mensaje", "El Tipo Envio Id: ".concat(id.toString().concat(" no existe en la Base de Datos")));
+			return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.NOT_FOUND);// Status 404
+		}
+		return new ResponseEntity<TipoEnvio>(tipoenvio, HttpStatus.OK);
+	}
+	
+	@GetMapping("/TipoEnvios/pagina")
+	public Page<TipoEnvio> index(Pageable pageable) {
+		return iTipoEnvioService.findAll(pageable);
 	}
 	
 	@PostMapping("/TipoEnvios")
-	public TipoEnvio CrearTipoEnvio(@RequestBody TipoEnvio tipoEnvio) {
-		return iTipoEnvioService.save(tipoEnvio);
+	public ResponseEntity<?> CrearTipoEnvio(@RequestBody TipoEnvio tipoEnvio) {
+		TipoEnvio tipoenviocrear = null;
+		Map<String, Object>mapa = new HashMap<>();
+		try {
+			tipoenviocrear = iTipoEnvioService.save(tipoEnvio);
+		}catch(DataAccessException e){
+			mapa.put("mensaje","Error al insertar en la Base de datos");
+			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		 mapa.put("mensaje", "Tipo envio se a creado con éxito");
+		 mapa.put("tipoenvio", tipoenviocrear);
+		 return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/TipoEnvios/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public TipoEnvio Editar(@RequestBody TipoEnvio tipoEnvio, @PathVariable Long id) {
+	public ResponseEntity<?> Editar(@RequestBody TipoEnvio tipoEnvio, @PathVariable Long id) {
+		
 		TipoEnvio tipoEnvioActual = iTipoEnvioService.findById(id);
+		TipoEnvio tipoenvioeditar = null;
+		Map<String, Object>mapa = new HashMap<>();
+		if(tipoEnvioActual == null) {
+			mapa.put("mensaje", "Error: no se puede editar, el Tipo Envio ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
+			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.NOT_FOUND);// status 404
+			
+		}
+		try {
 		tipoEnvioActual.setNombre(tipoEnvio.getNombre());
 		tipoEnvioActual.setDescripcion(tipoEnvio.getDescripcion());
-		return iTipoEnvioService.save(tipoEnvioActual);
-		
+		tipoenvioeditar = iTipoEnvioService.save(tipoEnvioActual);
+		}catch(DataAccessException e){
+			mapa.put("mensaje", "Error al actualizar Tipo Envio en la base de datos.");
+			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR); // status 404
+		}
+		mapa.put("mensaje", "El Tipo Envio ha sido actualizado eon éxito!");
+		mapa.put("tipo envio", tipoenvioeditar);
+		return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/TipoEnvios/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
-		iTipoEnvioService.delete(id);
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Map<String, Object>mapa = new HashMap<>();
+		try {
+			iTipoEnvioService.delete(id);
+		}catch(DataAccessException e){
+			mapa.put("mensaje", "Error al eliminar Tipo Envio de la base de datos");
+			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);// status 404
+		}
+		mapa.put("mensaje", "El Tipo Envio ha sido eliminando con éxito!");
+		return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.OK);
 	}
-	
 }
