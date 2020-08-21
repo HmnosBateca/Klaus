@@ -30,13 +30,11 @@ public class TipoEnvioServiceImpl implements ITipoEnvioService {
 	}
 
 	@Override
-	//@Transactional
 	public TipoEnvio save (TipoEnvio tipoEnvio) {
 		 return iTipoEnvioDao.save(tipoEnvio);
 	}
 
 	@Override
-	//@Transactional
 	public void delete(Long id) {
 		iTipoEnvioDao.deleteById(id);
 	}
