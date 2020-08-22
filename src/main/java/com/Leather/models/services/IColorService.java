@@ -16,4 +16,5 @@ public interface IColorService {
 	public Color obtenerColorPorID(Long id);
 	public Color guardarColor(Color color);
 	public void eliminarColor(Long id);
+	public List<Color> buscarColorPorNombre(String nombre);
 }

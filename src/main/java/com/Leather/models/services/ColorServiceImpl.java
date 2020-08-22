@@ -41,6 +41,13 @@ public class ColorServiceImpl implements IColorService{
 	public Color obtenerColorPorID(Long id) {
 		return iColorDao.findById(id).orElse(null);
 	}
+	
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Color> buscarColorPorNombre(String nombre) {
+		return iColorDao.buscarColorPorNombre(nombre);
+	}	
 
 	@Override
 	public Color guardarColor(Color color) {
@@ -51,7 +58,6 @@ public class ColorServiceImpl implements IColorService{
 	public void eliminarColor(Long id) {
 		iColorDao.deleteById(id);
 	}
-
 	
 	
 	

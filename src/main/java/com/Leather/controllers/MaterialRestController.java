@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Leather.models.entity.Color;
 import com.Leather.models.entity.Material;
 import com.Leather.models.services.IMaterialService;
 
@@ -83,6 +84,21 @@ public class MaterialRestController {
 				
 		return new ResponseEntity<Material>(material, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/material/filtro/{nombre}")
+	public ResponseEntity<?> buscarMaterialPornombre(@PathVariable String nombre){
+		List<Material> listaMateriales = iMaterialService.buscarMaterialPorNombre(nombre);
+		return ResponseEntity.ok(listaMateriales);
+	}
+	
+	
 	
 	
 	

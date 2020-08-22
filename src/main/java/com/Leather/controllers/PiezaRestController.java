@@ -61,7 +61,7 @@ public class PiezaRestController {
 		
 		
 		if(pieza == null) {
-			mapa.put("mensaje", "La pieza con ID " + id + "no se encuentra registrada");
+			mapa.put("mensaje", "La pieza con ID " + id + " no se encuentra registrada");
 			return new ResponseEntity< Map<String,Object>  >(mapa, HttpStatus.NOT_FOUND);
 		}
 		
@@ -125,6 +125,7 @@ public class PiezaRestController {
 			piezaExistente.setObservacion(piezaFormulario.getObservacion());
 			piezaExistente.setColor(piezaFormulario.getColor());
 			piezaExistente.setMaterial(piezaFormulario.getMaterial());
+			piezaExistente.setProductoPiezas(piezaFormulario.getProductoPiezas());
 			piezaNueva = iPiezaService.guardarPieza(piezaExistente);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrió un error al modificar la pieza " + piezaExistente.getNombre());

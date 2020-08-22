@@ -53,6 +53,12 @@ public class MaterialServiceImpl implements IMaterialService{
 		iMaterialDAO.deleteById(id);
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<Material> buscarMaterialPorNombre(String nombre) {
+		return iMaterialDAO.buscarMaterialPorNombre(nombre);
+	}
+
 	
 	
 }

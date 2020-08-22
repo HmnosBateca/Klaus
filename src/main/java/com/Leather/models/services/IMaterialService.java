@@ -17,5 +17,6 @@ public interface IMaterialService {
 	public Material obtenerMaterialPorID(Long id);
 	public Material agregarMaterial(Material material);
 	public void eliminarMaterial(Long id);
+	public List<Material> buscarMaterialPorNombre(String nombre);
 
 }

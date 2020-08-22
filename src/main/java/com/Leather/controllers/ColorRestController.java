@@ -103,6 +103,19 @@ public class ColorRestController {
 	
 	
 	
+	
+	@GetMapping("/colores/filtro/{nombre}")
+	public ResponseEntity<?> buscarColorPornombre(@PathVariable String nombre){
+		List<Color> listaColores = iColorService.buscarColorPorNombre(nombre);
+		return ResponseEntity.ok(listaColores);
+	}
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * El método guardarColor permite guardar el Color en base de datos
 	 * - Parámetros: El color a guardar en base de datos
@@ -193,7 +206,7 @@ public class ColorRestController {
 		colorExistente = iColorService.obtenerColorPorID(id);
 		
 		if(colorExistente == null) {
-			mapa.put("mensaje","Ocurrió un error al eliminar el color con id "+id);
+			mapa.put("mensaje","El color con id "+id + " no se encuentra regitrado");
 			return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.NOT_FOUND);
 		}
 		

@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -18,16 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GeneratorType;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
-@Table(name = "piezas")
 @Entity
-public class Pieza implements Serializable{
+@Table(name = "productos")
+public class Producto implements Serializable{
 
 	/**
 	 * 
@@ -35,32 +31,31 @@ public class Pieza implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-	// --------------- campos de la tabla -------------------- //
-	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// -------- variables de la tabla ------------------- //
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(nullable = false)
 	private String nombre;
-	private String observacion;
+	
+	@Column(nullable = false)
+	private String referencia;
+	
+	private Double costo;
+	
+	@Column(name = "precio_venta")
+	private Double precioVenta;
+	
+	private boolean activo = false;
+	
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	List<ProductoPieza> piezaProductos;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
-	private Color color;
+	// ------------------------ variables de auditoría --------------------- //
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
-	private Material material;
-	
-	@OneToMany(mappedBy = "pieza", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"productoPiezas", "handler", "hibernateLazyInitializer"})
-	List<ProductoPieza> productoPiezas;
-	
-	
-	
-	// ---------------------- campos de auditoría --------------------- //
-
-
 	@Column(name="fecha_registro")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
@@ -80,10 +75,11 @@ public class Pieza implements Serializable{
 	@Temporal(TemporalType.TIME)
 	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern = "HH:mm:ss")
 	private Date horaModificacion;
+
 	
+
+	// ----------------------------- GETTERS y SETTERS ----------------------------- //
 	
-	
-	// ------------------------ GETTERS Y SETTERS ---------------------- //
 	
 	public Long getId() {
 		return id;
@@ -101,47 +97,51 @@ public class Pieza implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getObservacion() {
-		return observacion;
+	public String getReferencia() {
+		return referencia;
 	}
 
-	public void setObservacion(String observacion) {
-		this.observacion = observacion;
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
 	}
 
-	public Color getColor() {
-		return color;
+	public Double getCosto() {
+		return costo;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setCosto(Double costo) {
+		this.costo = costo;
 	}
 
-	public Material getMaterial() {
-		return material;
+	public Double getPrecioVenta() {
+		return precioVenta;
 	}
 
-	public void setMaterial(Material material) {
-		this.material = material;
+	public void setPrecioVenta(Double precioVenta) {
+		this.precioVenta = precioVenta;
 	}
 	
 
-	public List<ProductoPieza> getProductoPiezas() {
-		return productoPiezas;
+	public boolean getActivo() {
+		return activo;
 	}
 
-	public void setProductoPiezas(List<ProductoPieza> productoPiezas) {
-		this.productoPiezas = productoPiezas;
-	}
-	
-	public void addProductoPieza(ProductoPieza productoPieza) {
-		this.productoPiezas.add(productoPieza);
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<ProductoPieza> getPiezaProductos() {
+		return piezaProductos;
+	}
+
+	public void setPiezaProductos(List<ProductoPieza> piezaProductos) {
+		this.piezaProductos = piezaProductos;
 	}
 	
+	public void addPiezaProducto(ProductoPieza piezaProducto) {
+		this.piezaProductos.add(piezaProducto);
+	}
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -174,9 +174,12 @@ public class Pieza implements Serializable{
 		this.horaModificacion = horaModificacion;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
-	
+	// --------------- acciones automáticas --------------------------- //
 	
 	// Al registrar se instancia automáticamente la fecha de registro del proveedor
 	@PrePersist
@@ -191,7 +194,6 @@ public class Pieza implements Serializable{
 		this.fechaModificacion = new Date();
 		this.horaModificacion = new Date();
 	}
-	
 	
 	
 	
