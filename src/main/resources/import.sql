@@ -1172,19 +1172,11 @@ INSERT INTO materiales(nombre, descripcion) VALUES ('Acero', 'acero para puntera
 INSERT INTO materiales(nombre, descripcion) VALUES ('poliéster', 'material para recubrimiento de calzado');
 INSERT INTO materiales(nombre, descripcion) VALUES ('suela', 'caucho para suelas');
 
-/*inserts tabla piezas*/
-INSERT INTO piezas(nombre,observacion,color_id,material_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1);
-INSERT INTO piezas(nombre,observacion,color_id,material_id) VALUES ('suela', 'suela para tenis',2,4);
-INSERT INTO piezas(nombre,observacion,color_id,material_id) VALUES ('recubrimiento', 'recubrimiento en poliester',1,3);
-
 /*inserts tabla productos*/
 INSERT INTO productos(nombre,referencia,costo,precio_venta, activo) VALUES('apache','AKL01',30000,100000,true);
 INSERT INTO productos(nombre,referencia,costo,precio_venta, activo) VALUES('tenis','AKL02',20000,100000,false);
 
-/*inserts tabla productos_piezas*/
-INSERT INTO productos_piezas (producto_id, pieza_id) VALUES(1,1);
-INSERT INTO productos_piezas (producto_id, pieza_id) VALUES(1,2);
-INSERT INTO productos_piezas (producto_id, pieza_id) VALUES(1,3);
-INSERT INTO productos_piezas (producto_id, pieza_id) VALUES(2,1);
-INSERT INTO productos_piezas (producto_id, pieza_id) VALUES(2,2);
-INSERT INTO productos_piezas (producto_id, pieza_id) VALUES(2,3);
+/*inserts tabla piezas*/
+INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1,1);
+INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('suela', 'suela para tenis',2,4,1);
+INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('recubrimiento', 'recubrimiento en poliester',1,3,1);

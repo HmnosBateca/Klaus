@@ -52,9 +52,9 @@ public class Pieza implements Serializable{
 	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
 	private Material material;
 	
-	@OneToMany(mappedBy = "pieza", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"productoPiezas", "handler", "hibernateLazyInitializer"})
-	List<ProductoPieza> productoPiezas;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
+	private Producto producto;
 	
 	
 	
@@ -124,18 +124,13 @@ public class Pieza implements Serializable{
 	public void setMaterial(Material material) {
 		this.material = material;
 	}
-	
 
-	public List<ProductoPieza> getProductoPiezas() {
-		return productoPiezas;
+	public Producto getProducto() {
+		return producto;
 	}
 
-	public void setProductoPiezas(List<ProductoPieza> productoPiezas) {
-		this.productoPiezas = productoPiezas;
-	}
-	
-	public void addProductoPieza(ProductoPieza productoPieza) {
-		this.productoPiezas.add(productoPieza);
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
 	public static long getSerialversionuid() {

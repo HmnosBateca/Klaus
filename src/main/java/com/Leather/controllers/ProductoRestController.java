@@ -139,7 +139,7 @@ public class ProductoRestController {
 			productoExistente.setCosto(productoFormulario.getCosto());
 			productoExistente.setPrecioVenta(productoFormulario.getPrecioVenta());
 			productoExistente.setActivo(productoFormulario.getActivo());
-			productoExistente.setPiezaProductos(productoFormulario.getPiezaProductos());
+			productoExistente.setPiezas(productoFormulario.getPiezas());
 			
 			productoNuevo = iProductoService.guardarProducto(productoExistente);
 			

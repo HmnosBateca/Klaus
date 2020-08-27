@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -51,7 +52,7 @@ public class Producto implements Serializable{
 	private boolean activo = false;
 	
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
-	List<ProductoPieza> piezaProductos;
+	private List<Pieza> piezas;
 	
 	
 	// ------------------------ variables de auditoría --------------------- //
@@ -130,16 +131,16 @@ public class Producto implements Serializable{
 		this.activo = activo;
 	}
 
-	public List<ProductoPieza> getPiezaProductos() {
-		return piezaProductos;
+	public List<Pieza> getPiezas() {
+		return piezas;
 	}
 
-	public void setPiezaProductos(List<ProductoPieza> piezaProductos) {
-		this.piezaProductos = piezaProductos;
+	public void setPiezas(List<Pieza> piezas) {
+		this.piezas = piezas;
 	}
 	
-	public void addPiezaProducto(ProductoPieza piezaProducto) {
-		this.piezaProductos.add(piezaProducto);
+	public void addPieza(Pieza pieza) {
+		this.piezas.add(pieza);
 	}
 
 	public Date getFechaRegistro() {
