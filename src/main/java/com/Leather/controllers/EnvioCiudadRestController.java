@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,13 +39,18 @@ public class EnvioCiudadRestController {
     	return iEnvioCiudadService.findAll();
     }
 	
+	@GetMapping("/EnvioCiudad/pagina")
+	public Page<EnvioCiudad> index(Pageable pageable) {
+		return iEnvioCiudadService.findAll(pageable);
+	}
+	
 	@SuppressWarnings("unused")
 	@GetMapping("/EnvioCiudad/{id}")
 	public ResponseEntity<?> ListarEnvioCiudadPorId(@PathVariable Long id){
 		EnvioCiudad enviociudad = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			iEnvioCiudadService.findById(id);
+			enviociudad = iEnvioCiudadService.findById(id);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Error al realizar la consulta en la Base de Datos");
 			mapa.put("error", e.getMessage().concat(e.getMostSpecificCause().getMessage()));
@@ -68,7 +75,7 @@ public class EnvioCiudadRestController {
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		 mapa.put("mensaje", "Envio Ciudad creado con éxito");
-		 mapa.put("tipoenvio", enviociudadcrear);
+		 mapa.put("enviociudad", enviociudadcrear);
 		 return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 	

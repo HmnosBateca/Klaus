@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -22,104 +21,106 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.Leather.models.entity.EmpresaTransportadora;
 import com.Leather.models.entity.TipoEnvio;
-import com.Leather.models.services.ITipoEnvioService;
-// import com.Leather.models.services.TipoEnvioServiceImpl;
+import com.Leather.models.services.IEmpresaTransportadoraService;
 
-@CrossOrigin(origins = {"http://localhost:4200/ ","*" })
-@RestController//Api Rest
+@CrossOrigin(origins = {"http://localhost:4200/","*"})
+@RestController // Es API Rest
 @RequestMapping("/api")
-public class TipoEnvioRestController {
+public class EmpresaTransportadoraRestController {
 	
-	@Autowired//inyectamos
-	ITipoEnvioService iTipoEnvioService;// vamos a la interface y obtenemos el listado de tipos de envio
-	private Map<String, Object>mapa;
+	@Autowired// inyectamos
+	public IEmpresaTransportadoraService iEmpresaTransportadoraService;
+	private Map<String, Object> mapa;
 	
-	@GetMapping("/TipoEnvios")
-    public List<TipoEnvio>ListarTipoEnvio(){
-    	return iTipoEnvioService.findAll();
+
+	@GetMapping("/EmpresaTransportadora")
+    public List<EmpresaTransportadora>ListarEmpresaTransportadora(){
+    	return iEmpresaTransportadoraService.findAll();
     }
 	
-	
-	@GetMapping("/TipoEnvios/{id}")
-	public ResponseEntity<?> ListarTipoEnviosPorId(@PathVariable Long id){
-		TipoEnvio tipoenvio = null;
+	@GetMapping("/EmpresaTransportadora/{id}")
+	public ResponseEntity<?> ListarEmpresaTransportadoraPorId(@PathVariable Long id){
+		EmpresaTransportadora empresaTransportadora = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			tipoenvio = iTipoEnvioService.findById(id);
+			empresaTransportadora = iEmpresaTransportadoraService.findById(id);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Error al realizar la consulta en la Base de Datos");
 			mapa.put("error", e.getMessage().concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);// status 500
 		}
-		if(tipoenvio == null) {
-			mapa.put("mensaje", "El Tipo Envio Id: ".concat(id.toString().concat(" no existe en la Base de Datos")));
+		if(empresaTransportadora == null) {
+			mapa.put("mensaje", "La Empresa Transportadora Id: ".concat(id.toString().concat(" no existe en la Base de Datos")));
 			return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.NOT_FOUND);// Status 404
 		}
-		return new ResponseEntity<TipoEnvio>(tipoenvio, HttpStatus.OK);
+		return new ResponseEntity<EmpresaTransportadora>(empresaTransportadora, HttpStatus.OK);
 		
 	}
 	
-	@GetMapping("/TipoEnvios/pagina")
-	public Page<TipoEnvio> index(Pageable pageable) {
-		return iTipoEnvioService.findAll(pageable);
-	}
 	
-	@PostMapping("/TipoEnvios")
-	public ResponseEntity<?> CrearTipoEnvio(@RequestBody TipoEnvio tipoEnvio) {
-		TipoEnvio tipoenviocrear = null;
+	@PostMapping("/EmpresaTransportadora")
+	public ResponseEntity<?> CrearEmpresaTransportadora(@RequestBody EmpresaTransportadora empresaTransportadora) {
+		EmpresaTransportadora empresaTransportadoraCrear = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			tipoenviocrear = iTipoEnvioService.save(tipoEnvio);
+			empresaTransportadoraCrear = iEmpresaTransportadoraService.Save(empresaTransportadora);
 		}catch(DataAccessException e){
 			mapa.put("mensaje","Error al insertar en la Base de datos");
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		 mapa.put("mensaje", "Tipo envio se a creado con éxito");
-		 mapa.put("tipoenvio", tipoenviocrear);
+		 mapa.put("tipoenvio", empresaTransportadoraCrear);
 		 return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/TipoEnvios/{id}")
+	@GetMapping("/EmpresaTransportadora/pagina")
+	public Page<EmpresaTransportadora> index(Pageable pageable) {
+		return iEmpresaTransportadoraService.findAll(pageable);
+	}
+	
+	@PutMapping("/EmpresaTransportadora/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> Editar(@RequestBody TipoEnvio tipoEnvio, @PathVariable Long id) {
+	public ResponseEntity<?> Editar(@RequestBody EmpresaTransportadora Empresatransportadora, @PathVariable Long id) {
 		
-		TipoEnvio tipoEnvioActual = iTipoEnvioService.findById(id);
-		TipoEnvio tipoenvioeditar = null;
+		EmpresaTransportadora empresaTransportadoraActual = iEmpresaTransportadoraService.findById(id);
+		EmpresaTransportadora empresaTransportadoraEditar = null;
 		Map<String, Object>mapa = new HashMap<>();
-		if(tipoEnvioActual == null) {
-			mapa.put("mensaje", "Error: no se puede editar, el Tipo Envio ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
+		if(empresaTransportadoraActual == null) {
+			mapa.put("mensaje", "Error: no se puede editar, La Empresa Transportadora ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.NOT_FOUND);// status 404
 			
 		}
 		try {
-		tipoEnvioActual.setNombre(tipoEnvio.getNombre());
-		tipoEnvioActual.setDescripcion(tipoEnvio.getDescripcion());
-		tipoenvioeditar = iTipoEnvioService.save(tipoEnvioActual);
+		empresaTransportadoraActual.setNombre(Empresatransportadora.getNombre());
+		empresaTransportadoraActual.setDescripcion(Empresatransportadora.getDescripcion());
+		empresaTransportadoraEditar = iEmpresaTransportadoraService.Save(empresaTransportadoraActual);
 		}catch(DataAccessException e){
-			mapa.put("mensaje", "Error al actualizar Tipo Envio en la base de datos.");
+			mapa.put("mensaje", "Error al actualizar Empresa Tranportadora en la base de datos.");
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR); // status 404
 		}
-		mapa.put("mensaje", "El Tipo Envio ha sido actualizado con éxito!");
-		mapa.put("tipo envio", tipoenvioeditar);
+		mapa.put("mensaje", "La Empresa Transportadora ha sido actualizado con éxito!");
+		mapa.put("Empresa Transportadora", empresaTransportadoraEditar);
 		return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.ACCEPTED);
 	}
-	
-	@DeleteMapping("/TipoEnvios/{id}")
+		
+	@DeleteMapping("/EmpresaTransportadora/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			iTipoEnvioService.delete(id);
+			iEmpresaTransportadoraService.delete(id);
 		}catch(DataAccessException e){
-			mapa.put("mensaje", "Error al eliminar Tipo Envio de la base de datos");
+			mapa.put("mensaje", "Error al eliminar Empresa Transportadora de la base de datos");
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);// status 404
 		}
-		mapa.put("mensaje", "El Tipo Envio ha sido eliminando con éxito!");
+		mapa.put("mensaje", "La Empresa Transportadora ha sido eliminando con éxito!");
 		return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.OK);
 	}
+	
+	
 }

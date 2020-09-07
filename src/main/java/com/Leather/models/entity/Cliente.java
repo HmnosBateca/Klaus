@@ -34,8 +34,7 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"clientes","proveedores","handler", "hibernateLazyInitializer"})
 	private Ciudad ciudad;
-	
-	
+		
 	public Long getId() {
 		return id;
 	}

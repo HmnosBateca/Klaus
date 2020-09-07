@@ -1,7 +1,6 @@
 package com.Leather.models.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +20,6 @@ public class EnvioCiudad implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Postgrest 
 	private Long id;
 	
-	
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"envioCiudad","listaEnvioCiudad","handler", "hibernateLazyInitializer"})
 	private TipoEnvio tipoEnvio;
@@ -29,9 +27,14 @@ public class EnvioCiudad implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"listaEnvioCiudad", "clientes", "proveedores", "handler", "hibernateLazyInitializer"})
 	private Ciudad ciudad;
-	
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value={"listaEnvioCiudad", "hibernateLazyInitializer"})
+	private EmpresaTransportadora empresaTransportadora;
+		
 	@Column(name="valor_envio")
 	private Double valorEnvio;
+	
 	
 	public Long getId() {
 		return id;
@@ -53,6 +56,8 @@ public class EnvioCiudad implements Serializable {
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	
 	public Double getValorEnvio() {
 		return valorEnvio;
 	}
@@ -61,8 +66,14 @@ public class EnvioCiudad implements Serializable {
 	}
 	
 	
-	
-	
+	public EmpresaTransportadora getEmpresaTransportadora() {
+		return empresaTransportadora;
+	}
+	public void setEmpresaTransportadora(EmpresaTransportadora empresaTransportadora) {
+		this.empresaTransportadora = empresaTransportadora;
+	}
+
+
 	/**
 	 * 
 	 */

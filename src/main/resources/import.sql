@@ -1146,3 +1146,6 @@ INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, co
 
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Contra Entrega', 'Se paga cuando llegue');
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envio Normal', 'Se paga anticipado');
+
+INSERT INTO transportadoras (nombre, descripcion) VALUES('Envia', 'Empresa de transporte de encomedias');
+INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
