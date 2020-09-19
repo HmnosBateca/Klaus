@@ -32,8 +32,9 @@ public class Ciudad implements Serializable{
 	//fetch optener los datos de la operacion lazy perezosa, realiza la consulta cuando se le llama,
 	//muchas ciudades un departamento
 	@ManyToOne(fetch=FetchType.LAZY) 
-	@JsonIgnoreProperties(value = {"ciudades","handler", "hibernateLazyInitializer"}) 
+	@JsonIgnoreProperties(value = {"ciudades", "handler", "hibernateLazyInitializer"}) 
 	private Departamento departamento;
+	
 	
 	
 	/*
@@ -54,6 +55,9 @@ public class Ciudad implements Serializable{
 	@JsonIgnoreProperties(value = {"ciudad", "handler", "hibernateLazyInitializer"})
 	private List<Proveedor> proveedores;
 	
+	@OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"ciudad","handler", "hibernateLazyInitializer"})
+	private List<EnvioCiudad> listaEnvioCiudad;
 	
 	public Ciudad() {
 		clientes= new ArrayList<Cliente>();
@@ -114,6 +118,22 @@ public class Ciudad implements Serializable{
 	}
 	
 	
+	public List<EnvioCiudad> getListaEnvioCiudad() {
+		return listaEnvioCiudad;
+	}
+
+	public void setListaEnvioCiudad(List<EnvioCiudad> listaEnvioCiudad) {
+		this.listaEnvioCiudad = listaEnvioCiudad;
+	}
+
+	public void addEnvioCiudad(EnvioCiudad envioCiudad) {
+		this.listaEnvioCiudad.add(envioCiudad);
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	/**
 	 * 
 	 */

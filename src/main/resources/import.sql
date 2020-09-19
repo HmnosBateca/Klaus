@@ -1144,6 +1144,7 @@ INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, co
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Carlos','Barriga',24855,12346789,312456789,'calos@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
 
+<<<<<<< HEAD
 
 
 /* inserts table tipo talla*/
@@ -1180,3 +1181,11 @@ INSERT INTO productos(nombre,referencia,costo,precio_venta, activo) VALUES('teni
 INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1,1);
 INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('suela', 'suela para tenis',2,4,1);
 INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('recubrimiento', 'recubrimiento en poliester',1,3,1);
+
+INSERT INTO tipo_envios (nombre, descripcion) VALUES('Contra Entrega', 'Se paga cuando llegue');
+INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envio Normal', 'Se paga anticipado');
+
+INSERT INTO transportadoras (nombre, descripcion) VALUES('Envia', 'Empresa de transporte de encomedias');
+INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
+
+/* INSERT INTO clientes (documento, nombres, apellidos, numero_contacto, ciudad, direccion, correo, codigo_postal) VALUES(1094248820, 'Jorge Leonardo', 'Bateca Parada', 3102496515, 'calle 11 # 16-24', 'leonardobate_02@hotmail.com', 234756 ); */

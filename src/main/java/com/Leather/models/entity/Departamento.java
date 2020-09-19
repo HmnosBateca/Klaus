@@ -37,19 +37,8 @@ public class Departamento implements Serializable {
 	//CascadeType.ALL:Todas las operaciones delete y persistencia se realizan en cascada
 	//mappedBy = "departamento":el nombre de atributo ciudad, hacemos que sea bidireccional, crea la llave foranea ciudad id
 	@OneToMany(mappedBy = "departamento",fetch=FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"departamento","handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"ciudades","handler", "hibernateLazyInitializer"})
 	private List<Ciudad>ciudades;
-	
-	
-	@OneToMany(mappedBy = "departamento",fetch=FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"departamento","handler", "hibernateLazyInitializer"})	
-	private List<Cliente> clientes;
-	
-	
-	
-	
-	
-	
 	
 	
 	///Getters y Setters
@@ -89,18 +78,6 @@ public class Departamento implements Serializable {
 		ciudades.add(ciudad);
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-	
-	public void addCliente(Cliente cliente) {
-		this.clientes.add(cliente);
-	}
 
 	/**
 	 * 

@@ -1,51 +1,56 @@
 package com.Leather.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+// import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+//@Table(name="clientes")
 public class Cliente implements Serializable{//seralizable atribustos de la tabla
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//POSTGRESQL
     private Long id;
 	
-	private String documento;
+	@Column(unique = true)
+	private Long documento;
 	private String nombres;
 	private String apellidos;
-	private String numero_contacto;
+	private Long numero_contacto;
 	private String direccion;
 	private String correo;
-	private String codigo_postal;
+	private Long codigo_postal;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"clientes","handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"clientes","proveedores","handler", "hibernateLazyInitializer"})
 	private Ciudad ciudad;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"clientes","handler", "hibernateLazyInitializer"})
-	private Departamento departamento;
-	
-	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY )
+	@JsonIgnoreProperties(value = {"cliente", "listaPedido", "handler", "hibernateLazyInitializer"})
+	private List<Pedido> listaPedido;
+		
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDocumento() {
+	public Long getDocumento() {
 		return documento;
 	}
-	public void setDocumento(String documento) {
+	public void setDocumento(Long documento) {
 		this.documento = documento;
 	}
 	public String getNombres() {
@@ -60,19 +65,13 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public String getNumero_contacto() {
+	public Long getNumero_contacto() {
 		return numero_contacto;
 	}
-	public void setNumero_contacto(String numero_contacto) {
+	public void setNumero_contacto(Long numero_contacto) {
 		this.numero_contacto = numero_contacto;
 	}
 	
-	public Departamento getDepartamento() {
-		return departamento;
-	}
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
-	}
 	public String getDireccion() {
 		return direccion;
 	}
@@ -85,21 +84,36 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public String getCodigo_postal() {
+	public Long getCodigo_postal() {
 		return codigo_postal;
 	}
 	
-	public void setCodigo_postal(String codigo_postal) {
+	public void setCodigo_postal(Long codigo_postal) {
 		this.codigo_postal = codigo_postal;
 	}
 		
-	public Ciudad getCiu() {
+	public Ciudad getCiudad() {
 		return this.ciudad;
 	}
 	
-	public void setCiu(Ciudad ciudad) {
+	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	public List<Pedido> getListaPedido() {
+		return listaPedido;
+	}
+	public void setListaPedido(List<Pedido> listaPedido) {
+		this.listaPedido = listaPedido;
+	}
+	public void addPedido(Pedido pedido) {
+		this.listaPedido.add(pedido);
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 
 
