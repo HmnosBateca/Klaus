@@ -1,6 +1,7 @@
 package com.Leather.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 // import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,6 +36,10 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"clientes","proveedores","handler", "hibernateLazyInitializer"})
 	private Ciudad ciudad;
+	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY )
+	@JsonIgnoreProperties(value = {"cliente", "listaPedido", "handler", "hibernateLazyInitializer"})
+	private List<Pedido> listaPedido;
 		
 	public Long getId() {
 		return id;
@@ -93,6 +99,21 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	public List<Pedido> getListaPedido() {
+		return listaPedido;
+	}
+	public void setListaPedido(List<Pedido> listaPedido) {
+		this.listaPedido = listaPedido;
+	}
+	public void addPedido(Pedido pedido) {
+		this.listaPedido.add(pedido);
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 
 

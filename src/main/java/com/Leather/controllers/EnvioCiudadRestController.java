@@ -47,35 +47,35 @@ public class EnvioCiudadRestController {
 	@SuppressWarnings("unused")
 	@GetMapping("/EnvioCiudad/{id}")
 	public ResponseEntity<?> ListarEnvioCiudadPorId(@PathVariable Long id){
-		EnvioCiudad enviociudad = null;
+		EnvioCiudad envioCiudad = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			enviociudad = iEnvioCiudadService.findById(id);
+			envioCiudad = iEnvioCiudadService.findById(id);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Error al realizar la consulta en la Base de Datos");
 			mapa.put("error", e.getMessage().concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);// status 500
 		}
-		if(enviociudad == null) {
+		if(envioCiudad == null) {
 			mapa.put("mensaje", "El Envio Ciudad Id: ".concat(id.toString().concat(" no existe en la Base de Datos")));
 			return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.NOT_FOUND);// Status 404
 		}
-		return new ResponseEntity<EnvioCiudad>(enviociudad, HttpStatus.OK);
+		return new ResponseEntity<EnvioCiudad>(envioCiudad, HttpStatus.OK);
 	}
 	
 	@PostMapping("/EnvioCiudad")
 	public ResponseEntity<?> CrearEnvioCiudad(@RequestBody EnvioCiudad envioCiudad) {
-		EnvioCiudad enviociudadcrear = null;
+		EnvioCiudad envioCiudadCrear = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			enviociudadcrear = iEnvioCiudadService.save(envioCiudad);
+			envioCiudadCrear = iEnvioCiudadService.save(envioCiudad);
 		}catch(DataAccessException e){
 			mapa.put("mensaje","Error al insertar en la Base de datos");
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		 mapa.put("mensaje", "Envio Ciudad creado con éxito");
-		 mapa.put("enviociudad", enviociudadcrear);
+		 mapa.put("envioCiudad", envioCiudadCrear);
 		 return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 	
@@ -103,7 +103,7 @@ public class EnvioCiudadRestController {
 		}
 						
 		mapa.put("mensaje", "El Envio Ciudad ha sido actualizado con éxito!");
-		mapa.put("tipo envio", envioCiudadEditar);
+		mapa.put("envioCiudad", envioCiudadEditar);
 		return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.ACCEPTED);
 	}
 	

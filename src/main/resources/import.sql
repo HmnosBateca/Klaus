@@ -1149,3 +1149,6 @@ INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envio Normal', 'Se paga an
 
 INSERT INTO transportadoras (nombre, descripcion) VALUES('Envia', 'Empresa de transporte de encomedias');
 INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
+
+// INSERT INTO clientes (documento, nombres, apellidos, numero_contacto, ciudad, direccion, correo, codigo_postal) VALUES(1094248820, 'Jorge Leonardo', 'Bateca Parada', 3102496515, 'calle 11 # 16-24', 'leonardobate_02@hotmail.com', 234756 );
+

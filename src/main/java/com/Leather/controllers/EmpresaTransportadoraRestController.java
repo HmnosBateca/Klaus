@@ -71,8 +71,8 @@ public class EmpresaTransportadoraRestController {
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		 mapa.put("mensaje", "Tipo envio se a creado con éxito");
-		 mapa.put("tipoenvio", empresaTransportadoraCrear);
+		 mapa.put("mensaje", "Empresa Transportadora se a creado con éxito");
+		 mapa.put("empresaTransportadora", empresaTransportadoraCrear);
 		 return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 	
@@ -83,7 +83,7 @@ public class EmpresaTransportadoraRestController {
 	
 	@PutMapping("/EmpresaTransportadora/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> Editar(@RequestBody EmpresaTransportadora Empresatransportadora, @PathVariable Long id) {
+	public ResponseEntity<?> Editar(@RequestBody EmpresaTransportadora empresaTransportadora, @PathVariable Long id) {
 		
 		EmpresaTransportadora empresaTransportadoraActual = iEmpresaTransportadoraService.findById(id);
 		EmpresaTransportadora empresaTransportadoraEditar = null;
@@ -94,8 +94,8 @@ public class EmpresaTransportadoraRestController {
 			
 		}
 		try {
-		empresaTransportadoraActual.setNombre(Empresatransportadora.getNombre());
-		empresaTransportadoraActual.setDescripcion(Empresatransportadora.getDescripcion());
+		empresaTransportadoraActual.setNombre(empresaTransportadora.getNombre());
+		empresaTransportadoraActual.setDescripcion(empresaTransportadora.getDescripcion());
 		empresaTransportadoraEditar = iEmpresaTransportadoraService.Save(empresaTransportadoraActual);
 		}catch(DataAccessException e){
 			mapa.put("mensaje", "Error al actualizar Empresa Tranportadora en la base de datos.");
@@ -103,7 +103,7 @@ public class EmpresaTransportadoraRestController {
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR); // status 404
 		}
 		mapa.put("mensaje", "La Empresa Transportadora ha sido actualizado con éxito!");
-		mapa.put("Empresa Transportadora", empresaTransportadoraEditar);
+		mapa.put("empresaTransportadora", empresaTransportadoraEditar);
 		return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.ACCEPTED);
 	}
 		

@@ -26,7 +26,7 @@ public class EmpresaTransportadora  implements Serializable{
 	private String descripcion;
 	
 	@OneToMany(mappedBy = "empresaTransportadora", fetch = FetchType.LAZY)
-    // @JsonIgnoreProperties(value= {"listaEnvioCiudad"})
+    @JsonIgnoreProperties(value= {"listaEnvioCiudad", "listaEstadoEnvioCiudad"})
 	private List<EnvioCiudad> listaEnvioCiudad;
 	
 	public Long getId() {

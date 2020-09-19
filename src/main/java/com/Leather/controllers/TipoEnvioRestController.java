@@ -36,58 +36,58 @@ public class TipoEnvioRestController {
 	ITipoEnvioService iTipoEnvioService;// vamos a la interface y obtenemos el listado de tipos de envio
 	private Map<String, Object>mapa;
 	
-	@GetMapping("/TipoEnvios")
+	@GetMapping("/TipoEnvio")
     public List<TipoEnvio>ListarTipoEnvio(){
     	return iTipoEnvioService.findAll();
     }
 	
 	
-	@GetMapping("/TipoEnvios/{id}")
+	@GetMapping("/TipoEnvio/{id}")
 	public ResponseEntity<?> ListarTipoEnviosPorId(@PathVariable Long id){
-		TipoEnvio tipoenvio = null;
+		TipoEnvio tipoEnvio = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			tipoenvio = iTipoEnvioService.findById(id);
+			tipoEnvio = iTipoEnvioService.findById(id);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Error al realizar la consulta en la Base de Datos");
 			mapa.put("error", e.getMessage().concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);// status 500
 		}
-		if(tipoenvio == null) {
+		if(tipoEnvio == null) {
 			mapa.put("mensaje", "El Tipo Envio Id: ".concat(id.toString().concat(" no existe en la Base de Datos")));
 			return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.NOT_FOUND);// Status 404
 		}
-		return new ResponseEntity<TipoEnvio>(tipoenvio, HttpStatus.OK);
+		return new ResponseEntity<TipoEnvio>(tipoEnvio, HttpStatus.OK);
 		
 	}
 	
-	@GetMapping("/TipoEnvios/pagina")
+	@GetMapping("/TipoEnvio/pagina")
 	public Page<TipoEnvio> index(Pageable pageable) {
 		return iTipoEnvioService.findAll(pageable);
 	}
 	
-	@PostMapping("/TipoEnvios")
+	@PostMapping("/TipoEnvio")
 	public ResponseEntity<?> CrearTipoEnvio(@RequestBody TipoEnvio tipoEnvio) {
-		TipoEnvio tipoenviocrear = null;
+		TipoEnvio tipoEnvioCrear = null;
 		Map<String, Object>mapa = new HashMap<>();
 		try {
-			tipoenviocrear = iTipoEnvioService.save(tipoEnvio);
+			tipoEnvioCrear = iTipoEnvioService.save(tipoEnvio);
 		}catch(DataAccessException e){
 			mapa.put("mensaje","Error al insertar en la Base de datos");
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		 mapa.put("mensaje", "Tipo envio se a creado con éxito");
-		 mapa.put("tipoenvio", tipoenviocrear);
+		 mapa.put("tipoEnvio", tipoEnvioCrear);
 		 return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/TipoEnvios/{id}")
+	@PutMapping("/TipoEnvio/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> Editar(@RequestBody TipoEnvio tipoEnvio, @PathVariable Long id) {
 		
 		TipoEnvio tipoEnvioActual = iTipoEnvioService.findById(id);
-		TipoEnvio tipoenvioeditar = null;
+		TipoEnvio tipoEnvioEditar = null;
 		Map<String, Object>mapa = new HashMap<>();
 		if(tipoEnvioActual == null) {
 			mapa.put("mensaje", "Error: no se puede editar, el Tipo Envio ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
@@ -97,18 +97,18 @@ public class TipoEnvioRestController {
 		try {
 		tipoEnvioActual.setNombre(tipoEnvio.getNombre());
 		tipoEnvioActual.setDescripcion(tipoEnvio.getDescripcion());
-		tipoenvioeditar = iTipoEnvioService.save(tipoEnvioActual);
+		tipoEnvioEditar = iTipoEnvioService.save(tipoEnvioActual);
 		}catch(DataAccessException e){
 			mapa.put("mensaje", "Error al actualizar Tipo Envio en la base de datos.");
 			mapa.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.INTERNAL_SERVER_ERROR); // status 404
 		}
 		mapa.put("mensaje", "El Tipo Envio ha sido actualizado con éxito!");
-		mapa.put("tipo envio", tipoenvioeditar);
+		mapa.put("tipoEnvio", tipoEnvioEditar);
 		return new ResponseEntity<Map<String, Object>>(mapa,HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/TipoEnvios/{id}")
+	@DeleteMapping("/TipoEnvio/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Map<String, Object>mapa = new HashMap<>();

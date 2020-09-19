@@ -29,9 +29,9 @@ public class TipoEnvio implements Serializable {//en json
 	private String nombre;
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "tipoEnvio", fetch=FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"envioCiudad", "tipoEnvio","handler", "hibernateLazyInitializer"})
-	public List<EnvioCiudad> listaEnvioCiudad;
+	/*@OneToMany(mappedBy = "tipoEnvio", fetch=FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"listaEnvioCiudad", "envioCiudad", "tipoEnvio","handler", "hibernateLazyInitializer"})
+	public List<EnvioCiudad> listaEnvioCiudad;*/
 	
 	
 	
@@ -56,7 +56,7 @@ public class TipoEnvio implements Serializable {//en json
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+	/*
 	public List<EnvioCiudad> getEnvioCiudad() {
 		return listaEnvioCiudad;
 	}
@@ -66,7 +66,7 @@ public class TipoEnvio implements Serializable {//en json
 	
 	public void addEnvioCiudad(EnvioCiudad envioCiudad) {
 		this.listaEnvioCiudad.add(envioCiudad);
-	}
+	}*/
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
