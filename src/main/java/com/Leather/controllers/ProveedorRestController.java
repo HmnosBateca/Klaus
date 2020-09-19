@@ -174,6 +174,7 @@ public class ProveedorRestController {
 			proveedorConsultado.setDocumento(proveedor.getDocumento());
 			proveedorConsultado.setNit(proveedor.getNit());
 			proveedorConsultado.setNumeroContacto(proveedor.getNumeroContacto());
+			proveedorConsultado.setCiudad(proveedor.getCiudad());
 			
 			proveedorNuevo = iProveedorService.guardarProveedor(proveedorConsultado); // actualizamos el proveedor
 			
