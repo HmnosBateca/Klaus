@@ -52,7 +52,7 @@ public class Pedido implements Serializable {
 		
 	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"pedido","handler", "hibernateLazyInitializer"})
-	private List<BodegaInventario> listaBodegaInventario;
+	private List<Cotizacion> listaCotizacion;
 	
 	@Column(name = "fecha_registro")
 	@Temporal(TemporalType.DATE)
@@ -128,19 +128,15 @@ public class Pedido implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	public List<BodegaInventario> getListaBodegaInventario() {
-		return listaBodegaInventario;
+	public List<Cotizacion> getListaCotizacion() {
+		return listaCotizacion;
 	}
-
-	public void setListaBodegaInventario(List<BodegaInventario> listaBodegaInventario) {
-		this.listaBodegaInventario = listaBodegaInventario;
+	public void setListaCotizacion(List<Cotizacion> listaCotizacion) {
+		this.listaCotizacion = listaCotizacion;
 	}
-	
-	public void addBodegaInventario(BodegaInventario bodegaInventario) {
-		this.listaBodegaInventario.add(bodegaInventario);
+	public void addCotizacion(Cotizacion cotizacion) {
+		this.listaCotizacion.add(cotizacion);
 	}
-
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}

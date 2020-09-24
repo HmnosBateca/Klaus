@@ -2,6 +2,7 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -41,11 +43,11 @@ public class BodegaInventario implements Serializable{
 	
 	@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Pedido pedido;
-	
-	@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
-	@ManyToOne(fetch = FetchType.LAZY)
 	private Producto producto;
+		
+	//@JsonIgnoreProperties(value = {"cotizacion", "listaBodegaInventario", "handler", "hibernateLazyInitializer"})
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Cotizacion> listaCotizacion;
 		
 	// ------------------------ variables de auditoría --------------------- //
 	
@@ -100,11 +102,14 @@ public class BodegaInventario implements Serializable{
 		public void setDescuento(float descuento) {
 			this.descuento = descuento;
 		}	
-		public Pedido getPedido() {
-			return pedido;
+		public List<Cotizacion> getListaCotizacion() {
+			return listaCotizacion;
 		}
-		public void setPedido(Pedido pedido) {
-			this.pedido = pedido;
+		public void setListaCotizacion(List<Cotizacion> listaCotizacion) {
+			this.listaCotizacion = listaCotizacion;
+		}
+		public void addListaCotizacion(Cotizacion cotizacion) {
+			this.listaCotizacion.add(cotizacion);
 		}
 		public Producto getProducto() {
 			return producto;
