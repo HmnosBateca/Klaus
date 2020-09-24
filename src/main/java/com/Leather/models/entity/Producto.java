@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -52,8 +53,12 @@ public class Producto implements Serializable{
 	private boolean activo = false;
 	
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"producto"})
 	private List<Pieza> piezas;
 	
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"listaBodegaInventario"})
+	private List<BodegaInventario> listaBodegaInventario;
 	
 	// ------------------------ variables de auditoría --------------------- //
 	
@@ -142,6 +147,16 @@ public class Producto implements Serializable{
 	public void addPieza(Pieza pieza) {
 		this.piezas.add(pieza);
 	}
+	public List<BodegaInventario> getListaBodegaInventario() {
+		return listaBodegaInventario;
+	}
+	public void setListaBodegaInventario(List<BodegaInventario> listaBodegaInventario) {
+		this.listaBodegaInventario = listaBodegaInventario;
+	}
+	public void addBodegaInventario(BodegaInventario bodegaInventario) {
+		this.listaBodegaInventario.add(bodegaInventario);
+	}
+
 
 	public Date getFechaRegistro() {
 		return fechaRegistro;

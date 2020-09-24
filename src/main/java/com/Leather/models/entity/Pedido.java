@@ -2,6 +2,7 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,6 +33,7 @@ public class Pedido implements Serializable {
 	private Long id; 
 	
 	@Temporal(TemporalType.DATE)
+	// @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date fechaPedido;
 	
 	@Temporal(TemporalType.TIME)
@@ -44,6 +49,10 @@ public class Pedido implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"pedido","listaPedido", "listaEnvioCiudad", "handler", "hibernateLazyInitializer"})
 	private Cliente cliente;
+		
+	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = {"pedido","handler", "hibernateLazyInitializer"})
+	private List<BodegaInventario> listaBodegaInventario;
 	
 	@Column(name = "fecha_registro")
 	@Temporal(TemporalType.DATE)
@@ -76,11 +85,7 @@ public class Pedido implements Serializable {
 		this.fechaModificacion = new Date();
 		this.horaModificacion = new Date();
 	}
-	
-	/*@OneToMany(fetch=FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer"})
-	private List<EstadoEnvioCiudad> listaEstadoEnvioCiudad;*/
-	
+		
 	public Long getId() {
 		return id;
 	}
@@ -123,6 +128,19 @@ public class Pedido implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	public List<BodegaInventario> getListaBodegaInventario() {
+		return listaBodegaInventario;
+	}
+
+	public void setListaBodegaInventario(List<BodegaInventario> listaBodegaInventario) {
+		this.listaBodegaInventario = listaBodegaInventario;
+	}
+	
+	public void addBodegaInventario(BodegaInventario bodegaInventario) {
+		this.listaBodegaInventario.add(bodegaInventario);
+	}
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}

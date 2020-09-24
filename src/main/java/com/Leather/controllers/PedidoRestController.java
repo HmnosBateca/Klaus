@@ -92,7 +92,7 @@ public class PedidoRestController {
 		Map<String, Object> mapa = new HashMap<>();
 		pedidoActual = iPedidoService.ObtenerPedidoPorId(id);// Pedido por id
 		if (pedidoActual == null) {
-			mapa.put("mensaje", "Error: no se puede editar, el cliente iD:"
+			mapa.put("mensaje", "Error: no se puede editar, el Pedido iD:"
 					.concat(id.toString().concat("no existe en la base de datos")));
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.NOT_FOUND);// Estatus 404
 		}
@@ -119,7 +119,7 @@ public class PedidoRestController {
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Map<String, Object> mapa = new HashMap<>();
 		try {
-			iPedidoService.EliminarPedido(id);;
+			iPedidoService.EliminarPedido(id);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Error al eliminar de la base de datos");
 			mapa.put("error", e.getMessage().concat(e.getMostSpecificCause().getMessage()));

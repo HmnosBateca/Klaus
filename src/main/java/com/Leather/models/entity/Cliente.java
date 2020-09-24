@@ -113,10 +113,6 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 		return serialVersionUID;
 	}
 
-
-
-
-
 	/**
 	 * 
 	 */
