@@ -80,6 +80,7 @@ public class BodegaInventarioRestController {
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.CREATED);	
 	}
 	
+	// Actualizar Bodega inventario
 	@PutMapping("/BodegaInventario/{id}")
 	public ResponseEntity<?> modificarColor(@PathVariable Long id, @RequestBody BodegaInventario bodegaInventarioFormulario){
 		
@@ -93,21 +94,16 @@ public class BodegaInventarioRestController {
 		}		
 		try {
 			bodegaInventarioExistente.setId(bodegaInventarioFormulario.getId());
+			bodegaInventarioExistente.setReferencia(bodegaInventarioFormulario.getReferencia());
 			bodegaInventarioExistente.setCantidad(bodegaInventarioFormulario.getCantidad());
-			bodegaInventarioExistente.setTalla(bodegaInventarioFormulario.getTalla());
 			bodegaInventarioExistente.setEstadoDescuento(bodegaInventarioFormulario.getEstadoDescuento());
 			bodegaInventarioExistente.setDescuento(bodegaInventarioFormulario.getDescuento());
-			bodegaInventarioExistente.setPedido(bodegaInventarioFormulario.getPedido());
-			// bodegaInventarioExistente.setProducto(bodegaInventarioFormulario.getProducto());
 			bodegaInventarioNuevo = iBodegaInventarioService.GuardarBodegaInventario(bodegaInventarioExistente);
-			
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrio un error al modificar Bodega-Inventario "+ bodegaInventarioExistente.getId());
 		}
-		
 		mapa.put("mensaje", "La Bodega-Inventario "+ bodegaInventarioExistente.getId() +" ha sido modificado exitosamente");
 		mapa.put("bodegaInventario", bodegaInventarioNuevo);
-		
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.OK);
 	}
 	

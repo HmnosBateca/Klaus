@@ -36,16 +36,16 @@ public class BodegaInventario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String referencia;
 	private Long cantidad;
-	private Long talla;
 	private Boolean estadoDescuento;
 	private float descuento;
 	
 	@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Producto producto;
+	private ReferenciaProducto referenciaProducto;
 		
-	//@JsonIgnoreProperties(value = {"cotizacion", "listaBodegaInventario", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"listaBodegaInventario", "cotizacion", "listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Cotizacion> listaCotizacion;
 		
@@ -78,17 +78,17 @@ public class BodegaInventario implements Serializable{
 		public void setId(Long id) {
 			this.id = id;
 		}
+		public String getReferencia() {
+			return referencia;
+		}
+		public void setReferencia(String referencia) {
+			this.referencia = referencia;
+		}
 		public Long getCantidad() {
 			return cantidad;
 		}
 		public void setCantidad(Long cantidad) {
 			this.cantidad = cantidad;
-		}
-		public Long getTalla() {
-			return talla;
-		}
-		public void setTalla(Long talla) {
-			this.talla = talla;
 		}
 		public Boolean getEstadoDescuento() {
 			return estadoDescuento;
@@ -102,6 +102,12 @@ public class BodegaInventario implements Serializable{
 		public void setDescuento(float descuento) {
 			this.descuento = descuento;
 		}	
+		public ReferenciaProducto getReferenciaProducto() {
+			return referenciaProducto;
+		}
+		public void setReferenciaProducto(ReferenciaProducto referenciaProducto) {
+			this.referenciaProducto = referenciaProducto;
+		}
 		public List<Cotizacion> getListaCotizacion() {
 			return listaCotizacion;
 		}
@@ -110,12 +116,6 @@ public class BodegaInventario implements Serializable{
 		}
 		public void addListaCotizacion(Cotizacion cotizacion) {
 			this.listaCotizacion.add(cotizacion);
-		}
-		public Producto getProducto() {
-			return producto;
-		}
-		public void setProducto(Producto producto) {
-			this.producto = producto;
 		}
 		public Date getFechaRegistro() {
 			return fechaRegistro;

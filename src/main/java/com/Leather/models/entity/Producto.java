@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -55,10 +54,9 @@ public class Producto implements Serializable{
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"producto"})
 	private List<Pieza> piezas;
-	
+		
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"listaBodegaInventario"})
-	private List<BodegaInventario> listaBodegaInventario;
+	private List<ReferenciaProducto> listaReferenciaProducto;
 	
 	// ------------------------ variables de auditoría --------------------- //
 	
@@ -135,29 +133,25 @@ public class Producto implements Serializable{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
 	public List<Pieza> getPiezas() {
 		return piezas;
 	}
-
 	public void setPiezas(List<Pieza> piezas) {
 		this.piezas = piezas;
 	}
-	
 	public void addPieza(Pieza pieza) {
 		this.piezas.add(pieza);
 	}
-	public List<BodegaInventario> getListaBodegaInventario() {
-		return listaBodegaInventario;
+	public List<ReferenciaProducto> getListaReferenciaProducto() {
+		return listaReferenciaProducto;
 	}
-	public void setListaBodegaInventario(List<BodegaInventario> listaBodegaInventario) {
-		this.listaBodegaInventario = listaBodegaInventario;
+	public void setListaReferenciaProducto(List<ReferenciaProducto> listaReferenciaProducto) {
+		this.listaReferenciaProducto = listaReferenciaProducto;
 	}
-	public void addBodegaInventario(BodegaInventario bodegaInventario) {
-		this.listaBodegaInventario.add(bodegaInventario);
+	public void addReferenciaProducto(ReferenciaProducto referenciaProducto) {
+		this.listaReferenciaProducto.add(referenciaProducto );
 	}
-
-
+	
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
