@@ -40,7 +40,9 @@ public class Pieza implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
-	private String nombre;
+	
+	@Column(name = "nombre_pieza")
+	private String nombrePieza;
 	private String observacion;
 	
 	
@@ -93,12 +95,12 @@ public class Pieza implements Serializable{
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombrePieza() {
+		return nombrePieza;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePieza(String nombrePieza) {
+		this.nombrePieza = nombrePieza;
 	}
 
 	public String getObservacion() {
