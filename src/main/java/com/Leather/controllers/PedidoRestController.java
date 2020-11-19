@@ -69,7 +69,7 @@ public class PedidoRestController {
 	@PostMapping("/Pedido")
 	public ResponseEntity<?> create(@RequestBody Pedido pedido) {
 		Pedido pedidoNuevo = null;
-		Map<String, Object> mapa = new HashMap<>();
+		Map<String, Object> mapa = new HashMap<String, Object>();
 		try {
 			pedidoNuevo = iPedidoService.GuardarPedido(pedido);
 		} catch (DataAccessException e) {
@@ -97,8 +97,8 @@ public class PedidoRestController {
 			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.NOT_FOUND);// Estatus 404
 		}
 		try {
-			pedidoActual.setFechaPedido(pedido.getFechaPedido());
-			pedidoActual.setHoraPedido(pedido.getHoraPedido());
+			// pedidoActual.setFechaPedido(pedido.getFechaPedido());
+			// pedidoActual.setHoraPedido(pedido.getHoraPedido());
 			pedidoActual.setValorIva(pedido.getValorIva());
 			pedidoActual.setValorFinalVenta(pedido.getValorFinalVenta());
 			pedidoActual.setObservaciones(pedido.getObservaciones());

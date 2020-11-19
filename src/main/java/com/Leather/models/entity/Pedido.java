@@ -32,13 +32,13 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)// PostGresql
 	private Long id; 
 	
-	@Temporal(TemporalType.DATE)
-	// @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-	private Date fechaPedido;
+	// @Temporal(TemporalType.DATE)
+	// @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") no va
+	// private Date fechaPedido;
 	
-	@Temporal(TemporalType.TIME)
+	/*@Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "h:mm a", shape = JsonFormat.Shape.ANY, timezone="America/New_York")
-	private Date horaPedido;
+	private Date horaPedido;*/
 	
 	
 	private Long valorIva;
@@ -51,7 +51,7 @@ public class Pedido implements Serializable {
 	private Cliente cliente;
 		
 	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = {"pedido","handler", "hibernateLazyInitializer"})
+    @JsonIgnoreProperties(value = {"pedido"})
 	private List<Cotizacion> listaCotizacion;
 	
 	@Column(name = "fecha_registro")
@@ -92,7 +92,7 @@ public class Pedido implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getFechaPedido() {
+	/*public Date getFechaPedido() {
 		return fechaPedido;
 	}
 	public void setFechaPedido(Date fechaPedido) {
@@ -103,7 +103,7 @@ public class Pedido implements Serializable {
 	}
 	public void setHoraPedido(Date horaPedido) {
 		this.horaPedido = horaPedido;
-	}
+	}*/
 	public Long getValorIva() {
 		return valorIva;
 	}
