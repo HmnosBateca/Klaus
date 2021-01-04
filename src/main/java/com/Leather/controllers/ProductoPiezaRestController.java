@@ -96,13 +96,13 @@ public class ProductoPiezaRestController {
 		try {
 			productoPiezaNuevo = this.iProductoPiezaService.agregarProductoPieza(productoPieza);
 		}catch(DataAccessException e) {
-			mapa.put("mensaje", "Ha ocurrido un error al guardar la pieza "+ productoPieza.getPieza().getNombre() + " para el producto " + productoPieza.getProducto().getNombre());
+			mapa.put("mensaje", "Ha ocurrido un error al guardar la pieza "+ productoPieza.getPieza().getNombrePieza() + " para el producto " + productoPieza.getProducto().getNombre());
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());
 			return new ResponseEntity< Map<String, Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		
-		mapa.put("mensaje", "La pieza " + productoPiezaNuevo.getPieza().getNombre() + " para el producto "+ productoPiezaNuevo.getProducto().getNombre() +" ha sido registrada exitosamente");
+		mapa.put("mensaje", "La pieza " + productoPiezaNuevo.getPieza().getNombrePieza() + " para el producto "+ productoPiezaNuevo.getProducto().getNombre() +" ha sido registrada exitosamente");
 		mapa.put("pieza", productoPiezaNuevo);
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.CREATED);
 		

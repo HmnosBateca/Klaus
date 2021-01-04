@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -18,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -46,22 +48,24 @@ public class Producto implements Serializable{
 	
 	private Double costo;
 	
-	// @Column(name = "precio_al_por_mayor")
-	// private Double precioAlPorMayor;
-	
 	@Column(name = "precio_venta")
 	private Double precioVenta;
 	
 	private boolean activo = false;
 	
-	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"producto"})
+	
+	@Lob // una anotación para almacenar grandes cadenas de Bytes. Se puede almacednar cualquier tipo de archivo
+	@JsonIgnore // para que no salga en el JSON los binarios, pues son muchos
+	private byte[] foto;
+	
+	private String nombreFoto;
+	
+	@OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = {"producto", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	private List<Pieza> piezas;
-		
-	/*@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
-	private List<ReferenciaProducto> listaReferenciaProducto;*/
 	
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"producto"})
 	private List<BodegaInventario> listaBodegaInventario;
 	
 	
@@ -124,13 +128,6 @@ public class Producto implements Serializable{
 		this.costo = costo;
 	}
 	
-	/*public Double getPrecioAlPorMayor() {
-		return precioAlPorMayor;
-	}
-
-	public void setPrecioAlPorMayor(Double precioAlPorMayor) {
-		this.precioAlPorMayor = precioAlPorMayor;
-	}*/
 
 	public Double getPrecioVenta() {
 		return precioVenta;
@@ -144,10 +141,33 @@ public class Producto implements Serializable{
 	public boolean getActivo() {
 		return activo;
 	}
-
+	
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+	
+	public Integer getFotoHashCode() {
+		return (this.foto != null) ?this.foto.hashCode(): null;
+	}
+	
+	
+
+	public String getNombreFoto() {
+		return nombreFoto;
+	}
+
+	public void setNombreFoto(String nombreFoto) {
+		this.nombreFoto = nombreFoto;
+	}
+
 	public List<Pieza> getPiezas() {
 		return piezas;
 	}

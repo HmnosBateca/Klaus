@@ -2,15 +2,11 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -20,56 +16,50 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
-
 @Entity
-@Table(name = "colores")
-public class Color implements Serializable{
+@Table(name="unidades_medida")
+public class UnidadMedida implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	// ----------------- variables ---------------------- //
+	
+	// -------- variables de la tabla ------------------- //
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	private String categoria;
 	private String nombre;
+	private String abreviatura;
+
+		
+	// -------- variables de auditoría ------------------- //
 	
-	@Column(unique = true, name = "codigo_color")
-	private String codigoColor;
-	
-	@OneToMany(mappedBy = "color", fetch = FetchType.EAGER)
-	List<Pieza> piezas;
-	
-	
-	// -------------- variables de auditoría ---------------------------- //
-	
-	@Column(name = "fecha_registro")
+	@Column(name="fecha_registro")
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaRegistro;
 	
 	@Column(name="hora_registro")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="HH:mm:ss")
 	private Date horaRegistro;
 	
 	@Column(name="fecha_modificacion")
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaModificacion;
 	
 	@Column(name="hora_modificacion")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern = "HH:mm:ss")
 	private Date horaModificacion;
 
 	
-	
-	// ----------------- getters y setters ---------------------------------- //	
+	// -------- Getters y Setters ------------------- //
 	
 	public Long getId() {
 		return id;
@@ -77,6 +67,14 @@ public class Color implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getNombre() {
@@ -87,12 +85,12 @@ public class Color implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getCodigoColor() {
-		return codigoColor;
+	public String getAbreviatura() {
+		return abreviatura;
 	}
 
-	public void setCodigoColor(String color) {
-		this.codigoColor = color;
+	public void setAbreviatura(String abreviatura) {
+		this.abreviatura = abreviatura;
 	}
 
 	public Date getFechaRegistro() {
@@ -131,37 +129,20 @@ public class Color implements Serializable{
 		return serialVersionUID;
 	}
 	
+	// --------------- acciones automáticas --------------------------- //
 	
-	public List<Pieza> getPiezas() {
-		return piezas;
-	}
-
-	public void setPiezas(List<Pieza> piezas) {
-		this.piezas = piezas;
-	}
-	
-	public void addPieza(Pieza pieza) {
-		this.piezas.add(pieza);
-	}
-	
-	
-	
-	// ----------------- acciones automáticas --------------- //
-	
-
-
-	@PrePersist
-	public void asignaFechaRegistro(){
-		this.fechaRegistro = new Date();
-		this.horaRegistro = new Date();
-	}
-	
-	@PreUpdate
-	public void asignaFechaModificacion(){
-		this.fechaModificacion = new Date();
-		this.horaModificacion = new Date();
-	}
-	
-	
+		// Al registrar se instancia automáticamente la fecha de registro del proveedor
+		@PrePersist
+		void asignaFechaRegistro() {
+			this.fechaRegistro = new Date();
+			this.horaRegistro = new Date();
+		}
+		
+		// Al realizar una operación de actualización se ejecuta automáticamente este método
+		@PreUpdate
+		void registrarFechaActualizacion() {
+			this.fechaModificacion = new Date();
+			this.horaModificacion = new Date();
+		}
 	
 }

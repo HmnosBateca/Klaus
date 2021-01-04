@@ -40,20 +40,22 @@ public class Pieza implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
-	private String nombre;
+	
+	@Column(name = "nombre_pieza")
+	private String nombrePieza;
 	private String observacion;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
 	private Color color;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
 	private Material material;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = {"piezas", "listaBodegaInventario", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	private Producto producto;
 	
 	
@@ -93,12 +95,12 @@ public class Pieza implements Serializable{
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombrePieza() {
+		return nombrePieza;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePieza(String nombrePieza) {
+		this.nombrePieza = nombrePieza;
 	}
 
 	public String getObservacion() {

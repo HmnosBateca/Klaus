@@ -83,7 +83,7 @@ public class PiezaRestController {
 	
 	@PostMapping("/pieza")
 	public ResponseEntity<?> guardarPieza(@RequestBody Pieza pieza ){
-		
+				
 		Map<String, Object> mapa = new HashMap<String, Object>();
 		Pieza piezaNueva = null;
 		
@@ -91,13 +91,13 @@ public class PiezaRestController {
 		try {
 			piezaNueva = this.iPiezaService.guardarPieza(pieza);
 		}catch(DataAccessException e) {
-			mapa.put("mensaje", "Ha ocurrido un error al guardar la pieza "+ pieza.getNombre());
+			mapa.put("mensaje", "Ha ocurrido un error al guardar la pieza "+ pieza.getNombrePieza());
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());
 			return new ResponseEntity< Map<String, Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		
-		mapa.put("mensaje", "La pieza " + pieza.getNombre() +" ha sido registrada exitosamente");
+		mapa.put("mensaje", "La pieza " + pieza.getNombrePieza() +" ha sido registrada exitosamente");
 		mapa.put("pieza", piezaNueva);
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.CREATED);
 		
@@ -121,20 +121,20 @@ public class PiezaRestController {
 		}
 		
 		try {
-			piezaExistente.setNombre(piezaFormulario.getNombre());
+			piezaExistente.setNombrePieza(piezaFormulario.getNombrePieza());
 			piezaExistente.setObservacion(piezaFormulario.getObservacion());
 			piezaExistente.setColor(piezaFormulario.getColor());
 			piezaExistente.setMaterial(piezaFormulario.getMaterial());
 			piezaExistente.setProducto(piezaFormulario.getProducto());
 			piezaNueva = iPiezaService.guardarPieza(piezaExistente);
 		}catch(DataAccessException e) {
-			mapa.put("mensaje", "Ocurrió un error al modificar la pieza " + piezaExistente.getNombre());
+			mapa.put("mensaje", "Ocurrió un error al modificar la pieza " + piezaExistente.getNombrePieza());
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());
 			return new ResponseEntity< Map<String, Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		
-		mapa.put("mensaje", "La pieza " + piezaExistente.getNombre() + " ha sido modificada exitosamente");
+		mapa.put("mensaje", "La pieza " + piezaExistente.getNombrePieza() + " ha sido modificada exitosamente");
 		mapa.put("pieza", piezaNueva);
 		return new ResponseEntity< Map<String, Object>  > ( mapa,HttpStatus.OK);
 	}
@@ -156,12 +156,12 @@ public class PiezaRestController {
 		try {
 			iPiezaService.eliminarPieza(id);
 		}catch(DataAccessException e) {
-			mapa.put("mensaje", "Ocurrió un error al eliminar la pieza "+ piezaExistente.getNombre());
+			mapa.put("mensaje", "Ocurrió un error al eliminar la pieza "+ piezaExistente.getNombrePieza());
 			mapa.put("error", e.getMessage()+" : "+e.getMostSpecificCause());
 			return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		mapa.put("mensaje","La pieza " + piezaExistente.getNombre() + " ha sido eliminada exitosamente");
+		mapa.put("mensaje","La pieza " + piezaExistente.getNombrePieza() + " ha sido eliminada exitosamente");
 		return new ResponseEntity< Map<String, Object> >(mapa, HttpStatus.OK);
 		
 	}

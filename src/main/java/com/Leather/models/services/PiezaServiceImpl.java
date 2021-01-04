@@ -24,7 +24,7 @@ public class PiezaServiceImpl implements IPiezaService{
 	@Transactional(readOnly = true)
 	@Override
 	public List<Pieza> listarPiezas() {
-		return (List<Pieza>) iPiezaDao.findAll(Sort.by(Direction.ASC, "nombre"));
+		return (List<Pieza>) iPiezaDao.findAll(Sort.by(Direction.ASC, "nombrePieza"));
 	}
 
 	@Transactional(readOnly = true)
