@@ -1171,8 +1171,8 @@ INSERT INTO materiales(nombre, descripcion) VALUES ('poliéster', 'material para
 INSERT INTO materiales(nombre, descripcion) VALUES ('suela', 'caucho para suelas');
 
 /*inserts tabla productos*/
-INSERT INTO productos(nombre,referencia,costo,precio_venta, activo) VALUES('apache','AKL01',30000,100000,true);
-INSERT INTO productos(nombre,referencia,costo,precio_venta, activo) VALUES('tenis','AKL02',20000,100000,false);
+INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('apache','AKL01',30000,100000,true);
+INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('tenis','AKL02',20000,100000,false);
 
 /*inserts tabla piezas*/
 INSERT INTO piezas(nombre,observacion,color_id,material_id, producto_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1,1);

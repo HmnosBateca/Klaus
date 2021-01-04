@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.Leather.models.dao.IBodegaInventarioDao;
 import com.Leather.models.dao.IProductoDao;
+import com.Leather.models.entity.BodegaInventario;
 import com.Leather.models.entity.Producto;
 
 
@@ -33,6 +35,16 @@ public class ProductoServiceImpl implements IProductoService{
 	public Page<Producto> listarProductosPaginado(Pageable paginador) {
 		return iProductoDao.findAll(paginador);
 	}
+	
+	
+	
+	// Listar Paginado los productos que se encuentran en Bodega Inventario
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Producto> ListarProductosEnBodegaInventario(Pageable paginador) {
+		return iProductoDao.ListarProductosEnBodegaInventario(paginador);
+	}
+	
 
 	@Transactional(readOnly = true)
 	@Override

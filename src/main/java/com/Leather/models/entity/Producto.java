@@ -46,6 +46,9 @@ public class Producto implements Serializable{
 	
 	private Double costo;
 	
+	// @Column(name = "precio_al_por_mayor")
+	// private Double precioAlPorMayor;
+	
 	@Column(name = "precio_venta")
 	private Double precioVenta;
 	
@@ -120,6 +123,14 @@ public class Producto implements Serializable{
 	public void setCosto(Double costo) {
 		this.costo = costo;
 	}
+	
+	/*public Double getPrecioAlPorMayor() {
+		return precioAlPorMayor;
+	}
+
+	public void setPrecioAlPorMayor(Double precioAlPorMayor) {
+		this.precioAlPorMayor = precioAlPorMayor;
+	}*/
 
 	public Double getPrecioVenta() {
 		return precioVenta;

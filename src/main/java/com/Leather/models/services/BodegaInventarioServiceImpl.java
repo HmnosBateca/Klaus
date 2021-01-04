@@ -40,6 +40,7 @@ public class BodegaInventarioServiceImpl implements IBodegaInventarioService {
 	public BodegaInventario ObtenerBodegaInventarioPorID(Long id) {
 		return iBodegaInventarioDao.findById(id).orElse(null);
 	}
+	
 
 	// Guardar Bodega Inventario
 	@Override

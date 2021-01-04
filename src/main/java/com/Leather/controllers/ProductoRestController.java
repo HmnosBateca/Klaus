@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Leather.models.entity.BodegaInventario;
 import com.Leather.models.entity.Color;
 import com.Leather.models.entity.Producto;
+import com.Leather.models.services.IBodegaInventarioService;
 import com.Leather.models.services.IProductoService;
 
 
@@ -35,7 +38,6 @@ public class ProductoRestController {
 	
 	@Autowired
 	IProductoService iProductoService;
-	
 	
 	
 	@GetMapping("/producto")
@@ -184,6 +186,12 @@ public class ProductoRestController {
 	
 	
 	
+	
+	
+	@GetMapping("/producto/bodega/pagina")
+	public Page<Producto> ListarProductosBodegaInventario(Pageable paginador) {
+		return iProductoService.ListarProductosEnBodegaInventario(paginador);
+	}
 	
 	
 	

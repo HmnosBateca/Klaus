@@ -50,6 +50,12 @@ public class TallaServiceImpl implements ITallaService{
 	public void eliminarTalla(Long id) {
 		iTallaDao.deleteById(id);
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Talla> obtenerTallaPorProductoBodega(Long id) {
+		return iTallaDao.ListarTallasPorProductoEnBodega(id);		
+	}
 	
 	
 

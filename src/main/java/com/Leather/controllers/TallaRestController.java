@@ -217,4 +217,45 @@ public class TallaRestController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * El metodo obtenerTallasPorProductoEnBodega permite obtener la talla por el ID del producto que se encuentra en bodega.
+	 * - Parámetros: el ID
+	 * - Retorna: Un ResponseEntity de tipo genérico 
+	*/
+	@GetMapping("/tallas/bodega/producto/{id}")
+	public ResponseEntity<?> obtenerTallasPorProductoEnBodega(@PathVariable Long id) {
+		
+		List<Talla> listaTallas = null;
+		Map<String, Object> mapa = new HashMap<>();
+		
+		try {
+			
+			listaTallas = this.iTallaService.obtenerTallaPorProductoBodega(id);
+			
+		}catch(DataAccessException e) {
+			
+			// armo el mapa para agregarlo al ResponseEntity
+			mapa.put("mensaje", "Ha ocurrido un error al obtener la talla con ID " + id);
+			mapa.put("error", e.getMessage() + ": " + e.getMostSpecificCause());
+			return new ResponseEntity<  Map<String,Object>  >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
+		if(listaTallas == null) {
+			mapa.put("mensaje", "El producto con ID " + id + "no tiene tallas registradas en bodega");
+			return new ResponseEntity< Map<String,Object>  >(mapa, HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity< List<Talla> >(listaTallas, HttpStatus.OK);
+	}
+	
+	
 }

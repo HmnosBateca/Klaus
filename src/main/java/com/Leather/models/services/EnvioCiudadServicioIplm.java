@@ -18,7 +18,7 @@ public class EnvioCiudadServicioIplm implements IEnvioCiudadService {
 	@Autowired
 	private IEnvioCiudadDao iEnvioCiudadDao;
 	
-	@Autowired
+	@Override
 	@Transactional(readOnly = true)//lectura
 	public List<EnvioCiudad> findAll(){//Listar
 		return (List<EnvioCiudad>)iEnvioCiudadDao.findAll();

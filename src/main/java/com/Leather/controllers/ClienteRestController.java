@@ -102,9 +102,10 @@ public class ClienteRestController {
 			clienteActual.setNombres(cliente.getNombres());
 			clienteActual.setApellidos(cliente.getApellidos());
 			clienteActual.setNumero_contacto(cliente.getNumero_contacto());
+			clienteActual.setFijo(cliente.getFijo());
 			clienteActual.setDireccion(cliente.getDireccion());
-			clienteActual.setCorreo(cliente.getCorreo());
-			clienteActual.setCodigo_postal(cliente.getCodigo_postal());
+			/*clienteActual.setCorreo(cliente.getCorreo());
+			clienteActual.setCodigo_postal(cliente.getCodigo_postal());*/
 			clienteActual.setCiudad(cliente.getCiudad());
 			clienteActual = clienteService.save(clienteActual);// persistir o guardar
 		} catch (DataAccessException e) {
