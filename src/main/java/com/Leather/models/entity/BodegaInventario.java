@@ -41,9 +41,17 @@ public class BodegaInventario implements Serializable{
 	private Boolean estadoDescuento;
 	private float descuento;
 	
-	@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY)
-	private ReferenciaProducto referenciaProducto;
+	@JsonIgnoreProperties(value={"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
+	private Producto producto; 
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value={"listaBodegaInventario", "handler",  "hibernateLazyInitializer"})
+	private Talla talla;
+	
+	/*@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ReferenciaProducto referenciaProducto;*/
 		
 	@JsonIgnoreProperties(value = {"listaBodegaInventario", "cotizacion", "listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@OneToMany(fetch = FetchType.LAZY)
@@ -102,12 +110,26 @@ public class BodegaInventario implements Serializable{
 		public void setDescuento(float descuento) {
 			this.descuento = descuento;
 		}	
-		public ReferenciaProducto getReferenciaProducto() {
+		
+		public Producto getProducto() {
+			return producto;
+		}
+
+		public void setProducto(Producto producto) {
+			this.producto = producto;
+		}
+		public Talla getTalla() {
+			return talla;
+		}
+		public void setTalla(Talla talla) {
+			this.talla = talla;
+		}
+		/*public ReferenciaProducto getReferenciaProducto() {
 			return referenciaProducto;
 		}
 		public void setReferenciaProducto(ReferenciaProducto referenciaProducto) {
 			this.referenciaProducto = referenciaProducto;
-		}
+		}*/
 		public List<Cotizacion> getListaCotizacion() {
 			return listaCotizacion;
 		}

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Leather.models.entity.Cotizacion;
+import com.Leather.models.entity.Pieza;
 import com.Leather.models.services.ICotizacionService;
 
 @CrossOrigin(origins = {"http://localhost:4200", "*"})
@@ -68,8 +69,9 @@ public class CotizacionRestController {
 	// Post Agregar 
 	@PostMapping("/Cotizacion")
 	public ResponseEntity<?> create(@RequestBody Cotizacion cotizacion) {
+		
+		Map<String, Object> mapa = new HashMap<String, Object>();
 		Cotizacion cotizacionNuevo = null;
-		Map<String, Object> mapa = new HashMap<>();
 	try {
 		cotizacionNuevo = iCotizacionService.GuardarCotizacion(cotizacion);
 	} catch (DataAccessException e) {
@@ -82,6 +84,7 @@ public class CotizacionRestController {
 		mapa.put("cotizacion", cotizacionNuevo);
 		return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
+		
 	// Actualizar
 	@PutMapping("/cotizacion/{id}") // con la id obtenemos de la base de datos y actualizamos
 	@ResponseStatus(HttpStatus.CREATED)
@@ -95,7 +98,7 @@ public class CotizacionRestController {
 		}
 		try {
 				cotizacion.setCantidad(cotizacion.getCantidad());
-				cotizacion.setRefCotizacion(cotizacion.getRefCotizacion());
+				cotizacion.setImporte(cotizacion.getImporte());
 				cotizacionActual = iCotizacionService.GuardarCotizacion(cotizacionActual);// persistir o guardar
 			} catch (DataAccessException e) {
 				mapa.put("mensaje", "Error al actualizar la Cotizacion en la base de datos");

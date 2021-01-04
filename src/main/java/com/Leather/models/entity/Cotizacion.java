@@ -29,7 +29,7 @@ public class Cotizacion implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long refCotizacion;
+	private Long importe;
 	private Long cantidad;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
@@ -37,7 +37,7 @@ public class Cotizacion implements Serializable{
 	private BodegaInventario bodegaInventario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value={"hibernateLazyInitializer"})
+    @JsonIgnoreProperties(value={"listaCotizacion", "handler", "hibernateLazyInitializer"})
 	private Pedido pedido;
 
 	// ----------------------------- GETTERS y SETTERS ----------------------------- //
@@ -48,11 +48,11 @@ public class Cotizacion implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getRefCotizacion() {
-		return refCotizacion;
+	public Long getImporte() {
+		return importe;
 	}
-	public void setRefCotizacion(Long refCotizacion) {
-		this.refCotizacion = refCotizacion;
+	public void setImporte(Long importe) {
+		this.importe = importe;
 	}
 	public Long getCantidad() {
 		return cantidad;

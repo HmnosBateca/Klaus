@@ -41,7 +41,7 @@ public class Material implements Serializable{
 	private String nombre;
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
 	List<Pieza> piezas;
 	
 	// ----------------------------- variables de auditoría --------------------//

@@ -46,16 +46,16 @@ public class Pieza implements Serializable{
 	private String observacion;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
 	private Color color;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
 	private Material material;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = {"piezas", "listaBodegaInventario", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	private Producto producto;
 	
 	

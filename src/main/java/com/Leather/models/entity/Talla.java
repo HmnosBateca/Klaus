@@ -44,10 +44,13 @@ public class Talla implements Serializable{
 	@JsonIgnoreProperties(value = {"tallas", "handler", "hibernateLazyInitializer"})
 	private TipoTalla tipoTalla;
 	
+	/*@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
+	private List<ReferenciaProducto> listaReferenciaProducto;*/
+	
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
-	private List<ReferenciaProducto> listaReferenciaProducto;
-	
+	private List<BodegaInventario> listaBodegaInventario;
 
 	// ----------------------------- variables de auditoría --------------------//
 	
@@ -138,14 +141,17 @@ public class Talla implements Serializable{
 		this.tipoTalla = tipoTalla;
 	}	
 	
-	public List<ReferenciaProducto> getListaReferenciaProducto() {
-		return listaReferenciaProducto;
+	
+	public List<BodegaInventario> getListaBodegaInventario() {
+		return listaBodegaInventario;
 	}
-	public void setListaReferenciaProducto(List<ReferenciaProducto> listaReferenciaProducto) {
-		this.listaReferenciaProducto = listaReferenciaProducto;
+
+	public void setListaBodegaInventario(List<BodegaInventario> listaBodegaInventario) {
+		this.listaBodegaInventario = listaBodegaInventario;
 	}
-	public void addReferenciaProducto(ReferenciaProducto referenciaProducto) {
-		this.listaReferenciaProducto.add(referenciaProducto );
+
+	public void addBodegaInventario(BodegaInventario bodegaInventario) {
+		this.listaBodegaInventario.add(bodegaInventario);
 	}
 	
 
