@@ -98,6 +98,7 @@ public class CotizacionRestController {
 		}
 		try {
 				cotizacion.setCantidad(cotizacion.getCantidad());
+				cotizacion.setDescuento(cotizacion.getDescuento());
 				cotizacion.setImporte(cotizacion.getImporte());
 				cotizacionActual = iCotizacionService.GuardarCotizacion(cotizacionActual);// persistir o guardar
 			} catch (DataAccessException e) {

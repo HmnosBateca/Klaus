@@ -31,16 +31,7 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)// PostGresql
 	private Long id; 
-	
-	// @Temporal(TemporalType.DATE)
-	// @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") no va
-	// private Date fechaPedido;
-	
-	/*@Temporal(TemporalType.TIME)
-    @JsonFormat(pattern = "h:mm a", shape = JsonFormat.Shape.ANY, timezone="America/New_York")
-	private Date horaPedido;*/
-	
-	
+		
 	private Long valorIva;
 	private Long valorFinalVenta;
 	private String observaciones;
@@ -51,7 +42,7 @@ public class Pedido implements Serializable {
 	private Cliente cliente;
 		
 	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = {"pedido"})
+    @JsonIgnoreProperties(value = {"pedido"}, allowSetters = true)
 	private List<Cotizacion> listaCotizacion;
 	
 	@Column(name = "fecha_registro")
@@ -92,18 +83,7 @@ public class Pedido implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/*public Date getFechaPedido() {
-		return fechaPedido;
-	}
-	public void setFechaPedido(Date fechaPedido) {
-		this.fechaPedido = fechaPedido;
-	}
-	public Date getHoraPedido() {
-		return horaPedido;
-	}
-	public void setHoraPedido(Date horaPedido) {
-		this.horaPedido = horaPedido;
-	}*/
+	
 	public Long getValorIva() {
 		return valorIva;
 	}
@@ -162,19 +142,6 @@ public class Pedido implements Serializable {
 		this.horaModificacion = horaModificacion;
 	}
 	
-	
-	/*
-	public List<EstadoEnvioCiudad> getListaEstadoEnvioCiudad() {
-		return listaEstadoEnvioCiudad;
-	}
-	public void setListaEstadoEnvioCiudad(List<EstadoEnvioCiudad> listaEstadoEnvioCiudad) {
-		this.listaEstadoEnvioCiudad = listaEstadoEnvioCiudad;
-	}
-	public void addEstadoEnvioCiudad(EstadoEnvioCiudad estadoEnvioCiudad) {
-		this.listaEstadoEnvioCiudad.add(estadoEnvioCiudad);
-	}*/
-
-
 	/**
 	 * 
 	 */

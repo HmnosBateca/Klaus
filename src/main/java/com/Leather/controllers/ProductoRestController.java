@@ -233,7 +233,7 @@ public class ProductoRestController extends CommonRestController<Producto, IProd
 	
 	
 	
-	@GetMapping("/producto/bodega/pagina")
+	@GetMapping("/bodega/pagina")
 	public Page<Producto> ListarProductosBodegaInventario(Pageable paginador){
 		return iProductoService.ListarProductosEnBodegaInventario(paginador);
 	}
