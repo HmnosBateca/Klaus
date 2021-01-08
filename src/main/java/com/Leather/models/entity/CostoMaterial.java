@@ -2,7 +2,6 @@ package com.Leather.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -21,42 +20,44 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
+
 @Entity
-@Table(name="unidades_medida")
-public class UnidadMedida implements Serializable{
+@Table(name = "costos_materiales")
+public class CostoMaterial implements Serializable{
 
 	/**
-	 * 
+	 * Esta tabla almacenará el costo de un determinado material por la unidad de medida determinada por el usuario
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
-	// -------- variables de la tabla ------------------- //
-	
+	//--------------------- Variables de la tabla ----------------------------//
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String categoria;
-	private String nombre;
-	private String abreviatura;
+	private Double cantidad;
+	private Double costo;
 		
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unidadMedida")
-	@JsonIgnoreProperties(value = {"unidadMedida", "handler", "hibernateLazyInitializer"})
-	private List<CostoMaterial> listaCostosMateriales;
-
-		
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"listaCostosMateriales", "handler", "hibernateLazyInitializer"}, allowSetters = true)
+	private UnidadMedida unidadMedida;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"listaCostosMateriales", "handler", "hibernateLazyInitializer"})
+	private Material material;
+	
+	
 	// -------- variables de auditoría ------------------- //
 	
 	@Column(name="fecha_registro")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
 	private Date fechaRegistro;
-	
+		
 	@Column(name="hora_registro")
 	@Temporal(TemporalType.TIME)
 	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="HH:mm:ss")
 	private Date horaRegistro;
-	
+		
 	@Column(name="fecha_modificacion")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.ANY, pattern ="yyyy-MM-dd")
@@ -68,7 +69,7 @@ public class UnidadMedida implements Serializable{
 	private Date horaModificacion;
 
 	
-	// -------- Getters y Setters ------------------- //
+	// ---------------- getters y setters -------------------------------- //
 	
 	public Long getId() {
 		return id;
@@ -78,28 +79,38 @@ public class UnidadMedida implements Serializable{
 		this.id = id;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public Double getCantidad() {
+		return cantidad;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCantidad(Double cantidad) {
+		this.cantidad = cantidad;
+	}
+	
+	
+
+	public Double getCosto() {
+		return costo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setCosto(Double costo) {
+		this.costo = costo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Material getMaterial() {
+		return material;
 	}
 
-	public String getAbreviatura() {
-		return abreviatura;
+	public void setMaterial(Material material) {
+		this.material = material;
 	}
 
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
+	public UnidadMedida getUnidadMedida() {
+		return unidadMedida;
+	}
+
+	public void setUnidadMedida(UnidadMedida unidadMedida) {
+		this.unidadMedida = unidadMedida;
 	}
 
 	public Date getFechaRegistro() {
@@ -133,39 +144,30 @@ public class UnidadMedida implements Serializable{
 	public void setHoraModificacion(Date horaModificacion) {
 		this.horaModificacion = horaModificacion;
 	}
-	
-	public List<CostoMaterial> getListaCostosMateriales() {
-		return listaCostosMateriales;
-	}
-
-	public void setListaCostosMateriales(List<CostoMaterial> listaCostosMateriales) {
-		this.listaCostosMateriales = listaCostosMateriales;
-	}
-	
-	public void addCostoMaterial(CostoMaterial costoMaterial) {
-		this.listaCostosMateriales.add(costoMaterial);
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
 	
+	// -------------- acciones automáticas ----------------------------- //
 	
-	// --------------- acciones automáticas --------------------------- //
+
+	// Al registrar se instancia automáticamente la fecha de registro del proveedor
+	@PrePersist
+	void asignaFechaRegistro() {
+		this.fechaRegistro = new Date();
+		this.horaRegistro = new Date();
+	}
 	
-		// Al registrar se instancia automáticamente la fecha de registro del proveedor
-		@PrePersist
-		void asignaFechaRegistro() {
-			this.fechaRegistro = new Date();
-			this.horaRegistro = new Date();
-		}
+	// Al realizar una operación de actualización se ejecuta automáticamente este método
+	@PreUpdate
+	void registrarFechaActualizacion() {
+		this.fechaModificacion = new Date();
+		this.horaModificacion = new Date();
+	}
+	
+	
+	
 		
-		// Al realizar una operación de actualización se ejecuta automáticamente este método
-		@PreUpdate
-		void registrarFechaActualizacion() {
-			this.fechaModificacion = new Date();
-			this.horaModificacion = new Date();
-		}
-	
 }

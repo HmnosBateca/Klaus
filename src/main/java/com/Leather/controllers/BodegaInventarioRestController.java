@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Leather.models.entity.BodegaInventario;
 import com.Leather.models.services.IBodegaInventarioService;
 
-@CrossOrigin(origins = { "http://localhost:4200", "*" })
+@CrossOrigin(origins = { "http://localhost:4200", "*" }, exposedHeaders = {"Access-Control-Expose-Headers", "Content-Disposition"})
 @RestController// Api Rest
 @RequestMapping("/api")// url
 public class BodegaInventarioRestController {

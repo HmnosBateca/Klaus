@@ -33,7 +33,7 @@ public class Cotizacion implements Serializable{
 	private Long cantidad;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, allowSetters = true)
 	private BodegaInventario bodegaInventario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -44,6 +44,10 @@ public class Material implements Serializable{
 	@OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
 	List<Pieza> piezas;
 	
+	@OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"material", "handler", "hibernateLazyInitializer"})
+	private List<CostoMaterial> listaCostosMateriales;
+	
 	// ----------------------------- variables de auditoría --------------------//
 	
 		@Column(name = "fecha_registro")
