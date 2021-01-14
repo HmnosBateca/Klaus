@@ -38,9 +38,7 @@ public class BodegaInventario implements Serializable{
 	
 	private String referencia;
 	private Long cantidad;
-	private Boolean estadoDescuento;
-	private float descuento;
-	
+		
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value={"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	private Producto producto; 
@@ -94,19 +92,6 @@ public class BodegaInventario implements Serializable{
 		public void setCantidad(Long cantidad) {
 			this.cantidad = cantidad;
 		}
-		public Boolean getEstadoDescuento() {
-			return estadoDescuento;
-		}
-		public void setEstadoDescuento(Boolean estadoDescuento) {
-			this.estadoDescuento = estadoDescuento;
-		}
-		public float getDescuento() {
-			return descuento;
-		}
-		public void setDescuento(float descuento) {
-			this.descuento = descuento;
-		}	
-		
 		public Producto getProducto() {
 			return producto;
 		}

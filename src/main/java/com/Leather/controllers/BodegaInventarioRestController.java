@@ -96,8 +96,6 @@ public class BodegaInventarioRestController {
 			bodegaInventarioExistente.setId(bodegaInventarioFormulario.getId());
 			bodegaInventarioExistente.setReferencia(bodegaInventarioFormulario.getReferencia());
 			bodegaInventarioExistente.setCantidad(bodegaInventarioFormulario.getCantidad());
-			bodegaInventarioExistente.setEstadoDescuento(bodegaInventarioFormulario.getEstadoDescuento());
-			bodegaInventarioExistente.setDescuento(bodegaInventarioFormulario.getDescuento());
 			bodegaInventarioNuevo = iBodegaInventarioService.GuardarBodegaInventario(bodegaInventarioExistente);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrio un error al modificar Bodega-Inventario "+ bodegaInventarioExistente.getId());
