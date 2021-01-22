@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -50,7 +51,7 @@ public class BodegaInventario implements Serializable{
 	@JsonIgnoreProperties(value = {"listaBodegaInventario", "cotizacion", "listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Cotizacion> listaCotizacion;
-		
+	
 	// ------------------------ variables de auditoría --------------------- //
 	
 		@Column(name="fecha_registro")
@@ -115,6 +116,7 @@ public class BodegaInventario implements Serializable{
 		public void addListaCotizacion(Cotizacion cotizacion) {
 			this.listaCotizacion.add(cotizacion);
 		}
+						
 		public Date getFechaRegistro() {
 			return fechaRegistro;
 		}

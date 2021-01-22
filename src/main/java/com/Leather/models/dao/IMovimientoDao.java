@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.Leather.models.entity.BodegaInventario;
+import com.Leather.models.entity.Movimiento;
 
-public interface IBodegaInventarioDao extends PagingAndSortingRepository<BodegaInventario, Long>{
-	Page<BodegaInventario> findAll(Pageable pageable);
+public interface IMovimientoDao extends PagingAndSortingRepository<Movimiento, Long>{
+	Page<Movimiento> findAll(Pageable pageable);
 }
