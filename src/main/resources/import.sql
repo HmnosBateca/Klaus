@@ -1172,8 +1172,8 @@ INSERT INTO materiales(nombre, descripcion) VALUES ('Caucho', 'caucho para suela
 INSERT INTO materiales(nombre, descripcion) VALUES ('Algodón', 'Algodón para zapatos');
 
 /*inserts tabla productos*/
-INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('apache','AKL01',30000,100000,true);
-INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('tenis','AKL02',20000,100000,false);
+INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('Apache','AKL01',30000,100000,true);
+INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('Tenis','AKL02',20000,100000,false);
 
 /*inserts tabla piezas*/
 INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1,1);
@@ -1181,9 +1181,9 @@ INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) V
 INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('recubrimiento', 'recubrimiento en poliester',1,3,1);
 
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Contra Entrega', 'Se paga cuando llegue');
-INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envio Normal', 'Se paga anticipado');
+INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envío Normal', 'Se paga anticipado');
 
-INSERT INTO transportadoras (nombre, descripcion) VALUES('Envia', 'Empresa de transporte de encomedias');
+INSERT INTO transportadoras (nombre, descripcion) VALUES('Envía', 'Empresa de transporte de encomedias');
 INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
 
 /* INSERT INTO clientes (documento, nombres, apellidos, numero_contacto, ciudad, direccion, correo, codigo_postal) VALUES(1094248820, 'Jorge Leonardo', 'Bateca Parada', 3102496515, 'calle 11 # 16-24', 'leonardobate_02@hotmail.com', 234756 ); */

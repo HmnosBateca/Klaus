@@ -48,7 +48,7 @@ public class BodegaInventario implements Serializable{
 	@JsonIgnoreProperties(value={"listaBodegaInventario", "handler",  "hibernateLazyInitializer"})
 	private Talla talla;
 			
-	@JsonIgnoreProperties(value = {"listaBodegaInventario", "cotizacion", "listaBodegaInventario", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Cotizacion> listaCotizacion;
 	

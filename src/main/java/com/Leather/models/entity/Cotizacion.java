@@ -38,7 +38,7 @@ public class Cotizacion implements Serializable{
 	private BodegaInventario bodegaInventario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value={"listaCotizacion", "handler", "hibernateLazyInitializer"})
+    @JsonIgnoreProperties(value={"listaCotizacion","handler", "hibernateLazyInitializer"})
 	private Pedido pedido;
 
 	// ----------------------------- GETTERS y SETTERS ----------------------------- //

@@ -36,6 +36,10 @@ public class Pedido implements Serializable {
 	private Long valorIva;
 	private Long valorFinalVenta;
 	private String observaciones;
+	private Ciudad ciudadEnvio;
+	private String direccionEnvio;
+	private Long valorEnvio;
+	
 		
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -45,6 +49,11 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"pedido"}, allowSetters = true)
 	private List<Cotizacion> listaCotizacion;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"listaPedido", "handler", "hibernateLazyInitializer"} )
+	private EnvioCiudad envioCiudad;
+	
 	
 	@Column(name = "fecha_registro")
 	@Temporal(TemporalType.DATE)
@@ -104,6 +113,31 @@ public class Pedido implements Serializable {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
+
+	public Ciudad getCiudadEnvio() {
+		return ciudadEnvio;
+	}
+
+	public void setCiudadEnvio(Ciudad ciudadEnvio) {
+		this.ciudadEnvio = ciudadEnvio;
+	}
+
+	public String getDireccionEnvio() {
+		return direccionEnvio;
+	}
+
+	public void setDireccionEnvio(String direccionEnvio) {
+		this.direccionEnvio = direccionEnvio;
+	}
+
+	public Long getValorEnvio() {
+		return valorEnvio;
+	}
+
+	public void setValorEnvio(Long valorEnvio) {
+		this.valorEnvio = valorEnvio;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -120,6 +154,14 @@ public class Pedido implements Serializable {
 		this.listaCotizacion.add(cotizacion);
 	}
 	
+	public EnvioCiudad getEnvioCiudad() {
+		return envioCiudad;
+	}
+
+	public void setEnvioCiudad(EnvioCiudad envioCiudad) {
+		this.envioCiudad = envioCiudad;
+	}
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}

@@ -22,22 +22,23 @@ public class EnvioCiudad implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Postgrest 
 	private Long id;
+	 
 	
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"envioCiudad","listaEnvioCiudad","handler", "hibernateLazyInitializer"})
 	private TipoEnvio tipoEnvio;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"listaEnvioCiudad", "clientes", "proveedores", "handler", "hibernateLazyInitializer"})
+	/*@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"clientes", "listaEnvioCiudad", "proveedores", "handler", "hibernateLazyInitializer"})*/
 	private Ciudad ciudad;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value={"listaEstadoEnvioCiudad", "empresaTransportadora","listaEnvioCiudad", "hibernateLazyInitializer"})
 	private EmpresaTransportadora empresaTransportadora;
 	
-	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "envioCiudad")
-	@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer"})
-	private List<EstadoEnvioCiudad> listaEstadoEnvioCiudad;*/
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "envioCiudad")
+	@JsonIgnoreProperties(value = {"listaPedido", "enviociudad","handler", "hibernateLazyInitializer"})
+	private List<Pedido> listaPedido;
 		
 	@Column(name="valor_envio")
 	private Double valorEnvio;
@@ -49,6 +50,7 @@ public class EnvioCiudad implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public TipoEnvio getTipoEnvio() {
 		return tipoEnvio;
 	}
@@ -73,16 +75,16 @@ public class EnvioCiudad implements Serializable {
 	public void setEmpresaTransportadora(EmpresaTransportadora empresaTransportadora) {
 		this.empresaTransportadora = empresaTransportadora;
 	}
-	/*
-	public List<EstadoEnvioCiudad> getListaEstadoEnvioCiudad() {
-		return listaEstadoEnvioCiudad;
+		
+	public List<Pedido> getListaPedido() {
+		return listaPedido;
 	}
-	public void setListaEstadoEnvioCiudad(List<EstadoEnvioCiudad> listaEstadoEnvioCiudad) {
-		this.listaEstadoEnvioCiudad = listaEstadoEnvioCiudad;
+	public void setListaPedido(List<Pedido> listaPedido) {
+		this.listaPedido = listaPedido;
 	}
-	public void addEstadoEnvioCiudad(EstadoEnvioCiudad estadoEnvioCiudad) {
-		this.listaEstadoEnvioCiudad.add(estadoEnvioCiudad);
-	}*/
+	public void addPedido(Pedido pedido) {
+		this.listaPedido.add(pedido);
+	}
 
 
 
