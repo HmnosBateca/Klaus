@@ -47,6 +47,11 @@ public class ClienteRestController {
 	public Page<Cliente> index(Pageable pageable) {
 		return clienteService.findAll(pageable);
 	}
+	
+	@GetMapping("/clientes/cliente/{documento}")
+	public Cliente clientePorDocumento(@PathVariable Long documento) {
+		return clienteService.clientePorDocumento(documento);
+	}
 
 	@GetMapping("/clientes/{id}") // Get por id
 	public ResponseEntity<?> show(@PathVariable Long id) {

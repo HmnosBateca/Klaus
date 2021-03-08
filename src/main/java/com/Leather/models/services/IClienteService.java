@@ -13,4 +13,5 @@ public interface IClienteService{//metodos listar, buscar, guardar, eliminar
 	public Cliente findById(Long id);//busca por id
 	public Cliente save(Cliente cliente);//guarda
 	public void delete(Long id);//Borra por id
+	public Cliente clientePorDocumento(Long documento);
 }

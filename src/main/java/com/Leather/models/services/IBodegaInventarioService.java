@@ -13,4 +13,5 @@ public interface IBodegaInventarioService {
 	public BodegaInventario ObtenerBodegaInventarioPorID(Long id);
 	public BodegaInventario GuardarBodegaInventario(BodegaInventario bodegaInventario);
 	public void EliminarBodegaInventario(Long id);
+	public BodegaInventario BodegaInventarioPorRef(String referencia);
 }

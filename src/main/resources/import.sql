@@ -1144,6 +1144,14 @@ INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, co
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Carlos','Barriga',24855,12346789,312456789,'calos@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
 
+//Tabla Estado Pedido
+// INSERT INTO estados_pedidos(nombre) VALUES ('Pagado');
+// INSERT INTO estados_pedidos(nombre) VALUES ('Alistamiento');
+// INSERT INTO estados_pedidos(nombre) VALUES ('En Camino');
+// INSERT INTO estados_pedidos(nombre) VALUES ('Entregado');
+// INSERT INTO estados_pedidos(nombre) VALUES ('Devuelto En Camino');
+// INSERT INTO estados_pedidos(nombre) VALUES ('Devuelto Entregado');
+
 /* inserts table tipo talla*/
 INSERT INTO tipo_tallas(tipo_talla, descripcion) VALUES ('Talla americana', 'Tipo de numeración americana');
 INSERT INTO tipo_tallas(tipo_talla, descripcion) VALUES ('Talla Colombiana', 'Tipo de numeración Colombiana');

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Leather.models.entity.BodegaInventario;
+import com.Leather.models.entity.Movimiento;
 import com.Leather.models.services.IBodegaInventarioService;
 
 @CrossOrigin(origins = { "http://localhost:4200", "*" })
@@ -41,7 +42,12 @@ public class BodegaInventarioRestController {
 	public Page<BodegaInventario> ListarBodegaInventarioPaginado(Pageable paginador) {
 		return iBodegaInventarioService.ListarBodegaInventarioPaginado(paginador);
 	}
-
+	
+	@GetMapping("/BodegaInventario/bodega/{referencia}")
+	public BodegaInventario BodegaInventarioPorRef(@PathVariable  String referencia){
+		return iBodegaInventarioService.BodegaInventarioPorRef(referencia);
+		
+	}
 	
 	// Listar Por Id
 	@GetMapping("/BodegaInventario/{id}")

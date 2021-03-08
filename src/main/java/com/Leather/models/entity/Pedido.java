@@ -33,14 +33,18 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)// PostGresql
 	private Long id; 
 		
+	private String referencia;
 	private Long valorIva;
 	private Long valorFinalVenta;
 	private String observaciones;
 	private Ciudad ciudadEnvio;
 	private String direccionEnvio;
 	private Long valorEnvio;
+
 	
-		
+	@OneToMany(mappedBy ="pedido", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"pedido"})
+	private List<EstadoPedido>	listaEstadoPedido;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"pedido","listaPedido", "listaEnvioCiudad", "handler", "hibernateLazyInitializer"})
@@ -94,7 +98,15 @@ public class Pedido implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+		
+	public String getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
+
 	public Long getValorIva() {
 		return valorIva;
 	}
@@ -136,6 +148,17 @@ public class Pedido implements Serializable {
 
 	public void setValorEnvio(Long valorEnvio) {
 		this.valorEnvio = valorEnvio;
+	}
+	
+	public List<EstadoPedido> getListaEstadoPedido() {
+		return listaEstadoPedido;
+	}
+
+	public void setListaEstadoPedido(List<EstadoPedido> listaEstadoPedido) {
+		this.listaEstadoPedido = listaEstadoPedido;
+	}
+	public void addEstadoPedido(EstadoPedido estadoPedido) {
+		this.listaEstadoPedido.add(estadoPedido);
 	}
 
 	public Cliente getCliente() {
