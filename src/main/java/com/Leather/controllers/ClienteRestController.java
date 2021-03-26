@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.Leather.models.entity.Ciudad;
 import com.Leather.models.entity.Cliente;
-import com.Leather.models.services.ICiudadService;
 import com.Leather.models.services.IClienteService;
 
 @CrossOrigin(origins = { "http://localhost:4200", "*" })
@@ -72,6 +68,7 @@ public class ClienteRestController {
 	}
 
 	// Post Agregar Cliente
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/clientes")
 	public ResponseEntity<?> create(@RequestBody Cliente cliente) {
 		Cliente clienteNew = null;
@@ -91,6 +88,7 @@ public class ClienteRestController {
 
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/clientes/{id}") // con la id obtenemos de la base de datos y actualizamos
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable Long id) {// un cliente ya modificado
@@ -123,6 +121,7 @@ public class ClienteRestController {
 		return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {

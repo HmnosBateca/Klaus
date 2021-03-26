@@ -1191,6 +1191,10 @@ INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) V
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Contra Entrega', 'Se paga cuando llegue');
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envío Normal', 'Se paga anticipado');
 
+//INSERT INTO rol(rol_nombre) VALUES('ROLE_ADMIN'); 
+//INSERT INTO rol(rol_nombre) VALUES('ROLE_USER'); 
+
+
 INSERT INTO transportadoras (nombre, descripcion) VALUES('Envía', 'Empresa de transporte de encomedias');
 INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
 
