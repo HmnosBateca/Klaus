@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,6 +67,7 @@ public class PedidoRestController {
 	}
 	
 	// Post Agregar 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/Pedido")
 	public ResponseEntity<?> create(@RequestBody Pedido pedido) {
 		Pedido pedidoNuevo = null;
@@ -85,6 +87,7 @@ public class PedidoRestController {
 	}
 
 	// Actualizar
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/Pedido/{id}") // con la id obtenemos de la base de datos y actualizamos
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> update(@RequestBody Pedido pedido, @PathVariable Long id) {// modificado
@@ -114,6 +117,7 @@ public class PedidoRestController {
 	}
 	
 	// Eliminar
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/Pedido/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {

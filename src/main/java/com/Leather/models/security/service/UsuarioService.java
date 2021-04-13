@@ -1,7 +1,5 @@
 package com.Leather.models.security.service;
 
-
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +32,5 @@ public class UsuarioService {
 	public void save(Usuario usuario) {
 		usuarioRepository.save(usuario);
 	}
+	
 }

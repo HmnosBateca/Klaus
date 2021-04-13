@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +33,9 @@ import com.Leather.models.services.ITipoTallaService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class TipoTallaRestController {
 
-	
 	// inyección de dependencia
 	@Autowired
 	ITipoTallaService iTipoTallaService;
-	
 	
 	/*
 	 * El método listarTipoTallas() método obtiene todos los tipos de talla registradas en base de datos
@@ -47,7 +46,6 @@ public class TipoTallaRestController {
 	public List<TipoTalla> listarTipoTallas(){
 		return iTipoTallaService.listarTipoTalla();
 	}
-	
 	
 	
 	/*
@@ -86,9 +84,6 @@ public class TipoTallaRestController {
 	}
 	
 	
-	
-	
-	
 	/*
 	 *	El método listarTipoTallaPaginado permite listar los tipos de talla usando paginación
 	 *	- Parámetros: El paginador (tiene la información de la paginación)
@@ -101,15 +96,13 @@ public class TipoTallaRestController {
 	}
 	
 	
-	
-	
-	
 	/*
 	 * El método guardarTipoTalla permite guardar la Talla en base de datos
 	 * - Parámetros: La talla a guardar en base de datos
 	 * - Retorna un ResposeEntity con el resultado del proceso (un error o la Talla creada)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/tipoTalla")
 	public ResponseEntity<?> guardarTipoTalla(@RequestBody TipoTalla tipoTalla ){
 		
@@ -129,10 +122,7 @@ public class TipoTallaRestController {
 		mapa.put("mensaje", "El tipo de talla " + tipoTalla.getTipoTalla() +" ha sido registrado exitosamente");
 		mapa.put("talla", TipoTallaNuevo);
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.CREATED);
-		
 	}
-	
-	
 	
 	
 	/*
@@ -146,6 +136,7 @@ public class TipoTallaRestController {
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (el tipoTala modificado o el mensaje de error)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/tipoTalla/{id}")
 	public ResponseEntity<?> editarTipoTalla(@PathVariable Long id, @RequestBody TipoTalla tipoTallaForm){
 		
@@ -182,15 +173,8 @@ public class TipoTallaRestController {
 		mapa.put("mensaje", "El tipo de talla "+ tipoTallaForm.getTipoTalla() + " ha sido modificado exitosamente");
 		mapa.put("tipoTalla", tipoTallaExistente);
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.OK);
-		
 	}
 	
-	
-	
-	
-	
-	
-
 	
 	/*
 	 * El método eliminarTipoTalla obtiene el tipo de talla con el ID especificado en la URL para luego
@@ -201,6 +185,7 @@ public class TipoTallaRestController {
 	 * 
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (el mensaje de étixo o error)
 	*/
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/tipoTalla/{id}")
 	public ResponseEntity<?> eliminarTipoTalla(@PathVariable Long id){
 		

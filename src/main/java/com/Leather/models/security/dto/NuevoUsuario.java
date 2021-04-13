@@ -17,8 +17,7 @@ public class NuevoUsuario {
 	private String password;
     private Set<String> roles = new HashSet<>();//Por que se van a utilisar Json para mejorar el trafico
     
-    // Se Generan los Getter y Setters
-    
+    // Se Generan los Getter y Setter
 	public String getNombre() {
 		return nombre;
 	}

@@ -40,6 +40,7 @@ public class Pedido implements Serializable {
 	private Ciudad ciudadEnvio;
 	private String direccionEnvio;
 	private Long valorEnvio;
+	private String nombreUsuario;
 
 	
 	@OneToMany(mappedBy ="pedido", fetch = FetchType.LAZY)
@@ -150,6 +151,14 @@ public class Pedido implements Serializable {
 		this.valorEnvio = valorEnvio;
 	}
 	
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
 	public List<EstadoPedido> getListaEstadoPedido() {
 		return listaEstadoPedido;
 	}

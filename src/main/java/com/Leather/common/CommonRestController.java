@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -92,6 +93,7 @@ public class CommonRestController<E, S extends ICommonService<E>> {
 	 * - Retorna: Un ResposeEntity con el resultado del proceso (un error o el Elemento creado)
 	*/
 	@PostMapping
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	public ResponseEntity<?> guardarElemento(@RequestBody E entity){
 		
 		E entityNuevo = null;
@@ -125,6 +127,7 @@ public class CommonRestController<E, S extends ICommonService<E>> {
 	 * Retorna: Un ResponseEntity con la respuesta de la petición (el mensaje de éxito o error)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminarElemento(@PathVariable Long id){
 		

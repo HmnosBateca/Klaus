@@ -29,6 +29,7 @@ public class EstadoPedido implements Serializable {
 	
 	private String nombre; 
 	private String datoAdicional;
+	private Boolean finEstado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"listaEstadoPedido", "listaCotizacion"})
@@ -70,6 +71,14 @@ public class EstadoPedido implements Serializable {
 
 		public void setDatoAdicional(String datoAdicional) {
 			this.datoAdicional = datoAdicional;
+		}
+
+		public Boolean getFinEstado() {
+			return finEstado;
+		}
+
+		public void setFinEstado(Boolean finEstado) {
+			this.finEstado = finEstado;
 		}
 
 		public Pedido getPedido() {

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,19 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Leather.models.entity.Proveedor;
 import com.Leather.models.services.IProveedorService;
 
-
 @RequestMapping("/api")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProveedorRestController {
 
-	
 	//Inyeccion de dependencias
 	@Autowired
 	IProveedorService iProveedorService;
-	
-	
-	
 	
 	//Este método obtiene todos los proveedores de la base de datos
 	// Se anota con @GetMapping pues es va a mapear una petición get: /proveedores
@@ -112,7 +108,7 @@ public class ProveedorRestController {
 	 * 
 	 * Se anota con @PostMapping pues es va a mapear una petición post: /proveedores
 	*/
-	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/proveedores")
 	public ResponseEntity<?> guardarProveedor(@RequestBody Proveedor proveedor) {
 		
@@ -152,6 +148,7 @@ public class ProveedorRestController {
 	 *  Se anota con @PutMapping pues va a mapear una petición put (update): /proveedores/{id}
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/proveedores/{id}")
 	public ResponseEntity<?> actualizarProveedor(@RequestBody Proveedor proveedor, @PathVariable Long id){
 		
@@ -204,6 +201,7 @@ public class ProveedorRestController {
 	 *  Se anota con @DeleteMapping pues va a mapear una petición delete (eliminar): /proveedores/{id}
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/proveedores/{id}")
 	public ResponseEntity<?> eliminarProveedor(@PathVariable Long id) {
 		
@@ -227,9 +225,5 @@ public class ProveedorRestController {
 		
 		mapa.put("mensaje","El proveedor ha sido eliminado exitosamente");
 		return new ResponseEntity< Map<String,Object> >(mapa,HttpStatus.OK);
-		
 	}
-	
-	
-	
 }

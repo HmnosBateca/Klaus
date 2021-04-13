@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -102,7 +103,7 @@ public class MaterialRestController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/material")
 	public ResponseEntity<?> guardarMaterial(@RequestBody Material material){
 		
@@ -125,7 +126,7 @@ public class MaterialRestController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("material/{id}")
 	public ResponseEntity<?> modificarMaterial(@RequestBody Material materialFormulario, @PathVariable Long id){
 		
@@ -167,7 +168,7 @@ public class MaterialRestController {
 	
 	
 	
-	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/material/{id}")
 	public ResponseEntity<?> eliminarMaterial(@PathVariable Long id){
 		

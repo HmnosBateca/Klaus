@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Leather.models.entity.Color;
 import com.Leather.models.entity.Talla;
 import com.Leather.models.services.IColorService;
-
-
-
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -99,28 +96,19 @@ public class ColorRestController {
 	}
 	
 	
-	
-	
-	
-	
-	
 	@GetMapping("/colores/filtro/{nombre}")
 	public ResponseEntity<?> buscarColorPornombre(@PathVariable String nombre){
 		List<Color> listaColores = iColorService.buscarColorPorNombre(nombre);
 		return ResponseEntity.ok(listaColores);
 	}
 	
-	
-	
-	
-	
-	
-	
+		
 	/*
 	 * El método guardarColor permite guardar el Color en base de datos
 	 * - Parámetros: El color a guardar en base de datos
 	 * - Retorna: Un ResposeEntity con el resultado del proceso (un error o el Color creado)
 	*/
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/colores")
 	public ResponseEntity<?> guardarColor(@RequestBody Color color){
 		
@@ -143,10 +131,7 @@ public class ColorRestController {
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.OK);
 		
 	}
-	
-	
-	
-	
+		
 	/*
 	 * El método modificarColor obtiene el color con el ID especificado en la URL para luego establecer los
 	 * nuevos valores con los que se han proporcionado en el color que viene como parámetro en el Body de la petición
@@ -157,6 +142,8 @@ public class ColorRestController {
 	 * 
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (el color modificado o el mensaje de error)
 	*/	
+	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/colores/{id}")
 	public ResponseEntity<?> modificarColor(@PathVariable Long id, @RequestBody Color color){
 		
@@ -185,8 +172,6 @@ public class ColorRestController {
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.OK);
 	}
 	
-	
-	
 	/*
 	 * El método eliminarColor obtiene el color con el ID especificado en la URL para luego
 	 * eliminar el color de la base de datos
@@ -197,6 +182,7 @@ public class ColorRestController {
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (el mensaje de étixo o error)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/colores/{id}")
 	public ResponseEntity<?> eliminarColor(@PathVariable Long id){
 		

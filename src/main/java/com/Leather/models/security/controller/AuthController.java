@@ -26,8 +26,6 @@ import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
@@ -60,9 +58,14 @@ public class AuthController {
                 new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getCorreo(),
                         passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
-        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+        if(nuevoUsuario.getRoles().contains("usuario"))
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         if(nuevoUsuario.getRoles().contains("admin"))
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        if(nuevoUsuario.getRoles().contains("operador"))
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_OPERADOR).get());
+        if(nuevoUsuario.getRoles().contains("propietario"))
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_PROPIETARIO).get());
         usuario.setRoles(roles);
         usuarioService.save(usuario);
         return new ResponseEntity<>(new Mensaje("usuario guardado"), HttpStatus.CREATED);

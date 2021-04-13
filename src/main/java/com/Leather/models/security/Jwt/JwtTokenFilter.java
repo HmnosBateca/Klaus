@@ -39,7 +39,7 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 		
 		try {
 			String token = getToken(req);// tenemos el token
-			if(token != null && jwtProvider.validateToken(token)) { //si esxiste el token
+			if(token != null && jwtProvider.validateToken(token)) { //si existe el token
 				String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);// con el token se obtiene el usuario
 				UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(nombreUsuario);// Se crea un userDetails y se autentica una ves se atiende ese usuario
 				UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

@@ -9,7 +9,6 @@ import com.Leather.models.security.entity.Rol;
 import com.Leather.models.security.enums.RolNombre;
 import com.Leather.models.security.repository.RolRepository;
 
-
 @Service
 @Transactional
 public class RolService {

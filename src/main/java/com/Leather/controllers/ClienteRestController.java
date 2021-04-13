@@ -68,7 +68,7 @@ public class ClienteRestController {
 	}
 
 	// Post Agregar Cliente
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/clientes")
 	public ResponseEntity<?> create(@RequestBody Cliente cliente) {
 		Cliente clienteNew = null;
@@ -88,7 +88,7 @@ public class ClienteRestController {
 
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/clientes/{id}") // con la id obtenemos de la base de datos y actualizamos
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable Long id) {// un cliente ya modificado
@@ -121,7 +121,7 @@ public class ClienteRestController {
 		return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.CREATED);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {
