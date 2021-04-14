@@ -1135,15 +1135,17 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Iquira', 41);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Umbita', 15);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
+// Roles
 INSERT INTO rol(rol_nombre) VALUES('ROLE_ADMIN'); 
 INSERT INTO rol(rol_nombre) VALUES('ROLE_USER'); 
 INSERT INTO rol(rol_nombre) VALUES('ROLE_OPERADOR'); 
 INSERT INTO rol(rol_nombre) VALUES('ROLE_PROPIETARIO'); 
 
 //Usuario
-INSERT INTO usuario (nombre, nombreUsuario, correo, password) VALUES ('Jorge Leonardo Bateca Parada', 'leonardob', 'leonardobate_02@hotmail.com', 'gonorrea');
+INSERT INTO usuario(nombre, nombre_usuario, correo, password) VALUES('Jorge Leonardo Bateca Parada', 'leonardob', 'leonardobate_02@hotmail.com', 'gonorrea');
 
-INSERT INTO usuario_rol (usuario_id, rol_id) values (1,1);
+// Relacion usuario_rol
+INSERT INTO usuario_rol(usuario_id, rol_id) VALUES(1,1);
 
 
 /*Populaste Tabla Cliente*/
