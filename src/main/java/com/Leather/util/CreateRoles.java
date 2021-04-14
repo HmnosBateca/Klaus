@@ -1,6 +1,6 @@
 package com.Leather.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
+/*import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,4 +21,4 @@ public class CreateRoles implements CommandLineRunner {
 		rolService.save( new Rol(RolNombre.ROLE_PROPIETARIO));
 	} 	
 }
-	
+	*/
