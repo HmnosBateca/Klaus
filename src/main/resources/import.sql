@@ -1135,6 +1135,9 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Iquira', 41);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Umbita', 15);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
+//Usuario
+INSERT INTO usuario ("nombre", "nombreUsuario", "correo", "password", "roles") VALUES ("Jorge Leonardo Bateca Parada", "leonardob", "leonardobate_02@hotmail.com", "gonorrea", ["admin"]);
+
 /*Populaste Tabla Cliente*/
 
 
