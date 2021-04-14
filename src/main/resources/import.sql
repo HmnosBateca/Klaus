@@ -1141,7 +1141,10 @@ INSERT INTO rol(rol_nombre) VALUES('ROLE_OPERADOR');
 INSERT INTO rol(rol_nombre) VALUES('ROLE_PROPIETARIO'); 
 
 //Usuario
-INSERT INTO usuario (nombre, nombreUsuario, correo, password, roles) VALUES ('Jorge Leonardo Bateca Parada', 'leonardob', 'leonardobate_02@hotmail.com', 'gonorrea', ['admin']);
+INSERT INTO usuario (nombre, nombreUsuario, correo, password) VALUES ('Jorge Leonardo Bateca Parada', 'leonardob', 'leonardobate_02@hotmail.com', 'gonorrea');
+
+INSERT INTO usuario_rol (usuario_id, rol_id) values (1,1);
+
 
 /*Populaste Tabla Cliente*/
 
