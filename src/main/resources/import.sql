@@ -1135,7 +1135,7 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Iquira', 41);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Umbita', 15);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
-/*Populaste Tabla Cliente*/
+/*Tabla proveedor*/
 
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Ramón','Valencia',21345,60300300,301456721,'ramon@proveedor.com','calle 25 No. 25-25');
 INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Ortiz',232324,1094246587,310123456,'julio@proveedor.com','calle 25 No. 25-25');
@@ -1164,12 +1164,15 @@ INSERT INTO colores(nombre, codigo_color) VALUES ('Azul', 'RGB(13,63,121)');
 INSERT INTO colores(nombre, codigo_color) VALUES ('Vino tinto', 'RGB(111,4,4)');
 
 
+/*inserts table unidad de medida*/
+INSERT INTO unidades_medida(categoria, nombre, abreviatura) values ('Longitud', 'Centímetro', 'cm');
+INSERT INTO unidades_medida(categoria, nombre, abreviatura) values ('Longitud', 'Metro', 'm');
+
+
 /* inserts tabla materiales*/
-INSERT INTO materiales(nombre, descripcion) VALUES ('Cuero graso', 'Cuero graso Colombiano');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Acero', 'acero para punteras');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Poliéster', 'material para recubrimiento de calzado');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Caucho', 'caucho para suelas');
-INSERT INTO materiales(nombre, descripcion) VALUES ('Algodón', 'Algodón para zapatos');
+INSERT INTO materiales(nombre, descripcion, cantidad, unidad_medida_id) VALUES ('Cuero graso', 'Cuero graso Colombiano', 25, 2);
+INSERT INTO materiales(nombre, descripcion, cantidad, unidad_medida_id) VALUES ('Caucho', 'caucho para suelas', 5, 2);
+INSERT INTO materiales(nombre, descripcion, cantidad, unidad_medida_id) VALUES ('Algodón', 'Algodón para zapatos', 4, 2);
 
 /*inserts tabla productos*/
 INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('apache','AKL01',30000,100000,true);
@@ -1177,8 +1180,7 @@ INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('ten
 
 /*inserts tabla piezas*/
 INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1,1);
-INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('suela', 'suela para tenis',2,4,1);
-INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('recubrimiento', 'recubrimiento en poliester',1,3,1);
+INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('recubrimiento', 'recubrimiento en poliester',2,1,1);
 
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Contra Entrega', 'Se paga cuando llegue');
 INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envio Normal', 'Se paga anticipado');
@@ -1187,3 +1189,18 @@ INSERT INTO transportadoras (nombre, descripcion) VALUES('Envia', 'Empresa de tr
 INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
 
 /* INSERT INTO clientes (documento, nombres, apellidos, numero_contacto, ciudad, direccion, correo, codigo_postal) VALUES(1094248820, 'Jorge Leonardo', 'Bateca Parada', 3102496515, 'calle 11 # 16-24', 'leonardobate_02@hotmail.com', 234756 ); */
+
+
+INSERT INTO costos_materiales(material_id,cantidad,costo) VALUES (1,1,1000);
+INSERT INTO costos_materiales(material_id,cantidad,costo) VALUES (2,1,1000);
+INSERT INTO costos_materiales(material_id,cantidad,costo) VALUES (3,1,1000);
+
+
+
+INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,1,1,1,1,1000);
+INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,2,1,1,1,1000);
+
+INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,1,2,1,1,1000);
+INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,2,2,1,1,1000);
+
+

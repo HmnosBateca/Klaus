@@ -258,4 +258,35 @@ public class TallaRestController {
 	}
 	
 	
+	
+	
+	/*
+	 * El método ListarTallasNoAsignadasGastoMaterialProducto permite obtener el listado de tallas
+	 * a las cuales no se les ha asignado un gasto de material por el producto seleccionado
+	 * 
+	 * @param idTipoTalla el ID del tipo de talla al cual pertenecen las tallas a obtener 
+	 * @param idProducto el ID de producto al cual van a consultarse las tallas
+	 * */
+	@GetMapping("/tallas/tipo/{idTipoTalla}/producto/{idProducto}")
+	public ResponseEntity<?>ListarTallasNoAsignadasGastoMaterialProducto(@PathVariable Long idTipoTalla, @PathVariable Long idProducto) {
+		
+		List<Talla> listaTallas = null;
+		Map<String, Object> mapa = new HashMap<>();
+		
+		try {
+			listaTallas = iTallaService.ListarTallasNoAsignadasGastoMaterialProducto(idTipoTalla, idProducto);
+		}catch (DataAccessException e) {
+			mapa.put("mensaje", "Ha ocurrido un error al obtener las tallas");
+			mapa.put("error", e.getMessage() + ": " + e.getMostSpecificCause());
+			return new ResponseEntity<  Map<String,Object>  >(mapa, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		if(listaTallas == null) {
+			mapa.put("mensaje", "El tipo de talla no tiene tallas registradas o han sido registradas todas las tallas");
+			return new ResponseEntity< Map<String,Object>  >(mapa, HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<List<Talla>>(listaTallas, HttpStatus.OK);
+	}
+	
 }

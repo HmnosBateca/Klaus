@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -41,13 +42,19 @@ public class Material implements Serializable{
 	private String nombre;
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
-	List<Pieza> piezas;
+	private Double cantidad;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"listaMateriales","listaGastoMaterial", "handler", "hibernateLazyInitializer"})
+	private UnidadMedida unidadMedida;
+	
 	
 	@OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"material", "handler", "hibernateLazyInitializer"})
-	private List<CostoMaterial> listaCostosMateriales;
+	List<Pieza> piezas;
 	
+		
 	// ----------------------------- variables de auditoría --------------------//
 	
 		@Column(name = "fecha_registro")
@@ -145,12 +152,30 @@ public class Material implements Serializable{
 		public void addPieza(Pieza pieza) {
 			this.piezas.add(pieza);
 		}
+		
+		
+		public Double getCantidad() {
+			return cantidad;
+		}
+
+		public void setCantidad(Double cantidad) {
+			this.cantidad = cantidad;
+		}
+
+		public UnidadMedida getUnidadMedida() {
+			return unidadMedida;
+		}
+
+		public void setUnidadMedida(UnidadMedida unidadMedida) {
+			this.unidadMedida = unidadMedida;
+		}
+
+
+		
 	
 		
 		
 		// ------------------- acciones automáticas ---------------------------- //
-		
-
 
 		@PrePersist
 		public void asignaFechaRegistro(){

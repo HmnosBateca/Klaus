@@ -15,6 +15,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
-@Table(name = "costos_materiales")
+@Table(name = "costos_materiales", uniqueConstraints = @UniqueConstraint(columnNames = {"material_id"}))
 public class CostoMaterial implements Serializable{
 
 	/**
@@ -36,14 +37,12 @@ public class CostoMaterial implements Serializable{
 	private Long id;
 	private Double cantidad;
 	private Double costo;
-		
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"listaCostosMateriales", "handler", "hibernateLazyInitializer"}, allowSetters = true)
-	private UnidadMedida unidadMedida;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"listaCostosMateriales", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"listaCostosMateriales", "piezas","handler", "hibernateLazyInitializer"})
 	private Material material;
+	
 	
 	
 	// -------- variables de auditoría ------------------- //
@@ -96,6 +95,10 @@ public class CostoMaterial implements Serializable{
 	public void setCosto(Double costo) {
 		this.costo = costo;
 	}
+	
+	
+	
+
 
 	public Material getMaterial() {
 		return material;
@@ -103,14 +106,6 @@ public class CostoMaterial implements Serializable{
 
 	public void setMaterial(Material material) {
 		this.material = material;
-	}
-
-	public UnidadMedida getUnidadMedida() {
-		return unidadMedida;
-	}
-
-	public void setUnidadMedida(UnidadMedida unidadMedida) {
-		this.unidadMedida = unidadMedida;
 	}
 
 	public Date getFechaRegistro() {

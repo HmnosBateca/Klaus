@@ -56,6 +56,12 @@ public class TallaServiceImpl implements ITallaService{
 	public List<Talla> obtenerTallaPorProductoBodega(Long id) {
 		return iTallaDao.ListarTallasPorProductoEnBodega(id);		
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Talla> ListarTallasNoAsignadasGastoMaterialProducto(Long idTipoTalla, Long idProducto) {
+		return iTallaDao.ListarTallasNoAsignadasGastoMaterialProducto(idTipoTalla, idProducto);
+	}
 	
 	
 

@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -41,7 +42,8 @@ public class Color implements Serializable{
 	@Column(unique = true, name = "codigo_color")
 	private String codigoColor;
 	
-	@OneToMany(mappedBy = "color", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"color", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	List<Pieza> piezas;
 	
 	
@@ -54,7 +56,7 @@ public class Color implements Serializable{
 	
 	@Column(name="hora_registro")
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.ANY)
+	@JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.STRING)
 	private Date horaRegistro;
 	
 	@Column(name="fecha_modificacion")

@@ -39,10 +39,15 @@ public class UnidadMedida implements Serializable{
 	private String categoria;
 	private String nombre;
 	private String abreviatura;
-		
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unidadMedida")
 	@JsonIgnoreProperties(value = {"unidadMedida", "handler", "hibernateLazyInitializer"})
-	private List<CostoMaterial> listaCostosMateriales;
+	private List<Material> listaMateriales;
+	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unidadMedida")
+	@JsonIgnoreProperties(value = {"unidadMedida", "handler", "hibernateLazyInitializer"})
+	private List<GastoMaterialProducto> listaGastoMaterial;
 
 		
 	// -------- variables de auditoría ------------------- //
@@ -102,6 +107,22 @@ public class UnidadMedida implements Serializable{
 		this.abreviatura = abreviatura;
 	}
 
+
+	
+	public List<GastoMaterialProducto> getListaGastoMaterial() {
+		return listaGastoMaterial;
+	}
+
+	public void setListaGastoMaterial(List<GastoMaterialProducto> listaGastoMaterial) {
+		this.listaGastoMaterial = listaGastoMaterial;
+	}
+	
+	public void addGastoMaterial(GastoMaterialProducto gastoMaterial) {
+		this.listaGastoMaterial.add(gastoMaterial);
+	}
+	
+	
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -134,17 +155,7 @@ public class UnidadMedida implements Serializable{
 		this.horaModificacion = horaModificacion;
 	}
 	
-	public List<CostoMaterial> getListaCostosMateriales() {
-		return listaCostosMateriales;
-	}
 
-	public void setListaCostosMateriales(List<CostoMaterial> listaCostosMateriales) {
-		this.listaCostosMateriales = listaCostosMateriales;
-	}
-	
-	public void addCostoMaterial(CostoMaterial costoMaterial) {
-		this.listaCostosMateriales.add(costoMaterial);
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

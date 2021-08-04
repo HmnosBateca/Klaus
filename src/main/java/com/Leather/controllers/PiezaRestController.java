@@ -126,7 +126,10 @@ public class PiezaRestController {
 			piezaExistente.setColor(piezaFormulario.getColor());
 			piezaExistente.setMaterial(piezaFormulario.getMaterial());
 			piezaExistente.setProducto(piezaFormulario.getProducto());
+			
+			
 			piezaNueva = iPiezaService.guardarPieza(piezaExistente);
+			
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrió un error al modificar la pieza " + piezaExistente.getNombrePieza());
 			mapa.put("error", e.getMessage() + " : " + e.getMostSpecificCause());

@@ -54,20 +54,22 @@ public class Producto implements Serializable{
 	private boolean activo = false;
 	
 	
-	@Lob // una anotación para almacenar grandes cadenas de Bytes. Se puede almacednar cualquier tipo de archivo
-	@JsonIgnore // para que no salga en el JSON los binarios, pues son muchos
-	private byte[] foto;
+
 	
 	private String nombreFoto;
 	
-	@OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties(value = {"producto", "handler", "hibernateLazyInitializer"}, allowSetters = true)
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"producto", "listaGastoMaterial", "handler", "hibernateLazyInitializer"})
 	private List<Pieza> piezas;
 	
 	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"producto"})
+	@JsonIgnoreProperties(value = {"producto", "handler", "hibernateLazyInitializer"})
 	private List<BodegaInventario> listaBodegaInventario;
 	
+	
+	@OneToMany(mappedBy = "producto", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"producto","gastoMaterialProducto", "pieza", "handler", "hibernateLazyInitializer"})
+	private List<GastoMaterialProducto> listaGastoMaterial;
 	
 	// ------------------------ variables de auditoría --------------------- //
 	
@@ -145,20 +147,6 @@ public class Producto implements Serializable{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	
-	public byte[] getFoto() {
-		return foto;
-	}
-
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
-	}
-	
-	public Integer getFotoHashCode() {
-		return (this.foto != null) ?this.foto.hashCode(): null;
-	}
-	
-	
 
 	public String getNombreFoto() {
 		return nombreFoto;
@@ -190,6 +178,7 @@ public class Producto implements Serializable{
 		this.listaBodegaInventario.add(bodegaInventario);
 	}
 	
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -227,8 +216,23 @@ public class Producto implements Serializable{
 	}
 	
 	
+	public List<GastoMaterialProducto> getListaGastoMaterial() {
+		return listaGastoMaterial;
+	}
+
+	public void setListaGastoMaterial(List<GastoMaterialProducto> listaGastoMaterial) {
+		this.listaGastoMaterial = listaGastoMaterial;
+	}
+	
+	public void addGastoMaterial(GastoMaterialProducto gastoMaterialProducto) {
+		this.listaGastoMaterial.add(gastoMaterialProducto);
+	}
+	
+	
 	// --------------- acciones automáticas --------------------------- //
 	
+
+
 	// Al registrar se instancia automáticamente la fecha de registro del proveedor
 	@PrePersist
 	void asignaFechaRegistro() {
@@ -243,7 +247,6 @@ public class Producto implements Serializable{
 		this.horaModificacion = new Date();
 	}
 	
-	
-	
+
 
 }

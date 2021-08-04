@@ -47,7 +47,7 @@ public class TipoTalla implements Serializable{
 	
 	private String descripcion;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy ="tipoTalla")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy ="tipoTalla")
 	@JsonIgnoreProperties(value = {"tipoTalla" ,"handler", "hibernateLazyInitializer"})
 	private List<Talla> tallas; 
 	

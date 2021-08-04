@@ -45,20 +45,24 @@ public class Pieza implements Serializable{
 	private String nombrePieza;
 	private String observacion;
 	
+
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
 	private Color color;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
 	private Material material;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnoreProperties(value = {"piezas", "listaBodegaInventario", "handler", "hibernateLazyInitializer"}, allowSetters = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"piezas", "listaBodegaInventario","listaGastoMaterial", "handler", "hibernateLazyInitializer"})
 	private Producto producto;
+
 	
-	
+	@OneToMany(mappedBy = "pieza", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value= {"pieza", "producto","hibernateLazyInitializer", "handler"})
+	private List<GastoMaterialProducto> listaGastoMaterial;
 	
 	// ---------------------- campos de auditoría --------------------- //
 
@@ -133,7 +137,26 @@ public class Pieza implements Serializable{
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}	
+
+	public List<GastoMaterialProducto> getListaGastoMaterial() {
+		return listaGastoMaterial;
 	}
+
+	public void setListaGastoMaterial(List<GastoMaterialProducto> listaGastoMaterial) {
+		this.listaGastoMaterial = listaGastoMaterial;
+	}
+	
+	public void addGastoMaterial(GastoMaterialProducto gastoMaterialProducto) {
+		this.listaGastoMaterial.add(gastoMaterialProducto);
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

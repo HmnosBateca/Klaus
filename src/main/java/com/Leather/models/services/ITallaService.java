@@ -18,4 +18,5 @@ public interface ITallaService {
 	public Talla guardarTalla(Talla talla);
 	public void eliminarTalla(Long id);
 	public List<Talla> obtenerTallaPorProductoBodega(Long id);
+	public List<Talla> ListarTallasNoAsignadasGastoMaterialProducto(Long idTipoTalla, Long idProducto);
 }
