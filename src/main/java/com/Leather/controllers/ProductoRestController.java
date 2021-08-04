@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,7 +93,7 @@ public class ProductoRestController extends CommonRestController<Producto, IProd
 	}
 	
 	
-	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/productoFoto")
 	public ResponseEntity<?> guardarProductoConFoto(@Valid Producto producto, @RequestParam MultipartFile archivo ) throws IOException{	
 		
@@ -127,7 +128,7 @@ public class ProductoRestController extends CommonRestController<Producto, IProd
 	}
 	
 	
-
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/{id}")
 	public ResponseEntity<?> modificarProducto(@PathVariable Long id, @RequestBody Producto productoFormulario){
 		
@@ -164,7 +165,7 @@ public class ProductoRestController extends CommonRestController<Producto, IProd
 	}
 	
 	
-	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/productoFoto/{id}")
 	public ResponseEntity<?> modificarProductoConFoto(@PathVariable Long id, @Valid Producto productoFormulario, @RequestParam MultipartFile archivo) throws IOException{
 		

@@ -35,12 +35,12 @@ public class Cliente implements Serializable{//seralizable atribustos de la tabl
 	private Long codigo_postal;*/
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"clientes","proveedores","handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"listaEnvioCiudad","clientes","proveedores","handler", "hibernateLazyInitializer"})
 	private Ciudad ciudad;
 	
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY )
-	@JsonIgnoreProperties(value = {"cliente", "listaPedido", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"ciudad", "clientes", "listaPedido", "handler", "hibernateLazyInitializer"})
 	private List<Pedido> listaPedido;
 		
 	public Long getId() {

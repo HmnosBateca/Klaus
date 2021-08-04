@@ -31,13 +31,14 @@ public class Cotizacion implements Serializable{
 	
 	private Long importe;
 	private Long cantidad;
+	private Long descuento;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, allowSetters = true)
+	@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, allowSetters = true ) //allowSetters actualizar relacionde bodega por FetchType.EAGER)
 	private BodegaInventario bodegaInventario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value={"listaCotizacion", "handler", "hibernateLazyInitializer"})
+    @JsonIgnoreProperties(value={"listaCotizacion","handler", "hibernateLazyInitializer"})
 	private Pedido pedido;
 
 	// ----------------------------- GETTERS y SETTERS ----------------------------- //
@@ -59,6 +60,12 @@ public class Cotizacion implements Serializable{
 	}
 	public void setCantidad(Long cantidad) {
 		this.cantidad = cantidad;
+	}	
+	public Long getDescuento() {
+		return descuento;
+	}
+	public void setDescuento(Long descuento) {
+		this.descuento = descuento;
 	}
 	public Pedido getPedido() {
 		return pedido;

@@ -33,6 +33,13 @@ public class BodegaInventarioServiceImpl implements IBodegaInventarioService {
 	public Page<BodegaInventario> ListarBodegaInventarioPaginado(Pageable paginador) {
 		return iBodegaInventarioDao.findAll(paginador);
 	}
+	
+	// Bodega Inventario Por Referencia
+	@Override
+	@Transactional(readOnly = true)
+	public BodegaInventario BodegaInventarioPorRef(String referencia) {
+		return iBodegaInventarioDao.ListarBodegaPorRef(referencia);
+	}
 
 	// Obtener Bodega Inventario Por Id
 	@Override
@@ -55,6 +62,8 @@ public class BodegaInventarioServiceImpl implements IBodegaInventarioService {
 	public void EliminarBodegaInventario(Long id) {
 		iBodegaInventarioDao.deleteById(id);
 	}
+	
+	
 
 }
 

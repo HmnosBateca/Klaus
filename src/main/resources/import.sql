@@ -1135,72 +1135,19 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Iquira', 41);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Umbita', 15);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
-/*Tabla proveedor*/
-
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Ramón','Valencia',21345,60300300,301456721,'ramon@proveedor.com','calle 25 No. 25-25');
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Ortiz',232324,1094246587,310123456,'julio@proveedor.com','calle 25 No. 25-25');
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Andrea','Benanidez',13354678,6030300,315458712,'andrea@proveedor.com','calle 25 No. 25-25');
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Julio','Pérez',1255489,1234657,311245369,'juliop@proveedor.com','calle 25 No. 25-25');
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Carlos','Barriga',24855,12346789,312456789,'calos@proveedor.com','calle 25 No. 25-25');
-INSERT INTO proveedores (nombres, apellidos, nit, documento, numero_contacto, correo_electronico, direccion_residencia) VALUES ('Smith','Jhonson',254152,1234857885,300124596,'smith@proveedor.com','calle 25 No. 25-25');
-
-/* inserts table tipo talla*/
-INSERT INTO tipo_tallas(tipo_talla, descripcion) VALUES ('Talla americana', 'Tipo de numeración americana');
-INSERT INTO tipo_tallas(tipo_talla, descripcion) VALUES ('Talla Colombiana', 'Tipo de numeración Colombiana');
-
-
-/*inserts tabla tallas*/
-INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (35,'Talla 35 americana',1);
-INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (36,'Talla 36 americana',1);
-INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (37,'Talla 37 americana',1);
-INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (38,'Talla 38 americana',1);
-INSERT INTO tallas(talla,descripcion,tipo_talla_id) VALUES (39,'Talla 39 americana',1);
-
-
-/* inserts tabla colores */
-INSERT INTO colores(nombre, codigo_color) VALUES ('Negro', 'RGB(0,0,0)');
-INSERT INTO colores(nombre, codigo_color) VALUES ('Blanco', 'RGB(255,255,255)');
-INSERT INTO colores(nombre, codigo_color) VALUES ('Azul', 'RGB(13,63,121)');
-INSERT INTO colores(nombre, codigo_color) VALUES ('Vino tinto', 'RGB(111,4,4)');
-
-
-/*inserts table unidad de medida*/
-INSERT INTO unidades_medida(categoria, nombre, abreviatura) values ('Longitud', 'Centímetro', 'cm');
-INSERT INTO unidades_medida(categoria, nombre, abreviatura) values ('Longitud', 'Metro', 'm');
-
-
-/* inserts tabla materiales*/
-INSERT INTO materiales(nombre, descripcion, cantidad, unidad_medida_id) VALUES ('Cuero graso', 'Cuero graso Colombiano', 25, 2);
-INSERT INTO materiales(nombre, descripcion, cantidad, unidad_medida_id) VALUES ('Caucho', 'caucho para suelas', 5, 2);
-INSERT INTO materiales(nombre, descripcion, cantidad, unidad_medida_id) VALUES ('Algodón', 'Algodón para zapatos', 4, 2);
-
-/*inserts tabla productos*/
-INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('apache','AKL01',30000,100000,true);
-INSERT INTO productos(nombre,referencia,costo, precio_venta, activo) VALUES('tenis','AKL02',20000,100000,false);
-
-/*inserts tabla piezas*/
-INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('puntera', 'puntera con acero, uso industrial',1,1,1);
-INSERT INTO piezas(nombre_pieza,observacion,color_id,material_id, producto_id) VALUES ('recubrimiento', 'recubrimiento en poliester',2,1,1);
-
-INSERT INTO tipo_envios (nombre, descripcion) VALUES('Contra Entrega', 'Se paga cuando llegue');
-INSERT INTO tipo_envios (nombre, descripcion) VALUES('Envio Normal', 'Se paga anticipado');
-
-INSERT INTO transportadoras (nombre, descripcion) VALUES('Envia', 'Empresa de transporte de encomedias');
-INSERT INTO transportadoras (nombre, descripcion) VALUES('ServiEntrega', 'Empresa de transporte de encomiendas rapido');
-
-/* INSERT INTO clientes (documento, nombres, apellidos, numero_contacto, ciudad, direccion, correo, codigo_postal) VALUES(1094248820, 'Jorge Leonardo', 'Bateca Parada', 3102496515, 'calle 11 # 16-24', 'leonardobate_02@hotmail.com', 234756 ); */
-
-
-INSERT INTO costos_materiales(material_id,cantidad,costo) VALUES (1,1,1000);
-INSERT INTO costos_materiales(material_id,cantidad,costo) VALUES (2,1,1000);
-INSERT INTO costos_materiales(material_id,cantidad,costo) VALUES (3,1,1000);
 
 
 
-INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,1,1,1,1,1000);
-INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,2,1,1,1,1000);
+INSERT INTO rol(rol_nombre) VALUES('ROLE_ADMIN'); 
+INSERT INTO rol(rol_nombre) VALUES('ROLE_USER'); 
+INSERT INTO rol(rol_nombre) VALUES('ROLE_OPERADOR'); 
+INSERT INTO rol(rol_nombre) VALUES('ROLE_PROPIETARIO'); 
 
-INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,1,2,1,1,1000);
-INSERT INTO gasto_material_producto(producto_id,pieza_id,talla_id,unidad_medida_id,cantidad,valor) VALUES (1,2,2,1,1,1000);
 
 
+
+INSERT INTO usuario (nombre, nombre_usuario, correo, password) VALUES ('jorge Leonardo Bateca Parada', 'leonardob', 'leonardobate_02@hotmail.com','$2a$10$vTmRa9PVRA7vcuxO4id.JOgs9JuqXoyscKzUgEy51lQrBvld4OOSy');
+INSERT INTO usuario (nombre, nombre_usuario, correo, password) VALUES ('Sergio Bateca', 'sbateca', 'sbtk87@hotmail.com', '$2a$10$C8S3mI4xdA9jhhHma6.fh.ueXMqehl7Qsa9GXLfdQnNBgMOr5ru2W');
+
+INSERT INTO usuario_rol (usuario_id, rol_id) VALUES ('1','1');
+INSERT INTO usuario_rol (usuario_id, rol_id) VALUES ('2','1');

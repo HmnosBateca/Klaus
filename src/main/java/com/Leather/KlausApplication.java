@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.Leather.models.services.IRepositorioService;
 
 
+
 @SpringBootApplication
 public class KlausApplication implements CommandLineRunner{
 	
@@ -32,7 +33,5 @@ public class KlausApplication implements CommandLineRunner{
 		iRepositorioService.iniciarRepositorio();
 		
 	}
-	
-
 
 }

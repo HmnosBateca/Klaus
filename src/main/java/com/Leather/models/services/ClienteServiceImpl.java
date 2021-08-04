@@ -29,6 +29,12 @@ public class ClienteServiceImpl implements IClienteService{
 	}
     
     @Override
+    @Transactional(readOnly = true)
+    public Cliente clientePorDocumento(Long documento){
+    	return clienteDao.clientePorDocumento(documento);
+    }
+    
+    @Override
     @Transactional
     public Cliente save(Cliente cliente) {
     	return clienteDao.save(cliente);

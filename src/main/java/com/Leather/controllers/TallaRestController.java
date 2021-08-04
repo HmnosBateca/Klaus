@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -107,6 +108,7 @@ public class TallaRestController {
 	 * - Retorna un ResposeEntity con el resultado del proceso (un error o la Talla creada)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/tallas")
 	public ResponseEntity<?> guardarTalla(@RequestBody Talla talla ){
 		
@@ -143,6 +145,7 @@ public class TallaRestController {
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (la talla modificada o el mensaje de error)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/tallas/{id}")
 	public ResponseEntity<?> actualizarTalla(@PathVariable Long id, @RequestBody Talla talla){
 		
@@ -190,6 +193,7 @@ public class TallaRestController {
 	 * Retorna: Un ResponseEntity con la repsuesta de la petición (el mensaje de étixo o error)
 	*/
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/tallas/{id}")
 	public ResponseEntity<?> eliminarTalla(@PathVariable Long id) {
 		

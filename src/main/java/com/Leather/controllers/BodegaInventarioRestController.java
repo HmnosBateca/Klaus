@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Leather.models.entity.BodegaInventario;
+import com.Leather.models.entity.Movimiento;
 import com.Leather.models.services.IBodegaInventarioService;
 
 @CrossOrigin(origins = { "http://localhost:4200", "*" }, exposedHeaders = {"Access-Control-Expose-Headers", "Content-Disposition"})
@@ -41,7 +43,12 @@ public class BodegaInventarioRestController {
 	public Page<BodegaInventario> ListarBodegaInventarioPaginado(Pageable paginador) {
 		return iBodegaInventarioService.ListarBodegaInventarioPaginado(paginador);
 	}
-
+	
+	@GetMapping("/BodegaInventario/bodega/{referencia}")
+	public BodegaInventario BodegaInventarioPorRef(@PathVariable  String referencia){
+		return iBodegaInventarioService.BodegaInventarioPorRef(referencia);
+		
+	}
 	
 	// Listar Por Id
 	@GetMapping("/BodegaInventario/{id}")
@@ -64,6 +71,7 @@ public class BodegaInventarioRestController {
 	}
 	
 	// Guardar Bodega Inventario
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/BodegaInventario")
 	public ResponseEntity<?> guardarProducto(@RequestBody BodegaInventario bodegaInventario){
 		BodegaInventario bodegaInventarioNuevo = null;
@@ -81,6 +89,7 @@ public class BodegaInventarioRestController {
 	}
 	
 	// Actualizar Bodega inventario
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PutMapping("/BodegaInventario/{id}")
 	public ResponseEntity<?> modificarColor(@PathVariable Long id, @RequestBody BodegaInventario bodegaInventarioFormulario){
 		
@@ -96,8 +105,6 @@ public class BodegaInventarioRestController {
 			bodegaInventarioExistente.setId(bodegaInventarioFormulario.getId());
 			bodegaInventarioExistente.setReferencia(bodegaInventarioFormulario.getReferencia());
 			bodegaInventarioExistente.setCantidad(bodegaInventarioFormulario.getCantidad());
-			bodegaInventarioExistente.setEstadoDescuento(bodegaInventarioFormulario.getEstadoDescuento());
-			bodegaInventarioExistente.setDescuento(bodegaInventarioFormulario.getDescuento());
 			bodegaInventarioNuevo = iBodegaInventarioService.GuardarBodegaInventario(bodegaInventarioExistente);
 		}catch(DataAccessException e) {
 			mapa.put("mensaje", "Ocurrio un error al modificar Bodega-Inventario "+ bodegaInventarioExistente.getId());
@@ -107,6 +114,7 @@ public class BodegaInventarioRestController {
 		return new ResponseEntity< Map<String,Object> >(mapa, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@DeleteMapping("/BodegaInventario/{id}")
 	public ResponseEntity<?> eliminarProducto(@PathVariable Long id){
 		BodegaInventario bodegaInventarioExistente = null;
