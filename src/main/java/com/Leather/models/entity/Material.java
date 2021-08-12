@@ -50,9 +50,9 @@ public class Material implements Serializable{
 	private UnidadMedida unidadMedida;
 	
 	
-	@OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+	/*@OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = {"material", "handler", "hibernateLazyInitializer"})
-	List<Pieza> piezas;
+	List<Pieza> piezas;*/
 	
 		
 	// ----------------------------- variables de auditoría --------------------//
@@ -141,7 +141,7 @@ public class Material implements Serializable{
 			return serialVersionUID;
 		}
 		
-		public List<Pieza> getPiezas() {
+		/*public List<Pieza> getPiezas() {
 			return piezas;
 		}
 
@@ -151,7 +151,7 @@ public class Material implements Serializable{
 		
 		public void addPieza(Pieza pieza) {
 			this.piezas.add(pieza);
-		}
+		}*/
 		
 		
 		public Double getCantidad() {

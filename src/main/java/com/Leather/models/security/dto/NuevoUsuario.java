@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+/*
+ * Esta clase se utiliza para la creación de nuevos usuarios*/
 public class NuevoUsuario {
 	@NotBlank//No puede ser nulo , no puede ser una cadena vacia, ni espacios en blanco
 	private String nombre;
@@ -15,7 +17,7 @@ public class NuevoUsuario {
 	private String correo;
 	@NotBlank
 	private String password;
-    private Set<String> roles = new HashSet<>();//Por que se van a utilisar Json para mejorar el trafico
+    private Set<String> roles = new HashSet<>();//Por que se van a utilisar Json para mejorar el trafico. COn una API Rest es mejor usar cadenas (String)
     
     // Se Generan los Getter y Setter
 	public String getNombre() {

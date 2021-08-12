@@ -40,8 +40,11 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 		try {
 			String token = getToken(req);// tenemos el token
 			if(token != null && jwtProvider.validateToken(token)) { //si existe el token
+				
 				String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);// con el token se obtiene el usuario
 				UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(nombreUsuario);// Se crea un userDetails y se autentica una ves se atiende ese usuario
+				
+				// los datos del usuario (UserDetails) se le pasan al contexto de autenticación
 				UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 			    SecurityContextHolder.getContext().setAuthentication(auth);
 			}
@@ -53,7 +56,7 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 	}
 	
 	private String getToken (HttpServletRequest request) {
-		String header = request.getHeader("Authorization");// cabecera
+		String header = request.getHeader("Authorization");// obtiene la cabecera de la petición HTTP
 		if(header !=null && header.startsWith("Bearer")) 
 			return header.replace("Bearer", "");
 		return null;

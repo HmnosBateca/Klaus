@@ -48,11 +48,11 @@ public class Pieza implements Serializable{
 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	private Color color;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"materiales", "piezas", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value = {"piezas", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	private Material material;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -210,6 +210,11 @@ public class Pieza implements Serializable{
 	void registrarFechaActualizacion() {
 		this.fechaModificacion = new Date();
 		this.horaModificacion = new Date();
+		
+		System.out.println("Fecha modificación");
+		System.out.println(this.fechaModificacion);
+		System.out.println("Hora modificación");
+		System.out.println(this.horaModificacion);
 	}
 	
 	

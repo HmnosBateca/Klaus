@@ -31,9 +31,14 @@ public class JwtProvider {
 	@Value("${jwt.expiration}")
 	private int expiration; 
 	
+	//Este método genera un token
 	public String generateToken(Authentication authentication) {
+		
 		UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();// Implementar los metodos
+		
+		// extraemos los roles de usuarioPrincipal y los guardamos en una lista
 		List<String> roles= usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority :: getAuthority).collect(Collectors.toList());//lista de cadena autorities en cadenas
+		
 		return Jwts.builder().setSubject(usuarioPrincipal.getUsername()) // Se construye el token
 	    .claim("roles", roles)
 		.setIssuedAt(new Date())// Fecha de creacion de el momento

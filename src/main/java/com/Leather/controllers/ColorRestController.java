@@ -41,6 +41,7 @@ public class ColorRestController {
 	 * - Parámetros: ninguno
 	 * - Retorna: Una lista de Colores
 	*/
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@GetMapping("/colores")
 	public List<Color> listarColores(){
 		return iColorService.listarColores();
@@ -53,6 +54,7 @@ public class ColorRestController {
 	 *	- Parámetros: El paginador (tiene la información de la paginación)
 	 *	- Retorna: un ResponseEntity con la lista paginada
 	*/
+	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@GetMapping("/colores/pagina")
 	public ResponseEntity<?> listarColoresPaginado(Pageable paginador){
 		Pageable pag = PageRequest.of(paginador.getPageNumber(), paginador.getPageSize(), Sort.by("nombre").ascending());

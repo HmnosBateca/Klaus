@@ -46,7 +46,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 	//  Se generan los methodos los 4 primeros
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());//obtiene el usuario y se le sifra la contraseña
+		auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());//obtiene el usuario y se le cifra la contraseña
 	}
 
 	@Bean
@@ -64,15 +64,20 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 	// Parte mas importante donde se configura todo
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable()
-		.authorizeRequests()// crear usuario y relizar el login
-		.antMatchers("/auth/**").permitAll() //Se le permite a todo el mundo, estan tanto login como nuevo usuario 
-		.anyRequest().authenticated() // El resto debe ser autenticado
-		.and() // Para el control de sesiones
-		.exceptionHandling().authenticationEntryPoint(jwtEntryPoint) // aroja el error 401 no autorizado
-		.and()// Sesion
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // sin estado no se envia kookes 
 		
+		
+		http.cors()
+		.and().csrf().disable() // se deshabilitan las cookies
+		.authorizeRequests()// autorizar request
+		.antMatchers("/auth/**").permitAll() //Se le permite a todo el mundo el acceso a la URL "/auth/**", ya que ahí está el login como el registrar usuario 
+		.anyRequest().authenticated() // Cualquier otro tipo de request debe estar autenticado
+		.and() // Para el control de sesiones
+		.exceptionHandling().authenticationEntryPoint(jwtEntryPoint) // Para el manejo de errores se va a usar el error 401 no autorizado a través del método "authenticationEntryPoint"
+		.and()// Sesion
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Se establecen políticas de la sesión. Se va a dejar sin estado (STATELESS) debido a que se usa TOKEN 
+		
+		//se añade el jwtTokenFilter antes de cada petición. Allí se va a comprobar el token y va a enviar el usuaro al contexto de autenticación
 		http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+		
 	}
 }

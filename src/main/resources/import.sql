@@ -1151,3 +1151,7 @@ INSERT INTO usuario (nombre, nombre_usuario, correo, password) VALUES ('Sergio B
 
 INSERT INTO usuario_rol (usuario_id, rol_id) VALUES ('1','1');
 INSERT INTO usuario_rol (usuario_id, rol_id) VALUES ('2','1');
+
+INSERT INTO cliente (documento, nombres, apellidos, numero_contacto, ciudad_id, direccion) VALUES(1094248820, 'Jorge Leonardo', 'Bateca Parada', 3102496515,50, 'calle 11 # 16-24');
+
+
