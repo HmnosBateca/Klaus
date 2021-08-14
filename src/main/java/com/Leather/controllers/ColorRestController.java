@@ -1,9 +1,11 @@
 package com.Leather.controllers;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.PageRequest;
@@ -112,7 +114,7 @@ public class ColorRestController {
 	*/
 	@PreAuthorize("hasRole('ADMIN') or hasRole('OPERADOR')")
 	@PostMapping("/colores")
-	public ResponseEntity<?> guardarColor(@RequestBody Color color){
+	public ResponseEntity<?> guardarColor(@RequestBody Color color) {
 		
 		Color colorNuevo = null;
 		Map<String, Object> mapa = new HashMap<>();
