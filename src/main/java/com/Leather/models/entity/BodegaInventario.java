@@ -41,11 +41,11 @@ public class BodegaInventario implements Serializable{
 	private Long cantidad;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value={"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value={"listaBodegaInventario","listaGastoMaterial", "handler", "hibernateLazyInitializer"})
 	private Producto producto; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value={"listaBodegaInventario", "handler",  "hibernateLazyInitializer"})
+	@JsonIgnoreProperties(value={"listaBodegaInventario","listaGastoMaterialProducto", "handler",  "hibernateLazyInitializer", "horaRegistro"})
 	private Talla talla;
 			
 	@JsonIgnoreProperties(value = {"listaBodegaInventario", "handler", "hibernateLazyInitializer"})
