@@ -154,7 +154,7 @@ public class MaterialRestController {
 			materialExistente.setDescripcion(materialFormulario.getDescripcion());
 			materialExistente.setCantidad(materialFormulario.getCantidad());
 			materialExistente.setUnidadMedida(materialFormulario.getUnidadMedida());
-			materialExistente.setPiezas(materialFormulario.getPiezas());
+			// materialExistente.setPiezas(materialFormulario.getPiezas());
 			
 			materialNuevo = iMaterialService.agregarMaterial(materialExistente);
 			

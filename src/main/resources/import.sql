@@ -1136,18 +1136,14 @@ INSERT INTO ciudad (nombre, departamento_id) VALUES ('Umbita', 15);
 INSERT INTO ciudad (nombre, departamento_id) VALUES ('Utica', 25);
 
 
-
-
 INSERT INTO rol(rol_nombre) VALUES('ROLE_ADMIN'); 
 INSERT INTO rol(rol_nombre) VALUES('ROLE_USER'); 
 INSERT INTO rol(rol_nombre) VALUES('ROLE_OPERADOR'); 
 INSERT INTO rol(rol_nombre) VALUES('ROLE_PROPIETARIO'); 
-
-
-
 
 INSERT INTO usuario (nombre, nombre_usuario, correo, password) VALUES ('jorge Leonardo Bateca Parada', 'leonardob', 'leonardobate_02@hotmail.com','$2a$10$vTmRa9PVRA7vcuxO4id.JOgs9JuqXoyscKzUgEy51lQrBvld4OOSy');
 INSERT INTO usuario (nombre, nombre_usuario, correo, password) VALUES ('Sergio Bateca', 'sbateca', 'sbtk87@hotmail.com', '$2a$10$C8S3mI4xdA9jhhHma6.fh.ueXMqehl7Qsa9GXLfdQnNBgMOr5ru2W');
 
 INSERT INTO usuario_rol (usuario_id, rol_id) VALUES ('1','1');
 INSERT INTO usuario_rol (usuario_id, rol_id) VALUES ('2','1');
+

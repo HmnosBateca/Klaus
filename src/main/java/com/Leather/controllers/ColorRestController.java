@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,12 +23,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.Leather.models.entity.Color;
-import com.Leather.models.entity.Talla;
+
 import com.Leather.models.services.IColorService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = { "http://localhost:4200", "*" })
 @RequestMapping("/api")
 public class ColorRestController {
 	
@@ -58,10 +60,7 @@ public class ColorRestController {
 		Pageable pag = PageRequest.of(paginador.getPageNumber(), paginador.getPageSize(), Sort.by("nombre").ascending());
 		return ResponseEntity.ok(iColorService.listarColoresPaginado(pag));
 	}
-	
-	
-	
-	
+			
 	
 	/*
 	 * El metodo obtenerColorPorID permite obtener el color por su ID.

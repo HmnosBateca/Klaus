@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// genera un token, metodo de validacion, ve que este bien formado, y que no este expirado etc
+// Genera un token, metodo de validacion, ve que este bien formado, y que no este expirado etc
 @Component
 public class JwtProvider {
 	

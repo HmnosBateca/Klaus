@@ -15,7 +15,7 @@ public class NuevoUsuario {
 	private String correo;
 	@NotBlank
 	private String password;
-    private Set<String> roles = new HashSet<>();//Por que se van a utilisar Json para mejorar el trafico
+    private Set<String> roles = new HashSet<>();//Por que se van a utilizar Json para mejorar el trafico
     
     // Se Generan los Getter y Setter
 	public String getNombre() {

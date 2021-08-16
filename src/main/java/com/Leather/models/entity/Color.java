@@ -42,9 +42,9 @@ public class Color implements Serializable{
 	@Column(unique = true, name = "codigo_color")
 	private String codigoColor;
 	
-	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties(value = {"color", "handler", "hibernateLazyInitializer"}, allowSetters = true)
-	List<Pieza> piezas;
+	/*@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties(value = {"color", "handler", "hibernateLazyInitializer"})
+	List<Pieza> piezas;*/
 	
 	
 	// -------------- variables de auditoría ---------------------------- //
@@ -134,7 +134,7 @@ public class Color implements Serializable{
 	}
 	
 	
-	public List<Pieza> getPiezas() {
+	/*public List<Pieza> getPiezas() {
 		return piezas;
 	}
 
@@ -144,7 +144,7 @@ public class Color implements Serializable{
 	
 	public void addPieza(Pieza pieza) {
 		this.piezas.add(pieza);
-	}
+	}*/
 	
 	
 	
